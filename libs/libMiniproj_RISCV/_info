@@ -1,0 +1,51 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Gael\Documents\Phelma\Miniprojet_RISC_V
+vbench_control_logic
+Z1 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+!i10b 1
+!s100 9Ie[LYjDN8?A2XNm4QUOW1
+I;d]E]<W[=f`0J=chamI6o1
+VU]]P_YbcNZGXe93VPNeQ>2
+!s105 bench_control_logic_sv_unit
+S1
+Z2 dC:\Users\Gael\Documents\Phelma\Miniprojet_RISC_V
+w1679671702
+8C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv
+FC:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv
+L0 7
+Z3 OV;L;10.1d;51
+r1
+!s85 0
+31
+!s108 1679671726.855000
+!s107 C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv|
+!s90 -reportprogress|300|-work|LIB_Miniproj_RISCV|C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv|
+!s101 -O0
+Z4 o-O0 -work LIB_Miniproj_RISCV
+Z5 tShow_source 1 DisableOpt 1
+vcontrol_logic
+R1
+I:N]N53BlYN84G^@JTN>[=1
+VcVC?[GYm7EkS>8z_9@hSi0
+S1
+R2
+w1679665820
+8C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/vhd/control_logic.sv
+FC:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/vhd/control_logic.sv
+L0 7
+R3
+r1
+31
+R4
+R5
+!i10b 1
+!s100 ^zWfdmRa:cj6FCm@i>SKo0
+!s105 control_logic_sv_unit
+!s85 0
+!s108 1679665826.789000
+!s107 C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/vhd/control_logic.sv|
+!s90 -reportprogress|300|-work|LIB_Miniproj_RISCV|C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/vhd/control_logic.sv|
+!s101 -O0

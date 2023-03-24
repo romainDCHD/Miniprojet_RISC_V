@@ -1,0 +1,6 @@
+cd C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V
+vlib libs/libMiniproj_RISCV
+vmap -modelsimini C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/modelsim.ini LIB_Miniproj_RISCV C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/libs/libMiniproj_RISCV
+vmap LIB_Miniproj_RISCV
+vlog -reportprogress 300 -work LIB_Miniproj_RISCV C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/vhd/control_logic.sv
+vlog -reportprogress 300 -work LIB_Miniproj_RISCV C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv
