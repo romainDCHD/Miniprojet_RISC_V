@@ -2,39 +2,39 @@ m255
 K3
 13
 cModel Technology
-Z0 dC:\Users\Gael\Documents\Phelma\Miniprojet_RISC_V
+Z0 dD:\Dossier principal\Documents\Phelma\Miniprojet_RISC_V\winconfig
 vbench_control_logic
 Z1 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
 !i10b 1
-!s100 9Ie[LYjDN8?A2XNm4QUOW1
-I;d]E]<W[=f`0J=chamI6o1
+!s100 [UF^B:2BDzG`1Yzo2zYoA3
+IDKNKm<T]W]9@RTe>J8dEk0
 VU]]P_YbcNZGXe93VPNeQ>2
 !s105 bench_control_logic_sv_unit
 S1
-Z2 dC:\Users\Gael\Documents\Phelma\Miniprojet_RISC_V
-w1679671702
-8C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv
-FC:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv
+Z2 dD:\Dossier principal\Documents\Phelma\Miniprojet_RISC_V\winconfig
+w1679672054
+8D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv
+FD:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv
 L0 7
 Z3 OV;L;10.1d;51
 r1
 !s85 0
 31
-!s108 1679671726.855000
-!s107 C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv|
-!s90 -reportprogress|300|-work|LIB_Miniproj_RISCV|C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv|
+!s108 1679763863.730000
+!s107 D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv|
+!s90 -reportprogress|300|-work|LIB_Miniproj_RISCV|D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv|
 !s101 -O0
 Z4 o-O0 -work LIB_Miniproj_RISCV
 Z5 tShow_source 1 DisableOpt 1
 vcontrol_logic
 R1
-I:N]N53BlYN84G^@JTN>[=1
+Im9Bf6hPJXFk]4>@=N2=Zb1
 VcVC?[GYm7EkS>8z_9@hSi0
 S1
 R2
-w1679665820
-8C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/vhd/control_logic.sv
-FC:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/vhd/control_logic.sv
+w1679762693
+8D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv
+FD:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv
 L0 7
 R3
 r1
@@ -42,10 +42,10 @@ r1
 R4
 R5
 !i10b 1
-!s100 ^zWfdmRa:cj6FCm@i>SKo0
+!s100 `[Gn]:cgOKo2g3833VW^=0
 !s105 control_logic_sv_unit
 !s85 0
-!s108 1679665826.789000
-!s107 C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/vhd/control_logic.sv|
-!s90 -reportprogress|300|-work|LIB_Miniproj_RISCV|C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/vhd/control_logic.sv|
+!s108 1679763863.696000
+!s107 D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv|
+!s90 -reportprogress|300|-work|LIB_Miniproj_RISCV|D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv|
 !s101 -O0
