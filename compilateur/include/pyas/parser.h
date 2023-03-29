@@ -1,9 +1,4 @@
 /*
-<arith-expr> ::= <term>     ( ({op::sum::plus} | {op::sum::minus}) <term>     )*
-<term>       ::= <s-factor> ( ({op::prod::mul} | {op::prod::div})  <s-factor> )*
-<s-factor>   ::= [{op::sum::plus} | {op::sum::minus}] <factor>
-<factor>     ::= {number} | {identifier} | ( {paren::left} <arith-expr> {paren::right} )
-
 EBNF                    C
 ====================    =============================================
 Concaténation           Suite d’instructions
@@ -19,8 +14,8 @@ Non-terminal            fonction
 #include "lexem.h"
 #include "pyobj.h"
 
-#define func_args list_t* lexems, string_t depth, py_codeblock* codeblock, char verbose
-#define args lexems, curr_depth, codeblock, verbose
+#define func_args list_t* lexems, string_t depth, char verbose
+#define args lexems, curr_depth, verbose
 
 #define upd_depth(name) \
     string_t curr_depth; \
@@ -61,10 +56,13 @@ Non-terminal            fonction
         ret(-1); \
     }
 
-#define chk_opt_non_term(func) \
+#define chk_opt_non_term(func, ...) \
     l = *lexems; \
     if (func(args) == -1) { \
         *lexems = l; \
+    } \
+    else { \
+        __VA_ARGS__; \
     }
 
 /**
@@ -75,7 +73,7 @@ Non-terminal            fonction
  * @return pyobj_t - Objet Python de type py_codeblock contenant les informations du code.
  *                  NULL si une erreur est survenue.
  */
-pyobj_t parse(list_t* lexems, char verbose);
+// pyobj_t parse(list_t* lexems, char verbose);
 
 /**
  * @brief Parse une expression arithmétique selon des règles EBNF
@@ -83,66 +81,15 @@ pyobj_t parse(list_t* lexems, char verbose);
  * @param lexems Liste de lexem devant respecté cette règle
  * @return int - 0 si la liste de lexems respecte les règles, -1 sinon
  */
-int parse_pys(func_args);
-int parse_prologue(func_args);
-int parse_set_dir(func_args);
-int parse_set_ver_pyvm(func_args);
-int parse_set_flags(func_args);
-int parse_set_filename(func_args);
-int parse_set_name(func_args);
-int parse_set_src_sze(func_args);
-int parse_set_stack_size(func_args);
-int parse_set_arg_cnt(func_args);
-int parse_set_kwl_arg_cnt(func_args);
-int parse_set_psl_arg_cnt(func_args);
-int parse_inter_str(func_args);
-int parse_constants(func_args);
-int parse_constant(func_args);
-int parse_list(func_args);
-int parse_tuple(func_args);
-int parse_names(func_args);
-int parse_var_name(func_args);
-int parse_freevars(func_args);
-int parse_cellvars(func_args);
 int parse_code(func_args);
-int parse_ass_line(func_args);
-int parse_label(func_args);
-int parse_src_lno(func_args);
+int parse_code_line(func_args);
 int parse_insn(func_args);
+int parse_insn_regreg(func_args);
+int parse_insn_imm(func_args);
+int parse_insn_branch(func_args);
+int parse_insn_memory(func_args);
+int parse_insn_jal(func_args);
+int parse_insn_jalr(func_args);
+int parse_insn_upper(func_args);
 int parse_eol(func_args);
-
-
-// /**
-//  * @brief Parse une expression arithmétique selon la règle EBNF
-//  * <arith-expr> ::= <term> ( ({op::sum::plus} | {op::sum::minus}) <term> )*
-//  * 
-//  * @param lexems Liste de lexem devant respecté cette règle
-//  * @return int - 0 si la liste de lexems respecte la règle, -1 sinon
-//  */
-// int parse_arith_expr(list_t* lexems);
-
-// /**
-//  * @brief Parse une expression arithmétique selon la règle EBNF
-//  * <term> ::= <s-factor> ( ({op::prod::mul} | {op::prod::div})  <s-factor> )*
-//  * 
-//  * @param lexems Liste de lexem devant respecté cette règle
-//  * @return int - 0 si la liste de lexems respecte la règle, -1 sinon
-//  */
-// int parse_term(list_t* lexems);
-
-// /**
-//  * @brief Parse une expression arithmétique selon la règle EBNF
-//  * <s-factor> ::= [{op::sum::plus} | {op::sum::minus}] <factor>
-//  * 
-//  * @param lexems Liste de lexem devant respecté cette règle
-//  * @return int - 0 si la liste de lexems respecte la règle, -1 sinon
-//  */
-// int parse_s_factor(list_t* lexems);
-
-// /**
-//  * @brief Parse une expression arithmétique selon la règle EBNF
-//  * <factor> ::= {number} | {identifier} | ( {paren::left} <arith-expr> {paren::right} )
-//  * @param lexems Liste de lexem devant respecté cette règle
-//  * @return int - 0 si la liste de lexems respecte la règle, -1 sinon
-//  */
-// int parse_factor(list_t* lexems);
+int parse_eol(func_args);

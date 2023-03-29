@@ -46,15 +46,14 @@ int main(int argc, char* argv[]) {
     if (verbose) printf("\n\nParsing des lexems : \n");
 
     list_t lex = lexems;                          // Sauvegarde du début de la liste pour pouvoir libérer la mémoire à la fin
-    pyobj_t codeblock = parse(&lex, verbose);     // Parsing des lexems
-    if (codeblock != NULL) {
+
+    // Parsing des lexems
+    if (parse_code(&lex, string_convert(""), verbose) == 0) {
         if (verbose) {
             STYLE(stderr, COLOR_GREEN, STYLE_BOLD);
             printf("Aucune erreur dans l'expression !\n");
             STYLE_RESET(stderr);
-            pyobj_print(codeblock);
         }
-        pyobj_free(codeblock);
     }
     else {
         STYLE(stderr, COLOR_RED, STYLE_BOLD);
