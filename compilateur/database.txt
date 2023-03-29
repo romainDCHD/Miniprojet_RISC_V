@@ -1,0 +1,57 @@
+# Structure du texte du code
+blank						[ \t]+
+newline						\n+
+comment						;[^\n]*
+comma                       ,
+label						[.]?[a-zA-Z_][a-zA-Z_0-9]*:
+
+# Instructions
+insn::NOP                   nop
+insn::ADD		            add
+insn::ADDI		            addi
+insn::AND		            and
+insn::ANDI		            andi
+insn::BEQ		            beq
+insn::SLL		            sll
+insn::SRL		            srl
+insn::OR		            or
+insn::ORI		            ori
+insn::BNE		            bne
+insn::SLLI		            slli
+insn::SRLI		            srli
+insn::XOR		            xor
+insn::XORI		            xori
+insn::BGE		            bge
+insn::SLT		            slt
+insn::SLTU		            sltu
+insn::SRA		            sra
+insn::LUI		            lui
+insn::BGEU		            bgeu
+insn::SLTI		            slti
+insn::SLTIU		            sltiu
+insn::SRAI		            srai
+insn::AUIPC		            auipc
+insn::BLT		            blt
+insn::LB		            lb
+insn::LH		            lh
+insn::LW		            lw
+insn::SB		            sb
+insn::BLTU		            bltu
+insn::LBU		            lbu
+insn::LHU		            lhu
+insn::SW		            sw
+insn::SH		            sh
+insn::JAL		            jal
+insn::JALR		            jalr
+insn::SUB		            sub
+
+
+# Description des constantes
+#integer::hex				0x[0-9A-Za-z]+
+integer::dec				[\-+]?[0-9]+
+symbole::register           a[0-9]+
+
+# Parenthèses, crochets et double points
+paren::left					(
+paren::right				)
+#colon						:
