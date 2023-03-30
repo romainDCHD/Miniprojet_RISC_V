@@ -1,32 +1,32 @@
 main:
         addi    sp,sp,-32
-        sw      s0,28(sp)
-        addi    s0,sp,32
-        lui      a5,2
-        sw      a5,-28(s0)
-        lui      a5,1
-        sw      a5,-20(s0)
-        lw      a4,-28(s0)
-        lw      a5,-20(s0)
-        beq     a4,a5,.L2
-        sw      zero,-24(s0)
+        sw      r6,28(sp)
+        addi    r6,sp,32
+        lui      r3,2
+        sw      r3,-28(r6)
+        lui      r3,1
+        sw      r3,-20(r6)
+        lw      r2,-28(r6)
+        lw      r3,-20(r6)
+        beq     r2,r3,.L2
+        sw      zero,-24(r6)
         jal     r1,.L3
 .L4:
-        lw      a5,-20(s0)
-        addi    a5,a5,1
-        sw      a5,-20(s0)
-        lw      a5,-24(s0)
-        addi    a5,a5,1
-        sw      a5,-24(s0)
+        lw      r3,-20(r6)
+        addi    r3,r3,1
+        sw      r3,-20(r6)
+        lw      r3,-24(r6)
+        addi    r3,r3,1
+        sw      r3,-24(r6)
 .L3:
-        lw      a4,-24(s0)
-        lui      a5,4
-        blt     a4,a5,.L4
+        lw      r2,-24(r6)
+        lui      r3,4
+        blt     r2,r3,.L4
 .L2:
-        lw      a5,-20(s0)
-        lw      s0,28(sp)
+        lw      r3,-20(r6)
+        lw      r6,28(sp)
         addi    sp,sp,32
-        jalr    r2,r1,32
+        jalr    ra,r2,32
         
 ;https://godbolt.org/
 ;int main(void) {

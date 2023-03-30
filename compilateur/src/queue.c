@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h> /* NULL */
 
-#include "../include/pyas/list.h"
-#include "../include/pyas/queue.h"
+#include "../include/rv32ias/list.h"
+#include "../include/rv32ias/queue.h"
 
 queue_t queue_new( void ) { 
   return NULL; 

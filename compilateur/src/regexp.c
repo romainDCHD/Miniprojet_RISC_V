@@ -11,9 +11,9 @@
 #include <stdio.h>
 #include <assert.h>
 #include <stdlib.h>
-#include "../include/pyas/regexp.h"
-#include "../include/pyas/char_group.h"
-#include "../include/pyas/string.h"
+#include "../include/rv32ias/regexp.h"
+#include "../include/rv32ias/char_group.h"
+#include "../include/rv32ias/string.h"
 #include "../include/unitest/logging.h"
 
 char process_backslash_out_groups(char* source) {

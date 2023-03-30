@@ -9,8 +9,8 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "../include/pyas/char_group.h"
-#include "../include/pyas/string.h"
+#include "../include/rv32ias/char_group.h"
+#include "../include/rv32ias/string.h"
 
 char_group* char_group_new() {
   char_group* group = malloc(sizeof(char_group));

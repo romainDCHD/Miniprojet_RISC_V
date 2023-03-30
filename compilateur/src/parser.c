@@ -33,11 +33,10 @@ Non-terminal            fonction
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/pyas/parser.h"
-#include "../include/pyas/list.h"
-#include "../include/pyas/lexem.h"
-#include "../include/pyas/string.h"
-#include "../include/pyas/pyobj.h"
+#include "../include/rv32ias/parser.h"
+#include "../include/rv32ias/list.h"
+#include "../include/rv32ias/lexem.h"
+#include "../include/rv32ias/string.h"
 
 // pyobj_t parse(list_t* lexems, char verbose) {
 //     pyobj_t obj;
@@ -61,6 +60,9 @@ int parse_code(func_args) {
     while (parse_code_line(args) == 0) {
         chk_non_term(parse_eol)
     }
+
+    if (list_empty(*lexems)) {ret( 0)}
+    else                     {ret(-1)}
 
     ret(0)
 }
@@ -250,7 +252,7 @@ int parse_insn_upper(func_args) {
 int parse_eol(func_args) {
     upd_depth("eol")
 
-    while (next_lexem_is(lexems, "blank") || next_lexem_is(lexems, "comment") || next_lexem_is(lexems, "newline")) {
+    while (!list_empty(*lexems) && (next_lexem_is(lexems, "blank") || next_lexem_is(lexems, "comment") || next_lexem_is(lexems, "newline"))) {
         if (next_lexem_is(lexems, "blank"))
             lexem_advance(lexems);
         if (next_lexem_is(lexems, "comment"))

@@ -15,10 +15,10 @@
 extern "C" {
 #endif
 
-#include <pyas/list.h>
-#include <pyas/queue.h>
+#include <rv32ias/list.h>
+#include <rv32ias/queue.h>
 
-#include <pyas/lexem.h>
+#include <rv32ias/lexem.h>
 
 #ifdef __cplusplus
 }

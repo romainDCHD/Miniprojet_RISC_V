@@ -14,12 +14,12 @@
 #include <string.h>
 #include <assert.h>
 
-#include "../include/pyas/lexem.h"
-#include "../include/pyas/list.h"
-#include "../include/pyas/string.h"
-#include "../include/pyas/regexp.h"
-#include "../include/pyas/string.h"
-#include "../include/pyas/char_group.h"
+#include "../include/rv32ias/lexem.h"
+#include "../include/rv32ias/list.h"
+#include "../include/rv32ias/string.h"
+#include "../include/rv32ias/regexp.h"
+#include "../include/rv32ias/string.h"
+#include "../include/rv32ias/char_group.h"
 #include "../include/unitest/logging.h"
 
 lexem_t lexem_new(string_t type, string_t value, int line, int column) { 

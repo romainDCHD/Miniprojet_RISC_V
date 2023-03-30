@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../include/pyas/list.h"
-#include "../include/pyas/char_group.h"
+#include "../include/rv32ias/list.h"
+#include "../include/rv32ias/char_group.h"
 
 // struct link_t { 
 //   void          *content;

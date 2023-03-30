@@ -12,7 +12,6 @@ Non-terminal            fonction
 
 #include "list.h"
 #include "lexem.h"
-#include "pyobj.h"
 
 #define func_args list_t* lexems, string_t depth, char verbose
 #define args lexems, curr_depth, verbose

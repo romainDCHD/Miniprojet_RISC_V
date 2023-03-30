@@ -13,7 +13,7 @@
 #include <assert.h>
 
 #include "../include/unitest/unitest.h"
-#include "../include/pyas/macros.h"
+#include "../include/rv32ias/macros.h"
 
 unsigned ntests_passed = 0;
 unsigned ntests_total  = 0;

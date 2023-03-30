@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "../include/pyas/lexem.h"
-#include "../include/pyas/regexp.h"
-#include "../include/pyas/list.h"
-#include "../include/pyas/string.h"
-#include "../include/pyas/parser.h"
-#include "../include/pyas/pyobj.h"
+#include "../include/rv32ias/lexem.h"
+#include "../include/rv32ias/regexp.h"
+#include "../include/rv32ias/list.h"
+#include "../include/rv32ias/string.h"
+#include "../include/rv32ias/parser.h"
 #include "../include/unitest/logging.h"
 
 int main(int argc, char* argv[]) {
@@ -68,3 +67,4 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+

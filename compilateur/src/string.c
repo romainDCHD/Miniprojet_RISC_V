@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
-#include "../include/pyas/string.h"
+#include "../include/rv32ias/string.h"
 
 int string_new(string_t* str, char* content, int length) {
     // Si on souhaite un string vide

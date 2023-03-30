@@ -4,7 +4,7 @@ setlocal enabledelayedexpansion
 set gcc_args=-Wall -Wextra -g
 
 set prog[0].nam=parser
-set prog[0].dep=src/string.c src/list.c src/char_group.c src/regexp.c src/unitest.c src/lexem.c src/parser.c src/pyobj.c
+set prog[0].dep=src/string.c src/list.c src/char_group.c src/regexp.c src/unitest.c src/lexem.c src/parser.c
 set prog[0].dir=prog/
 set prog[0].arg=test.asm database.txt -v
 
