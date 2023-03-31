@@ -1,24 +1,29 @@
- module 3dff (clk, in, out, reset);
-    	input clk, reset;
-		input [4:0]  in;
-    	output [4:0] out;
+ module three_dff (
+    	input clk, reset,
+	input [4:0]  in,
+    	output logic [4:0] out
+);
     	reg [4:0] intermediate1;
     	reg [4:0] intermediate2;
-    	reg [4:0] out;
+    	reg [4:0] intermediate3;
 		    	
-    	always@(posedge clk)
+    	always_ff @(posedge clk)
 		begin
 		if (reset == 1)
-		begin
-			out <= 1'b0;
-			intermediate1 <= 1'b0;
-			intermediate2 <= 1'b0;
-		end
+			begin
+				assign out = 1'b0;
+				intermediate1 <= 1'b0;
+				intermediate2 <= 1'b0;
+			end
 		else 
-		begin
-    		intermediate1 <= in;
-    		intermediate2 <= intermediate1;
-    		out <= intermediate2;
+			begin
+		    		intermediate1 <= in;
+		    		intermediate2 <= intermediate1;	
+		    		intermediate3 <= intermediate2;		    		
+			end
 		end
+	always_ff @(posedge clk)
+		begin
+		assign out = intermediate3;
 		end
  endmodule
