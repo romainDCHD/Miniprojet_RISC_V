@@ -13,8 +13,8 @@ Non-terminal            fonction
 #include "list.h"
 #include "lexem.h"
 
-#define func_args list_t* lexems, string_t depth, char verbose
-#define args lexems, curr_depth, verbose
+#define func_args list_t* lexems, string_t depth, char verbose, list_t* instructions, int* line_addr
+#define args lexems, curr_depth, verbose, instructions, line_addr
 
 #define upd_depth(name) \
     string_t curr_depth; \

@@ -1,7 +1,8 @@
 #ifndef _ASM_LINE_H_
 #define _ASM_LINE_H_
 
-#include "../include/rv32ias/list.h"
+#include "list.h"
+#include "string.h"
 
 #define R0_CODE   "00000"
 #define R1_CODE   "00001"
@@ -130,7 +131,8 @@ typedef enum {
     TYPE_JAL,
     TYPE_JALR,
     TYPE_LUI,
-    TYPE_AUIPC
+    TYPE_AUIPC,
+    TYPE_UNDEF
 } insn_type_t;
 
 typedef enum {
@@ -169,47 +171,50 @@ typedef enum {
 } reg_t;
 
 typedef struct {
-    insnset_t insn;
-    insn_type_t type;
+    insnset_t insn;                    // Nom de l'instruction
+    insn_type_t type;                  // Type de l'instruction
 } insn_t;
 
+typedef enum {
+    INSN_LINE,
+    LABEL_LINE
+} line_type_t;
+
 typedef struct {
-    insn_t insn;
-    reg_t rd;
-    reg_t rs1;
-    reg_t rs2;
-    int imm;
+    string_t name;                     // Nom du label
+    int line_addr;                     // Adresse de la ligne
+} label_t;
+
+typedef struct {
+    line_type_t type;                  // Type de la ligne
+    union {
+        label_t label;                 // Etiquette
+        struct {
+            insn_t insn;               // Instruction
+            reg_t rd;                  // Registre de destination
+            reg_t rs1;                 // Registre source 1
+            reg_t rs2;                 // Registre source 2
+            int imm;                   // Valeur immédiate
+            string_t label;            // Nom du label ciblé
+            int line_addr;             // Adresse de la ligne
+        } insn_line;
+    };
 } asm_line_t;
 
 /**
- * @brief Retourne une nouvelle instruction
+ * @brief Convertie une instruction simple en type instruction
  * 
- * @param insn Nom de l'instruction
- * @param type Type de l'instruction
- * @param opcode Opcode de l'instruction
- * @return void* - Pointeur vers la nouvelle instruction
+ * @param insn_set Instruction à convertir
+ * @return insn_t - Instruction convertie
  */
-void* insn_new(insnset_t insn, insn_type_t type);
-/**
- * @brief Libère une instruction
- * 
- * @param insn Pointeur vers l'instruction à libérer
- * @return int - 0
- */
-int insn_free(void *insn);
-/**
- * @brief Initialise la liste des instructions
- * 
- * @param insn_set Liste à initialiser
- */
-void init_insn_set(list_t *insn_set);
+insn_t insnset2insn(insnset_t insn_set);
 /**
  * @brief Convertie un nom de lexem en instruction
  * 
  * @param str Nom du lexem
- * @return insnset_t - Instruction correspondante
+ * @return insn_t - Instruction correspondante
  */
-insnset_t str2insnset(char *str);
+insn_t str2insn(char *str);
 /**
  * @brief Convertie une valeur de lexem en registre
  * 
@@ -218,13 +223,133 @@ insnset_t str2insnset(char *str);
  */
 reg_t str2reg(char *str);
 /**
- * @brief Créer une nouvelle ligne assembleur du type REGISTER-REGISTER
+ * @brief Convertie un registre en code assembleur
  * 
+ * @param reg Registre à convertir
+ * @return char* - Code assembleur correspondant
+ */
+char* reg2code(reg_t reg);
+/**
+ * @brief Renvoie un pointeur sur une nouvelle ligne assembleur initialisée
+ * 
+ * @return asm_line_t* - Pointeur sur la nouvelle ligne
+ */
+asm_line_t* asm_line_new();
+/**
+ * @brief Créer une nouvelle ligne assembleur du type REGISTER-IMMEDIATE et l'ajoute à la liste d'instructions
+ * 
+ * @param insn_list Pointeur sur la liste où stocker l'instruction
  * @param insn Code de l'instruction
  * @param rd Registre de destination
  * @param rs1 Registre source 1
  * @param rs2 Registre source 2
- * @return void* 
+ * @param line_addr Adresse de l'instruction dans le registre d'instructions
  */
-void* asm_line_regreg_new(insn_t insn, reg_t rd, reg_t rs1, reg_t rs2);
+void asm_line_regreg_add(list_t* insn_list, insn_t insn, reg_t rd, reg_t rs1, reg_t rs2, int line_addr);
+/**
+ * @brief Créer une nouvelle ligne assembleur du type REGISTER-IMMEDIATE et l'ajoute à la liste d'instructions
+ * 
+ * @param insn_list Pointeur sur la liste où stocker l'instruction
+ * @param insn Code de l'instruction
+ * @param rd Registre de destination
+ * @param rs1 Registre source 1
+ * @param imm Valeur immédiate
+ * @param line_addr Adresse de l'instruction dans le registre d'instructions
+ */
+void asm_line_imm_add(list_t* insn_list, insn_t insn, reg_t rd, reg_t rs1, int imm, int line_addr);
+/**
+ * @brief Créer une nouvelle ligne assembleur du type LOAD et l'ajoute à la liste d'instructions
+ * 
+ * @param insn_list Pointeur sur la liste où stocker l'instruction
+ * @param insn Code de l'instruction
+ * @param rs1 Registre source 1
+ * @param rs2 Registre source 2
+ * @param label Label de destination
+ * @param line_addr Adresse de l'instruction dans le registre d'instructions
+ */
+void asm_line_branch_add(list_t* insn_list, insn_t insn, reg_t rs1, reg_t rs2, char* label, int line_addr);
+/**
+ * @brief Créer une nouvelle ligne assembleur du type LOAD ou STORE et l'ajoute à la liste d'instructions
+ * 
+ * @param insn_list Pointeur sur la liste où stocker l'instruction
+ * @param insn Code de l'instruction
+ * @param rs1 Registre source 1
+ * @param rs2 Registre source 2
+ * @param imm Valeur immédiate
+ * @param line_addr Adresse de l'instruction dans le registre d'instructions
+ */
+void asm_line_memory_add(list_t* insn_list, insn_t insn, reg_t rs1, reg_t rs2, int imm, int line_addr);
+/**
+ * @brief Créer une nouvelle ligne assembleur du type JAL et l'ajoute à la liste d'instructions
+ * 
+ * @param insn_list Pointeur sur la liste où stocker l'instruction
+ * @param insn Code de l'instruction
+ * @param rd Registre de destination
+ * @param label Label de destination
+ * @param line_addr Adresse de l'instruction dans le registre d'instructions
+ */
+void asm_line_jal_add(list_t* insn_list, insn_t insn, reg_t rd, char* label, int line_addr);
+/**
+ * @brief Créer une nouvelle ligne assembleur du type JALR et l'ajoute à la liste d'instructions
+ * 
+ * @param insn_list Pointeur sur la liste où stocker l'instruction
+ * @param insn Code de l'instruction
+ * @param rd Registre de destination
+ * @param rs1 Registre source 1
+ * @param imm Valeur immédiate
+ * @param line_addr Adresse de l'instruction dans le registre d'instructions
+ */
+void asm_line_jalr_add(list_t* insn_list, insn_t insn, reg_t rd, reg_t rs1, char* label, int line_addr);
+/**
+ * @brief Créer une nouvelle ligne assembleur du type LUI ou AUIPC et l'ajoute à la liste d'instructions
+ * 
+ * @param insn_list Pointeur sur la liste où stocker l'instruction
+ * @param insn Code de l'instruction
+ * @param rd Registre de destination
+ * @param imm Valeur immédiate
+ * @param line_addr Adresse de l'instruction dans le registre d'instructions
+ */
+void asm_line_upper_add(list_t* insn_list, insn_t insn, reg_t rd, int imm, int line_addr);
+/**
+ * @brief Créer une nouvelle ligne assembleur du type LABEL et l'ajoute à la liste d'instructions
+ * 
+ * @param insn_list Pointeur sur la liste où stocker l'instruction
+ * @param name Nom du label
+ * @param line_addr Adresse de l'instruction dans le registre d'instructions
+ */
+void asm_line_label_add(list_t* insn_list, char* name, int line_addr);
+/**
+ * @brief Créer une nouvelle ligne assembleur du type NOP et l'ajoute à la liste d'instructions
+ * 
+ * @param insn_list Pointeur sur la liste où stocker l'instruction
+ * @param line_addr Adresse de l'instruction dans le registre d'instructions
+ */
+void asm_line_nop_add(list_t* insn_list, int line_addr);
+/**
+ * @brief Met à jour les adresses des jumps et branches
+ * 
+ * @param insn_list Liste des instructions
+ */
+void asm_line_update_adress(list_t* insn_list);
+/**
+ * @brief Ecrit une ligne assembleur dans un fichier
+ * 
+ * @param asm_line Ligne assembleur à écrire
+ * @param file Fichier dans lequel écrire
+ */
+void asm_line_write_instruction(list_t* insn_list, FILE* file);
+/**
+ * @brief Affiche une ligne assembleur
+ * 
+ * @param asm_line Ligne assembleur à afficher
+ * @return int - 0
+ */
+int asm_line_print(void* asm_line);
+/**
+ * @brief Libère une ligne assembleur
+ * 
+ * @param asm_line Ligne assembleur à libérer
+ * @return int - 0
+ */
+int asm_line_free(void* asm_line);
 #endif

@@ -6,6 +6,7 @@
 #include "../include/rv32ias/list.h"
 #include "../include/rv32ias/string.h"
 #include "../include/rv32ias/parser.h"
+#include "../include/rv32ias/asm_line.h"
 #include "../include/unitest/logging.h"
 
 int main(int argc, char* argv[]) {
@@ -47,11 +48,16 @@ int main(int argc, char* argv[]) {
     list_t lex = lexems;                          // Sauvegarde du début de la liste pour pouvoir libérer la mémoire à la fin
 
     // Parsing des lexems
-    if (parse_code(&lex, string_convert(""), verbose) == 0) {
+    list_t instructions = list_new();
+    int addr = 0;
+    if (parse_code(&lex, string_convert(""), verbose, &instructions, &addr) == 0) {
         if (verbose) {
             STYLE(stderr, COLOR_GREEN, STYLE_BOLD);
             printf("Aucune erreur dans l'expression !\n");
             STYLE_RESET(stderr);
+            if (verbose) printf("\n\nMise à jours des adresses des jumps et des branchement : \n");
+            asm_line_update_adress(&instructions);
+            if (verbose) list_print(instructions, asm_line_print);
         }
     }
     else {
@@ -62,8 +68,9 @@ int main(int argc, char* argv[]) {
         list_delete(lexems, lexem_delete);
         exit(EXIT_FAILURE);
     }
-    
     list_delete(lexems, lexem_delete);
+    list_delete(instructions, asm_line_free);
+    
 
     return 0;
 }

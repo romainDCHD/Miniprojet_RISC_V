@@ -15,7 +15,7 @@
                    {'insn::LBU'}  | {'insn::LHU'}   | {'insn::SB'}   | 
                    {'insn::SH'}   | {'insn::SW'}) {‘blank’} {'symbole::register'} {'comma'} {'integer::dec'} {'paren::left'} {'symbole::register'} {'paren::right'}
 <insn-jal>    ::= {'insn::JAL'}  {‘blank’} {'symbole::register'} {'comma'} {'label'}
-<insn-jalr>   ::= {'insn::JALR'} {‘blank’} {'symbole::register'} {'comma'} {'symbole::register'} {'comma'} {'integer::dec'}
+<insn-jalr>   ::= ({'insn::JALR'}) {‘blank’} {'symbole::register'} {'comma'} {'symbole::register'} {'comma'} {'symbole::label'}
 <insn-upper>  ::= ({'insn::LUI'} | {'insn::AUIPC'}) {‘blank’} {'symbole::register'} {'comma'} {'integer::dec'}
 
 <eol>         ::= ([{‘blank’}] [{‘comment’}] {‘newline’} [{’blank’}])*
@@ -37,6 +37,7 @@ Non-terminal            fonction
 #include "../include/rv32ias/list.h"
 #include "../include/rv32ias/lexem.h"
 #include "../include/rv32ias/string.h"
+#include "../include/rv32ias/asm_line.h"
 
 // pyobj_t parse(list_t* lexems, char verbose) {
 //     pyobj_t obj;
@@ -72,8 +73,10 @@ int parse_code_line(func_args) {
     upd_depth("code-line");
 
     if (next_lexem_is(lexems, "label") || parse_insn(args) == 0) {
-        if (next_lexem_is(lexems, "label"))
+        if (next_lexem_is(lexems, "label")) {
+            asm_line_label_add(instructions, ((lexem_t)(list_first(*lexems)))->value, *line_addr);
             lexem_advance(lexems);
+        }
         ret(0)
     }
     ret(-1)
@@ -102,7 +105,6 @@ int parse_insn(func_args) {
 int parse_insn_regreg(func_args) {
     upd_depth("insn-regreg");
 
-    list_t l = *lexems;                  // Backup la liste lexems
     if (next_lexem_is(lexems, "insn::ADD")  ||
         next_lexem_is(lexems, "insn::AND")  ||
         next_lexem_is(lexems, "insn::SLL")  ||
@@ -113,13 +115,21 @@ int parse_insn_regreg(func_args) {
         next_lexem_is(lexems, "insn::SLTU") ||
         next_lexem_is(lexems, "insn::SRA")  ||
         next_lexem_is(lexems, "insn::SUB")) {
+            insn_t insn = str2insn(((lexem_t)(list_first(*lexems)))->type);
             lexem_advance(lexems);
             chk_term("blank")
-            chk_term("symbole::register")
+            reg_t rd;
+            chk_term("symbole::register", rd = str2reg(((lexem_t)(list_first(*lexems)))->value))
             chk_term("comma")
-            chk_term("symbole::register")
+            reg_t rs1;
+            chk_term("symbole::register", rs1 = str2reg(((lexem_t)(list_first(*lexems)))->value))
             chk_term("comma")
-            chk_term("symbole::register")
+            reg_t rs2;
+            chk_term("symbole::register", rs2 = str2reg(((lexem_t)(list_first(*lexems)))->value))
+
+            asm_line_regreg_add(instructions, insn, rd, rs1, rs2, *line_addr);
+            *line_addr = *line_addr + 4;
+
             ret(0)
     }
 
@@ -141,13 +151,21 @@ int parse_insn_imm(func_args) {
         next_lexem_is(lexems, "insn::SLTI")  ||
         next_lexem_is(lexems, "insn::SLTIU") ||
         next_lexem_is(lexems, "insn::SRAI")) {
+            insn_t insn = str2insn(((lexem_t)(list_first(*lexems)))->type);
             lexem_advance(lexems);
             chk_term("blank")
-            chk_term("symbole::register")
+            reg_t rd;
+            chk_term("symbole::register", rd = str2reg(((lexem_t)(list_first(*lexems)))->value))
             chk_term("comma")
-            chk_term("symbole::register")
+            reg_t rs1;
+            chk_term("symbole::register", rs1 = str2reg(((lexem_t)(list_first(*lexems)))->value))
             chk_term("comma")
-            chk_term("integer::dec")
+            int imm;
+            chk_term("integer::dec", imm = atoi(((lexem_t)(list_first(*lexems)))->value))
+
+            asm_line_imm_add(instructions, insn, rd, rs1, imm, *line_addr);
+            *line_addr = *line_addr + 4;
+
             ret(0)
     }
     ret(-1)
@@ -164,13 +182,26 @@ int parse_insn_branch(func_args) {
         next_lexem_is(lexems, "insn::BGE")  ||
         next_lexem_is(lexems, "insn::BLTU") ||
         next_lexem_is(lexems, "insn::BGEU")) {
+            insn_t insn = str2insn(((lexem_t)(list_first(*lexems)))->type);
             lexem_advance(lexems);
             chk_term("blank")
-            chk_term("symbole::register")
+            reg_t rs1;
+            chk_term("symbole::register", rs1 = str2reg(((lexem_t)(list_first(*lexems)))->value))
             chk_term("comma")
-            chk_term("symbole::register")
+            reg_t rs2;
+            chk_term("symbole::register", rs2 = str2reg(((lexem_t)(list_first(*lexems)))->value))
             chk_term("comma")
-            chk_term("symbole::label")
+            char *label;
+            chk_term("symbole::label", label = ((lexem_t)(list_first(*lexems)))->value)
+
+            asm_line_branch_add(instructions, insn, rs1, rs2, label, *line_addr);
+            *line_addr = *line_addr + 4;
+            // Rajoute deux instructions NOP au cas où le saut est effectué
+            asm_line_nop_add(instructions, *line_addr);
+            *line_addr = *line_addr + 4;
+            asm_line_nop_add(instructions, *line_addr);
+            *line_addr = *line_addr + 4;
+
             ret(0)
     }
     
@@ -191,14 +222,22 @@ int parse_insn_memory(func_args) {
         next_lexem_is(lexems, "insn::SB")  ||
         next_lexem_is(lexems, "insn::SH")  ||
         next_lexem_is(lexems, "insn::SW")) {
+            insn_t insn = str2insn(((lexem_t)(list_first(*lexems)))->type);
             lexem_advance(lexems);
             chk_term("blank")
-            chk_term("symbole::register")
+            reg_t rd;
+            chk_term("symbole::register", rd = str2reg(((lexem_t)(list_first(*lexems)))->value))
             chk_term("comma")
-            chk_term("integer::dec")
+            int imm;
+            chk_term("integer::dec", imm = atoi(((lexem_t)(list_first(*lexems)))->value))
             chk_term("paren::left")
-            chk_term("symbole::register")
+            reg_t rs1;
+            chk_term("symbole::register", rs1 = str2reg(((lexem_t)(list_first(*lexems)))->value))
             chk_term("paren::right")
+
+            asm_line_memory_add(instructions, insn, rd, rs1, imm, *line_addr);
+            *line_addr = *line_addr + 4;
+
             ret(0)
     }
     ret(-1)
@@ -208,26 +247,39 @@ int parse_insn_memory(func_args) {
 int parse_insn_jal(func_args) {
     upd_depth("insn-jal");
 
-    chk_term("insn::JAL")
+    insn_t insn;
+    chk_term("insn::JAL", insn = str2insn(((lexem_t)(list_first(*lexems)))->type))
     chk_term("blank")
-    chk_term("symbole::register")
+    reg_t rd;
+    chk_term("symbole::register", rd = str2reg(((lexem_t)(list_first(*lexems)))->value))
     chk_term("comma")
-    chk_term("symbole::label")
+    char *label;
+    chk_term("symbole::label", label = ((lexem_t)(list_first(*lexems)))->value)
+
+    asm_line_jal_add(instructions, insn, rd, label, *line_addr);
+    *line_addr = *line_addr + 4;
 
     ret(0)
 }
 
-// <insn-jalr> ::= ({'insn::JALR'}) {‘blank’} {'symbole::register'} {'comma'} {'symbole::register'} {'comma'} {'integer::dec'}
+// <insn-jalr> ::= ({'insn::JALR'}) {‘blank’} {'symbole::register'} {'comma'} {'symbole::register'} {'comma'} {'symbole::label'}
 int parse_insn_jalr(func_args) {
     upd_depth("insn-jalr");
 
-    chk_term("insn::JALR")
+    insn_t insn;
+    chk_term("insn::JALR", insn = str2insn(((lexem_t)(list_first(*lexems)))->type))
     chk_term("blank")
-    chk_term("symbole::register")
+    reg_t rd;
+    chk_term("symbole::register", rd = str2reg(((lexem_t)(list_first(*lexems)))->value))
     chk_term("comma")
-    chk_term("symbole::register")
+    reg_t rs1;
+    chk_term("symbole::register", rs1 = str2reg(((lexem_t)(list_first(*lexems)))->value))
     chk_term("comma")
-    chk_term("integer::dec")
+    char *label;
+    chk_term("symbole::label", label = ((lexem_t)(list_first(*lexems)))->value)
+
+    asm_line_jalr_add(instructions, insn, rd, rs1, label, *line_addr);
+    *line_addr = *line_addr + 4;
 
     ret(0)
 }
@@ -238,11 +290,18 @@ int parse_insn_upper(func_args) {
 
     if (next_lexem_is(lexems, "insn::LUI") ||
         next_lexem_is(lexems, "insn::AUIPC")) {
+            insn_t insn = str2insn(((lexem_t)(list_first(*lexems)))->type);
             lexem_advance(lexems);
             chk_term("blank")
-            chk_term("symbole::register")
+            reg_t rd;
+            chk_term("symbole::register", rd = str2reg(((lexem_t)(list_first(*lexems)))->value))
             chk_term("comma")
-            chk_term("integer::dec")
+            int imm;
+            chk_term("integer::dec", imm = atoi(((lexem_t)(list_first(*lexems)))->value))
+
+            asm_line_upper_add(instructions, insn, rd, imm, *line_addr);
+            *line_addr = *line_addr + 4;
+
             ret(0)
     }
     ret(-1)

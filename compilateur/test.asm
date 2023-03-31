@@ -26,7 +26,7 @@ main:
         lw      r3,-20(r6)
         lw      r6,28(sp)
         addi    sp,sp,32
-        jalr    ra,r2,32
+        jalr    ra,r2,main
         
 ;https://godbolt.org/
 ;int main(void) {
