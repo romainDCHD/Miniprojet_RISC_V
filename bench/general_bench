@@ -3,23 +3,19 @@
 //  Designer    : Romain DUCHADEAU
 //  Description : Most exhausitive possible test for the register module
 //==============================================================================
-module bench_regfile();
+module general_bench(
+	input [31:0] pc_i,
+	output [31:0] inst_o
+);
 
 timeunit      1ns;
 timeprecision 1ns;
 
 bit clk;
 bit reset;
-logic RegWEn;
-logic [4:0]    AddrD;
-logic [31:0]   DataD;
-logic [4:0]    AddrB;
-logic [4:0]    AddrA;
-logic [31:0]   DataA;
-logic [31:0]   DataB;
 
 
-riscv_regfile regfile (
+top_module TopModule (
     .clk_i	  ( clk ),
     .rst_i	  ( reset ),	
     .AddrD_i	  ( AddrD ),
@@ -55,33 +51,22 @@ $monitor ( "time=%t, RegWEn=%b, reset=%d, AddrA=%d, AddrB=%d, AddrD=%d, DataD=%d
 	end
   // Verify Results for sum
   task xpect (input [31:0] expect_A, input [31:0] expect_B ) ;
-  #3ns;
 	if ( DataA != expect_A )
   	begin
-	  	$display ( "--------------------------------------------------------------" );
-	    	$display ( "DataA is %d and should be %d", DataA, expect_A ) ;
-	    	$display ( "REGFILE TEST FAILED ON A" );
-	    	$display ( "--------------------------------------------------------------" );
-	    	$stop ;
+  	$display ( "--------------------------------------------------------------" );
+    	$display ( "DataA is %d and should be %d", DataA, expect_A ) ;
+    	$display ( "REGFILE TEST FAILED ON A" );
+    	$display ( "--------------------------------------------------------------" );
+    	$stop ;
   	end
   	
-  	else 
+  	else if ( DataB != expect_B )
   	begin
-  		$display ( "ATOMIC TEST PASSED" );
-  	end
-  	
-  	if ( DataB != expect_B )
-  	begin
-	  	$display ( "--------------------------------------------------------------" );
-	    	$display ( "DataB is %d and should be %d", DataB, expect_B ) ;
-	    	$display ( "REGFILE TEST FAILED ON B" );
-	    	$display ( "--------------------------------------------------------------" );
-	    	$stop ;
-  	end
-  	
-  	else 
-  	begin
-  		$display ( "ATOMIC TEST PASSED" );
+  	$display ( "--------------------------------------------------------------" );
+    	$display ( "DataB is %d and should be %d", DataB, expect_B ) ;
+    	$display ( "REGFILE TEST FAILED ON B" );
+    	$display ( "--------------------------------------------------------------" );
+    	$stop ;
   	end
   endtask
   
@@ -89,18 +74,18 @@ $monitor ( "time=%t, RegWEn=%b, reset=%d, AddrA=%d, AddrB=%d, AddrD=%d, DataD=%d
  // Apply Stimulus
  initial
 	begin
-    @(posedge clk)
+    @(posedge clk) 
     //sans bulles
     @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h2; DataD = 32'h14; @(negedge clk) xpect(32'h0, 32'h0); //test 0 juste apres le reset
     @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h3; DataD = 32'h15; @(negedge clk) xpect(32'h0, 32'h0); //attente pour les 3clk
     @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h8; DataD = 32'h15; @(negedge clk) xpect(32'h0, 32'h0); //attente pour les 3clk
-    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h4; DataD = 32'h16; @(negedge clk) xpect(32'h0, 32'h0); //remplir R2 (3clk avant) avec 16 (ie 22 en h)
-    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h1; AddrD = 5'h3; DataD = 32'h17; @(negedge clk) xpect(32'h0, 32'h0); //voir si bien ecrit
-    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h8; AddrB = 5'h1; AddrD = 5'h5; DataD = 32'h18; @(negedge clk) xpect(32'h16, 32'h0); //lire / ecrire en meme tps
+    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h4; DataD = 32'h16; @(negedge clk) xpect(32'h0, 32'h0); //remplir R2 (3clk avant) avec 16 (ie 21 en h)
+    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h1; AddrD = 5'h3; DataD = 32'h17; @(negedge clk) xpect(32'h16, 32'h0); //voir si bien ecrit
+    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h8; AddrB = 5'h1; AddrD = 5'h5; DataD = 32'h18; @(negedge clk) xpect(32'h18, 32'h0); //lire / ecrire en meme tps
     @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h8; AddrD = 5'h3; DataD = 32'h14; @(negedge clk) xpect(32'h16, 32'h18); //voir si bien ecrit
     @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h2; AddrD = 5'h3; DataD = 32'h14; @(negedge clk) xpect(32'h16, 32'h16); //Lire le meme registre
     //avec bulles
-    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h5; AddrB = 5'h1; AddrD = 5'h6; DataD = 32'h12; @(negedge clk) #3ns xpect(32'h0, 32'h0); // h3<-12, h5 bulle
+    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h5; AddrB = 5'h1; AddrD = 5'h6; DataD = 32'h12; @(negedge clk) xpect(32'h0, 32'h0); // h3<-12, h5 bulle
 
   	$display ( "REGFILE TEST PASSED" ) ;
   	$stop ;
