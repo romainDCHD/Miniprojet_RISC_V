@@ -10,7 +10,6 @@
 #include "../include/unitest/logging.h"
 
 int main(int argc, char* argv[]) {
-
     if (argc < 3) {
         printf("========== Description ==========\n");
         printf("Extrait et affiches les lexems d'un code source.\n\n");
@@ -50,17 +49,7 @@ int main(int argc, char* argv[]) {
     // Parsing des lexems
     list_t instructions = list_new();
     int addr = 0;
-    if (parse_code(&lex, string_convert(""), verbose, &instructions, &addr) == 0) {
-        if (verbose) {
-            STYLE(stderr, COLOR_GREEN, STYLE_BOLD);
-            printf("Aucune erreur dans l'expression !\n");
-            STYLE_RESET(stderr);
-            if (verbose) printf("\n\nMise à jours des adresses des jumps et des branchement : \n");
-            asm_line_update_adress(&instructions);
-            if (verbose) list_print(instructions, asm_line_print);
-        }
-    }
-    else {
+    if (parse_code(&lex, string_convert(""), verbose, &instructions, &addr) != 0) {
         STYLE(stderr, COLOR_RED, STYLE_BOLD);
         printf("Le parsing a échoué\n");
         if (!verbose) printf("Relancer le programme avec l'option -v pour plus d'information\n");
@@ -68,6 +57,22 @@ int main(int argc, char* argv[]) {
         list_delete(lexems, lexem_delete);
         exit(EXIT_FAILURE);
     }
+
+    if (verbose) {
+        STYLE(stderr, COLOR_GREEN, STYLE_BOLD);
+        printf("Aucune erreur dans l'expression !\n");
+        STYLE_RESET(stderr);
+        printf("\n\nMise à jours des adresses des jumps et des branchement : \n");
+        asm_line_update_adress(&instructions);
+        list_print(instructions, asm_line_print);
+        printf("\n\nEcriture du code assembleur : \n");
+    }
+
+    // Ecriture du code assembleur
+    printf("33222222222211111111110000000000\n");
+    printf("10987654321098765432109876543210\n");
+    asm_line_write(&instructions/*, argv[1]*/);
+    
     list_delete(lexems, lexem_delete);
     list_delete(instructions, asm_line_free);
     

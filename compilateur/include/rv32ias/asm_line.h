@@ -79,6 +79,19 @@
 #define SRAI_FUNCT3  "101"
 #define SRA_FUNCT3   "101"
 #define SRA_FUNCT7   "0100000"
+#define SUB_FUNCT3   "000"
+#define SUB_FUNCT7   "0100000"
+#define BLTU_FUNCT3  "110"
+#define BLT_FUNCT3   "100"
+#define LB_FUNCT3    "000"
+#define LH_FUNCT3    "001"
+#define LW_FUNCT3    "010"
+#define LBU_FUNCT3   "100"
+#define LHU_FUNCT3   "101"
+#define SB_FUNCT3    "000"
+#define SH_FUNCT3    "001"
+#define SW_FUNCT3    "010"
+#define JALR_FUNCT3  "000"
 
 typedef enum {
     NOP,
@@ -332,12 +345,19 @@ void asm_line_nop_add(list_t* insn_list, int line_addr);
  */
 void asm_line_update_adress(list_t* insn_list);
 /**
+ * @brief Affiche un nombre binaire sur la sortie standard
+ * 
+ * @param n Nombre à afficher
+ * @param size Taille du nombre en bits
+ */
+void print_binary(int n, int size);
+/**
  * @brief Ecrit une ligne assembleur dans un fichier
  * 
  * @param asm_line Ligne assembleur à écrire
  * @param file Fichier dans lequel écrire
  */
-void asm_line_write_instruction(list_t* insn_list, FILE* file);
+void asm_line_write(list_t* insn_list/*, FILE* file*/);
 /**
  * @brief Affiche une ligne assembleur
  * 
