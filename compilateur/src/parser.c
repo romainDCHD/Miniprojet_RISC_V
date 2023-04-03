@@ -212,7 +212,7 @@ int parse_insn_branch(func_args) {
 //<insn-load> ::= ({'insn::LB'}  | {'insn::LH'} | {'insn::LW'} | 
 //                 {'insn::LBU'} | {'insn::LHU'}) {‘blank’} {'symbole::register'} {'comma'} {'integer::dec'} {'paren::left'} {'symbole::register'} {'paren::right'}
 int parse_insn_load(func_args) {
-    upd_depth("insn-memory");
+    upd_depth("insn-load");
 
     if (next_lexem_is(lexems, "insn::LB")  ||
         next_lexem_is(lexems, "insn::LH")  ||
@@ -232,7 +232,7 @@ int parse_insn_load(func_args) {
             chk_term("symbole::register", rs1 = str2reg(((lexem_t)(list_first(*lexems)))->value))
             chk_term("paren::right")
 
-            asm_line_memory_add(instructions, insn, rd, rs1, imm, *line_addr);
+            asm_line_load_add(instructions, insn, rd, rs1, imm, *line_addr);
             *line_addr = *line_addr + 4;
 
             ret(0)
@@ -242,7 +242,7 @@ int parse_insn_load(func_args) {
 
 // <insn-store> ::= ({'insn::SB'} | {'insn::SH'} | {'insn::SW'}) {‘blank’} {'symbole::register'} {'comma'} {'integer::dec'} {'paren::left'} {'symbole::register'} {'paren::right'}
 int parse_insn_store(func_args) {
-    upd_depth("insn-memory");
+    upd_depth("insn-store");
 
     if (next_lexem_is(lexems, "insn::SB")  ||
         next_lexem_is(lexems, "insn::SH")  ||
@@ -260,7 +260,7 @@ int parse_insn_store(func_args) {
             chk_term("symbole::register", rs1 = str2reg(((lexem_t)(list_first(*lexems)))->value))
             chk_term("paren::right")
 
-            asm_line_memory_add(instructions, insn, rd, rs1, imm, *line_addr);
+            asm_line_store_add(instructions, insn, rs1, rs2, imm, *line_addr);
             *line_addr = *line_addr + 4;
 
             ret(0)
@@ -335,8 +335,13 @@ int parse_insn_upper(func_args) {
 // <eol> ::= ([{‘blank’}] [{‘comment’}] {‘newline’} [{’blank’}])*
 int parse_eol(func_args) {
     // Pour se débaraasser des warnings
-    long l = (long)instructions;
-    l = (long)line_addr;
+    #ifdef __MINGW32__
+        long long l = (long long)instructions;
+        l = (long long)line_addr;
+    #else
+        long l = (long)instructions;
+        l = (long)line_addr;
+    #endif
     l = l + 1;
     upd_depth("eol")
 

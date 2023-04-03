@@ -162,7 +162,7 @@ asm_line_t* asm_line_new() {
     assert(line);
     line->type = INSN_LINE;
     line->insn_line.insn.insn = NOP;
-    line->insn_line.insn.type = NOP;
+    line->insn_line.insn.type = TYPE_NOP;
     line->insn_line.rd = 0;
     line->insn_line.rs1 = 0;
     line->insn_line.rs2 = 0;
@@ -208,7 +208,19 @@ void asm_line_branch_add(list_t* insn_list, insn_t insn, reg_t rs1, reg_t rs2, c
     *insn_list = list_add_last(*insn_list, line);
 }
 
-void asm_line_memory_add(list_t* insn_list, insn_t insn, reg_t rs1, reg_t rs2, int imm, int line_addr) {
+void asm_line_load_add(list_t* insn_list, insn_t insn, reg_t rd, reg_t rs1, int imm, int line_addr) {
+    asm_line_t* line = asm_line_new();
+    line->type = INSN_LINE;
+    line->insn_line.insn = insn;
+    line->insn_line.rd = rd;
+    line->insn_line.rs1 = rs1;
+    line->insn_line.imm = imm;
+    line->insn_line.line_addr = line_addr;
+
+    *insn_list = list_add_last(*insn_list, line);
+}
+
+void asm_line_store_add(list_t* insn_list, insn_t insn, reg_t rs1, reg_t rs2, int imm, int line_addr) {
     asm_line_t* line = asm_line_new();
     line->type = INSN_LINE;
     line->insn_line.insn = insn;

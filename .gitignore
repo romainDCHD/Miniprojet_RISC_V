@@ -4,8 +4,12 @@
 # On indique à Git d'ignorer tous les fichier dont le nom se termine par ~ 
 *~
 
+# On indique à Git d'ignorer tous les fichier dont le nom commence par ~$
+~$*
+
 # On indique à Git d'ignorer tous les fichier dont le dossier compilateur/bin
-compilateur/bin/
+#compilateur/bin/
+#compilateur/bin/parser.exe
 
 # On indique à Git d'ignorer tous les fichier dont le dossier libs/libMiniproj_RISCV/
 libs/libMiniproj_RISCV/

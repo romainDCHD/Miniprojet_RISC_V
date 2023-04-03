@@ -300,7 +300,11 @@ int regexp_print(void* reg) {
   printf("========== Affichage de \"");
   string_print(regexp->name);
   printf("\" ==========\n");
-  printf("Longueur de la liste : %ld\n", list_length(regexp->groups));
+  #ifdef __MINGW32__
+    printf("Longueur de la liste : %lld\n", list_length(regexp->groups));
+  #else
+    printf("Longueur de la liste : %ld\n", list_length(regexp->groups));
+  #endif
   char_group* group;
   for (list_t l = regexp->groups; !list_empty(l); l = list_next(l)) {
     group = list_first(l);

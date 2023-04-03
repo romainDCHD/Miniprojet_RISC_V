@@ -1,3 +1,5 @@
+#ifdef __linux__
+
 #define _XOPEN_SOURCE 700
 
 #define _GNU_SOURCE /* RTLD_NEXT */
@@ -7,10 +9,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <signal.h>
+#include <assert.h>
 #include <err.h>
 #include <execinfo.h>
 #include <dlfcn.h>
-#include <assert.h>
 
 #include "../include/unitest/unitest.h"
 #include "../include/rv32ias/macros.h"
@@ -263,3 +265,5 @@ void    unit_test( int argc, char *argv[] ) {
 
   atexit( test_finish );
 }
+
+#endif

@@ -31,7 +31,11 @@ int main(int argc, char* argv[]) {
 
     if (verbose) printf("\nLecture des expressions régulières : ");
     regexps = regexp_read(argv[2]);
+    #ifdef __MINGW32__
+    if (verbose) printf("%lld trouvée(s)\n\n", list_length(regexps));
+    #else
     if (verbose) printf("%ld trouvée(s)\n\n", list_length(regexps));
+    #endif
     // list_print(regexps, regexp_print);
 
     if (verbose) printf("Lecture des lexems : \n");

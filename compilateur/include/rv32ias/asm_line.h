@@ -68,7 +68,7 @@
 #define XORI_FUNCT3  "100"
 #define XOR_FUNCT3   "100"
 #define XOR_FUNCT7   "0000000"
-#define BGEU_FUNCT3  "011"
+#define BGEU_FUNCT3  "111"
 #define BGE_FUNCT3   "101"
 #define SLTIU_FUNCT3 "011"
 #define SLTI_FUNCT3  "010"
@@ -282,7 +282,18 @@ void asm_line_imm_add(list_t* insn_list, insn_t insn, reg_t rd, reg_t rs1, int i
  */
 void asm_line_branch_add(list_t* insn_list, insn_t insn, reg_t rs1, reg_t rs2, char* label, int line_addr);
 /**
- * @brief Créer une nouvelle ligne assembleur du type LOAD ou STORE et l'ajoute à la liste d'instructions
+ * @brief Créer une nouvelle ligne assembleur du type LOAD et l'ajoute à la liste d'instructions
+ * 
+ * @param insn_list Pointeur sur la liste où stocker l'instruction
+ * @param insn Code de l'instruction
+ * @param rd Registre de destination
+ * @param rs1 Registre source 1
+ * @param imm Valeur immédiate
+ * @param line_addr Adresse de l'instruction dans le registre d'instructions
+ */
+void asm_line_load_add(list_t* insn_list, insn_t insn, reg_t rd, reg_t rs1, int imm, int line_addr);
+/**
+ * @brief Créer une nouvelle ligne assembleur du type STORE et l'ajoute à la liste d'instructions
  * 
  * @param insn_list Pointeur sur la liste où stocker l'instruction
  * @param insn Code de l'instruction
@@ -291,7 +302,7 @@ void asm_line_branch_add(list_t* insn_list, insn_t insn, reg_t rs1, reg_t rs2, c
  * @param imm Valeur immédiate
  * @param line_addr Adresse de l'instruction dans le registre d'instructions
  */
-void asm_line_memory_add(list_t* insn_list, insn_t insn, reg_t rs1, reg_t rs2, int imm, int line_addr);
+void asm_line_store_add(list_t* insn_list, insn_t insn, reg_t rs1, reg_t rs2, int imm, int line_addr);
 /**
  * @brief Créer une nouvelle ligne assembleur du type JAL et l'ajoute à la liste d'instructions
  * 
