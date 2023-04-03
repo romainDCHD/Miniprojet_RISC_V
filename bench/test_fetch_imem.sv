@@ -10,13 +10,13 @@ logic  [31:0]  addr;
 logic  [31:0]  inst_out;
 
 
-fetch_in(
-    clk,
-    reset,
-    tab_inst,
-    addr,
-    inst_out
-)
+fetch_imem #(3) fetch_imem1(
+    .clk(clk),
+    .rst(reset),
+    .tab_inst(tab_inst),
+    .pc(addr),
+    .inst_out(inst_out)
+);
 
 initial $timeformat ( -9, 1, " ns", 12 );
 
@@ -47,7 +47,7 @@ initial  forever
     addr = 32'h00000008;
     #100
     addr = 32'h0000000c;
-    #100
+    #100;
    end                                                                        
 
 // Automatic checker to compare Filter value with expected Output

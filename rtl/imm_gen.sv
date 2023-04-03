@@ -27,8 +27,10 @@ module imm_gen (
 
 	end
 	else if(sig == 3'b010)begin
-           imm[12:5] = imm_in[31:25];
-           imm[4:0] = imm_in[11:7];
+           imm[10:5] = imm_in[30:25];
+           imm[4:1] = imm_in[11:8];
+           imm[12] = imm_in[31];
+           imm[11] = imm_in[1];
 	end
 	else if(sig == 3'b011)begin
            imm[20:0] = imm_in[31:12];

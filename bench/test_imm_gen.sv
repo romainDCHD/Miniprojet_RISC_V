@@ -4,19 +4,19 @@ timeunit      1ns;
 timeprecision 1ns;
 
 bit clk=1'b0;
-bit rst;     
-logic   [2:0]   sig 
+bit reset;     
+logic   [2:0]   sig; 
 logic  [31:0]  imm_in;
 logic  [31:0]  imm_out;
 
 
-fetch_in(
-    clk,
-    rst,
-    sig,
-    imm_in,
-    imm_out
-)
+imm_gen imm_gen1(
+    .clk(clk),
+    .rst(rst),
+    .sig(sig),
+    .imm_in(imm_in),
+    .imm_out(imm_out)
+);
 
 initial $timeformat ( -9, 1, " ns", 12 );
 
@@ -44,7 +44,7 @@ initial  forever
     sig = 3'b011;
     #100
     sig = 3'b100;
-    #100
+    #100;
    end                                                                        
 
 // Automatic checker to compare Filter value with expected Output
