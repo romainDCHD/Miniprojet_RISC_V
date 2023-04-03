@@ -21,7 +21,7 @@ module opti (
     logic [31:0]  Br1;
     logic [31:0]  Br2;
     
-        branch_comp branch_comp1(
+    branch_comp branch_comp1(
         .in_A(Br1),
         .in_B(Br2),
         .BrUn(Brun),
