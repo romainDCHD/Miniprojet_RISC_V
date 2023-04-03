@@ -91,16 +91,26 @@ reg_t str2reg(char *str) {
     if (!strcmp(str, "r5"))  return i; else i++;
     if (!strcmp(str, "r6"))  return i; else i++;
     if (!strcmp(str, "r7"))  return i; else i++;
-    if (!strcmp(str, "r8"))  return i; else i++;
-    if (!strcmp(str, "r9"))  return i; else i++;
-    if (!strcmp(str, "r10")) return i; else i++;
-    if (!strcmp(str, "r11")) return i; else i++;
-    if (!strcmp(str, "r12")) return i; else i++;
-    if (!strcmp(str, "r13")) return i; else i++;
-    if (!strcmp(str, "r14")) return i; else i++;
-    if (!strcmp(str, "r15")) return i; else i++;
-    if (!strcmp(str, "r16")) return i; else i++;
-    if (!strcmp(str, "r17")) return i; else i++;
+    if (!strcmp(str, "r8") || !strcmp(str, "s0")) 
+                             return i; else i++;
+    if (!strcmp(str, "r9") || !strcmp(str, "s1")) 
+                             return i; else i++;
+    if (!strcmp(str, "r10") || !strcmp(str, "a0"))
+                             return i; else i++;
+    if (!strcmp(str, "r11") || !strcmp(str, "a1"))
+                             return i; else i++;
+    if (!strcmp(str, "r12") || !strcmp(str, "a2"))
+                             return i; else i++;
+    if (!strcmp(str, "r13") || !strcmp(str, "a3"))
+                             return i; else i++;
+    if (!strcmp(str, "r14") || !strcmp(str, "a4"))
+                             return i; else i++;
+    if (!strcmp(str, "r15") || !strcmp(str, "a5"))
+                             return i; else i++;
+    if (!strcmp(str, "r16") || !strcmp(str, "a6"))
+                             return i; else i++;
+    if (!strcmp(str, "r17") || !strcmp(str, "a7"))
+                             return i; else i++;
     if (!strcmp(str, "r18")) return i; else i++;
     if (!strcmp(str, "r19")) return i; else i++;
     if (!strcmp(str, "r20")) return i; else i++;
@@ -613,7 +623,7 @@ void asm_line_write(list_t* insn_list/*, FILE* file*/) {
                     printf("%s\n", JALR_OPCODE);                                  // 6-0
                 break;
                 case TYPE_LUI:
-                    print_binary(line->insn_line.imm >> 12, 20);                  // 31-12
+                    print_binary(line->insn_line.imm, 20);                        // 31-12
                     printf("%s", reg2code(line->insn_line.rd));                   // 11-7
                     printf("%s\n", LUI_OPCODE);                                   // 6-0
                 break;

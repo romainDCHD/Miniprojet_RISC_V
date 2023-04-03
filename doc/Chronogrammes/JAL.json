@@ -1,0 +1,73 @@
+{
+	"signal": [
+			{"name": "clk",				"wave": "p......"},
+		{},
+		['Fetch',
+			{"name": "PCSel",			"wave": "0x..1x.", "data": ["0", "0", "0"]},
+			{"name": "PC",				"wave": "2======", "data": ["0", "4", "8",	"12", "16", "pc+offset", "pc+offset+4", "28"]},
+			{"name": "PC+4",			"wave": "=2=====", "data": ["4", "8", "12", "16", "20", "pc+offset+4", "pc+offset+8", "32"]},
+			{"name": "inst",			"wave": "2x.....", "data": ["JAL"]},
+		],
+		{},
+		['Decode',
+			{"name": "inst[11:7]",		"wave": "x2x....", "data": ["&rd"]},
+			{"name": "AddrD",			"wave": "x...2x.", "data": ["&rd"]},
+        	{"name": "inst[19:15]",		"wave": "x2x....", "data": ["offset[19:12]"]},
+       		{"name": "inst[24:20]",		"wave": "x2x....", "data": ["offset[2:0|11]"]},
+      		{"name": "inst[31:7]",		"wave": "x2x....", "data": ["offset[20:1] | rd"]}
+		],
+		{},
+		['Immediate',
+			{"name": "Imm. Sel",		"wave": "x=x....", "data": ["imm_jmp"]},
+         	{"name": "Imm[31:0]",		"wave": "x.=x...", "data": ["offset[20:1]"]}
+		],
+		{},
+		['Registry',
+			{"name": "WBSel1",			"wave": "x...0x.", "data": []},
+			{"name": "RegWEn",			"wave": "x...1x.", "data": []},
+			{"name": "DataD",			"wave": "x...2x.", "data": ["PC+4"]},
+			{"name": "Reg[rs1]",		"wave": "x......", "data": ["N/A"]},
+			{"name": "Reg[rs2]",		"wave": "x......", "data": ["N/A"]}
+		],
+		{},
+		['Branch Comp',
+			{"name": "BrUn",			"wave": "x......", "data": []},
+			{"name": "BrEq",			"wave": "x......", "data": ["BrEq"]},
+			{"name": "BrLT",			"wave": "x......", "data": ["BrLT"]}
+		],
+		{},
+		['ALU',
+			{"name": "A1sel",			"wave": "x......", "data": ["N/A"]},
+			{"name": "B1sel",			"wave": "x......", "data": ["N/A"]},
+			{"name": "A2sel",			"wave": "x.1x...", "data": []},
+			{"name": "B2sel",			"wave": "x.1x...", "data": []},
+			{"name": "ALUSel",			"wave": "x.2x...", "data": ["code_add"]},
+			{"name": "alu",				"wave": "x..2x..", "data": ["pc+offset"]}
+		],
+		{},
+		['Memory',
+			{"name": "MemRW",			"wave": "x..0x..", "data": []},
+			{"name": "mem",				"wave": ".......", "data": []}
+		],
+		{},
+		['Write Back',
+			{"name": "WBSel2",			"wave": "x...1x.", "data": []},
+			{"name": "wb",				"wave": "x...=x.", "data": ["pc+offset"]}
+		]
+	],
+	head:{
+		text:['tspan',
+			['tspan', {class:'h3'}, 'Illustration JAL - Jump'],
+		]
+	},
+	foot: {
+		text:['tspan',
+			['tspan', {class:'info h3'}, 'Commentaire : '],
+			['tspan', {class:'info h4'}, 'Revérifier les valeurs des bits de l\'offset.']
+		]
+	},
+	"config": {
+		"hscale": 3,
+		"tickscale": 2
+	}
+}

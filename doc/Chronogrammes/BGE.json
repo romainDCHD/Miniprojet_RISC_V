@@ -1,0 +1,73 @@
+{
+	"signal": [
+			{"name": "clk",				"wave": "p......"},
+		{},
+		['Fetch',
+			{"name": "PCSel",			"wave": "0x..1x.", "data": ["0", "0", "0"]},
+			{"name": "PC",				"wave": "2======", "data": ["0", "4", "8",	"12", "16", "pc+offset", "pc+offset+4", "28"]},
+			{"name": "PC+4",			"wave": "=2=====", "data": ["4", "8", "12", "16", "20", "pc+offset+4", "pc+offset+8", "32"]},
+			{"name": "inst",			"wave": "2x.....", "data": ["BGE"]},
+		],
+		{},
+		['Decode',
+			{"name": "inst[11:7]",		"wave": "x2x....", "data": ["offset[4:1]"]},
+			{"name": "AddrD",			"wave": "x......", "data": ["&R3", "&R5"]},
+			{"name": "inst[19:15]",		"wave": "x2x....", "data": ["&R1"]},
+			{"name": "inst[24:20]",		"wave": "x2x....", "data": ["&R2"]},
+         	{"name": "inst[31:7]",		"wave": "x2x....", "data": ["inst[31:7]"]}
+		],
+		{},
+		['Immediate',
+			{"name": "Imm. Sel",		"wave": "x=x....", "data": ["imm_br"]},
+         	{"name": "Imm[31:0]",		"wave": "x.=x...", "data": ["offset[12:1]"]}
+		],
+		{},
+		['Registry',
+			{"name": "WBSel",			"wave": "x......", "data": []},
+			{"name": "RegWEn",			"wave": "x......", "data": []},
+			{"name": "DataD",			"wave": "x......", "data": []},
+			{"name": "Reg[rs1]",		"wave": "xx2x...", "data": ["R1"]},
+			{"name": "Reg[rs2]",		"wave": "xx2x...", "data": ["R2"]}
+		],
+		{},
+		['Branch Comp',
+			{"name": "BrUn",			"wave": "x.0x...", "data": []},
+			{"name": "BrEq",			"wave": "x.0x...", "data": ["BrEq"]},
+			{"name": "BrLT",			"wave": "x.0x...", "data": ["BrLT"]}
+		],
+		{},
+		['ALU',
+			{"name": "A1sel",			"wave": "x......", "data": []},
+			{"name": "B1sel",			"wave": "x......", "data": []},
+			{"name": "A2sel",			"wave": "x.1x...", "data": []},
+			{"name": "B2sel",			"wave": "x.1x...", "data": []},
+			{"name": "ALUSel",			"wave": "x.2x...", "data": ["code_add"]},
+			{"name": "alu",				"wave": "x..2x..", "data": ["pc+offset"]}
+		],
+		{},
+		['Memory',
+			{"name": "MemRW",			"wave": "x..0x..", "data": []},
+			{"name": "mem",				"wave": ".......", "data": []}
+		],
+		{},
+		['Write Back',
+			{"name": "WBSel",			"wave": "x...1x.", "data": []},
+			{"name": "wb",				"wave": "x...=x.", "data": ["pc+offset"]}
+		]
+	],
+	head:{
+		text:['tspan',
+			['tspan', {class:'h3'}, 'BGE: branch greater or equal - Cas où R1 > R2'],
+		]
+	},
+	foot: {
+		text:['tspan',
+			['tspan', {class:'info h3'}, 'Commentaire : '],
+			['tspan', {class:'info h4'}, 'Revérifier les valeurs des bits de l\'offset.']
+		]
+	},
+	"config": {
+		"hscale": 3,
+		"tickscale": 2
+	}
+}

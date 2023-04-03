@@ -12,6 +12,7 @@ Non-terminal            fonction
 
 #include "list.h"
 #include "lexem.h"
+#include "../unitest/logging.h"
 
 #define func_args list_t* lexems, string_t depth, char verbose, list_t* instructions, int* line_addr
 #define args lexems, curr_depth, verbose, instructions, line_addr
@@ -35,7 +36,9 @@ Non-terminal            fonction
 #define ret(code) \
     if (verbose) { \
         string_print(curr_depth); \
+        if (!code) STYLE(stderr, COLOR_GREEN, STYLE_BOLD); \
         printf("\treturn\t%d\n", code); \
+        if (!code) STYLE_RESET(stderr); \
         string_free(&curr_depth); \
     } \
     return code;

@@ -1,7 +1,7 @@
 /*
-<code>        ::= <code-line> <eol> ( [<code-line>] <eol> )*
+<code>        ::= ['comment'] <code-line> <eol> ( [<code-line>] <eol> )*
 <code-line>   ::= <instruction> | {'label'}
-<instruction> ::= <insn-regreg> | <insn-imm> | <insn-branch> | <insn-memory> | <insn-jal> | <insn-jalr> | <insn-upper>
+<instruction> ::= <insn-regreg> | <insn-imm> | <insn-branch> | <insn-load> | <insn-store> | <insn-jal> | <insn-jalr> | <insn-upper>
 
 <insn-regreg> ::= ({'insn::ADD'}  | {'insn::AND'}   | {'insn::SLL'}  | 
                    {'insn::SRL'}  | {'insn::OR'}    | {'insn::XOR'}  | 
@@ -38,6 +38,7 @@ Non-terminal            fonction
 #include "../include/rv32ias/lexem.h"
 #include "../include/rv32ias/string.h"
 #include "../include/rv32ias/asm_line.h"
+#include "../include/unitest/logging.h"
 
 // pyobj_t parse(list_t* lexems, char verbose) {
 //     pyobj_t obj;
@@ -52,11 +53,15 @@ Non-terminal            fonction
 //     return obj;
 // }
 
-// <code> ::= [<code-line>] <eol> ( [<code-line>] <eol> )*
+// <code> ::= ['comment'] [<code-line>] <eol> ( [<code-line>] <eol> )*
 int parse_code(func_args) {
     upd_depth("code");
+    list_t l;
 
-    chk_non_term(parse_code_line);
+    if (next_lexem_is(lexems, "comment")) 
+        lexem_advance(lexems);
+    
+    chk_opt_non_term(parse_code_line);
     chk_non_term(parse_eol);
     while (parse_code_line(args) == 0) {
         chk_non_term(parse_eol)
@@ -82,7 +87,7 @@ int parse_code_line(func_args) {
     ret(-1)
 }
 
-// <instruction> ::= <insn-regreg> | <insn-imm> | <insn-branch> | <insn-memory> | <insn-jal> | <insn-jalr> | <insn-upper>
+// <instruction> ::= <insn-regreg> | <insn-imm> | <insn-branch> | <insn-load> | <insn-store> | <insn-jal> | <insn-jalr> | <insn-upper>
 int parse_insn(func_args) {
     upd_depth("insn");
 

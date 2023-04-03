@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#ifdef __MINGW32__
+#include <locale.h>
+#endif
 #include "../include/rv32ias/lexem.h"
 #include "../include/rv32ias/regexp.h"
 #include "../include/rv32ias/list.h"
@@ -10,6 +13,10 @@
 #include "../include/unitest/logging.h"
 
 int main(int argc, char* argv[]) {
+    #ifdef __MINGW32__
+        setlocale(LC_ALL, "fr_FR.UTF-8");
+    #endif
+
     if (argc < 3) {
         printf("========== Description ==========\n");
         printf("Extrait et affiches les lexems d'un code source.\n\n");

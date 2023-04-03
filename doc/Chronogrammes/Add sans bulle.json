@@ -1,0 +1,73 @@
+{
+	"signal": [
+			{"name": "clk",				"wave": "p......"},
+		{},
+		['Fetch',
+			{"name": "PCSel",			"wave": "0.x.0.x", "data": ["0", "0", "0"]},
+			{"name": "PC",				"wave": "23=====", "data": ["0", "4", "8",	"12", "16", "20", "24", "28"]},
+			{"name": "PC+4",			"wave": "=2=====", "data": ["4", "8", "12", "16", "20", "24", "28", "32"]},
+			{"name": "inst",			"wave": "23x....", "data": ["inst_0", "inst_1", "inst_2"]},
+		],
+		{},
+		['Decode',
+			{"name": "inst[11:7]",		"wave": "x23x...", "data": ["&R3", "&R6"]},
+			{"name": "AddrD",			"wave": "x...23x", "data": ["&R3", "&R6"]},
+			{"name": "inst[19:15]",		"wave": "x=3x...", "data": ["&R1", "&R4"]},
+			{"name": "inst[24:20]",		"wave": "x=3x...", "data": ["&R2", "&R5"]},
+        	 {"name": "inst[31:7]",		"wave": "x23x...", "data": ["inst[31:7]","inst[31:7]","inst[31:7"]}
+		],
+		{},
+		['Immediate',
+			{"name": "Imm. Sel",		"wave": ".......", "data": []},
+			{"name": "Imm[31:0]",		"wave": ".......", "data": []}
+		],
+		{},
+		['Registry',
+			{"name": "WBSel",			"wave": "x...0.x", "data": []},
+			{"name": "RegWEn",			"wave": "x...1.x", "data": []},
+			{"name": "DataD",			"wave": "x...23x", "data": ["R1 + R2", "R4 + R5"]},
+			{"name": "Reg[rs1]",		"wave": "xx23x..", "data": ["R1", "R4"]},
+			{"name": "Reg[rs2]",		"wave": "xx23x..", "data": ["R2", "R5"]}
+		],
+		{},
+		['Branch Comp',
+			{"name": "BrUn",			"wave": ".......", "data": []},
+			{"name": "BrEq",			"wave": ".......", "data": []},
+			{"name": "BrLT",			"wave": ".......", "data": []}
+		],
+		{},
+		['ALU',
+			{"name": "A1sel",			"wave": "xx0.x..", "data": []},
+			{"name": "B1sel",			"wave": "xx0.x..", "data": []},
+			{"name": "A2sel",			"wave": "xx0.x..", "data": []},
+			{"name": "B2sel",			"wave": "xx0.x..", "data": []},
+			{"name": "ALUSel",			"wave": "x.23x..", "data": ["code_add", "code_add"]},
+			{"name": "alu",				"wave": "x..23x.", "data": ["R1+R2", "R4+R5"]}
+		],
+		{},
+		['Memory',
+			{"name": "MemRW",			"wave": "x..0.x.", "data": []},
+			{"name": "mem",				"wave": ".......", "data": []}
+		],
+		{},
+		['Write Back',
+			{"name": "WBSel",			"wave": "xxx.1.x", "data": []},
+			{"name": "wb",				"wave": "xxxx=3x", "data": ["R1+R2", "R4+R5"]}
+		]
+	],
+	head:{
+		text:['tspan',
+			['tspan', {class:'h3'}, 'Illustration Add {R1 + R2 --> R3 puis R4 + R5 --> R6} sans bulle'],
+		]
+	},
+	foot: {
+		text:['tspan',
+			['tspan', {class:'info h3'}, 'Commentaire : '],
+			['tspan', {class:'info h4'}, 'OK']
+		]
+	},
+	"config": {
+		"hscale": 3,
+		"tickscale": 2
+	}
+}

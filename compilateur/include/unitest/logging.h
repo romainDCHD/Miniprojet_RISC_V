@@ -2,7 +2,11 @@
 
 #include <stdio.h>
 
+#ifdef __MINGW32__
 #define ANSI_ESC                        "\x1b["
+#else
+#define ANSI_ESC                        "\x1b["
+#endif
 #define STYLE_REGULAR                   ANSI_ESC"0;3"
 #define STYLE_BOLD                      ANSI_ESC"1;3"
 #define STYLE_UNDERLINE                 ANSI_ESC"4;3"

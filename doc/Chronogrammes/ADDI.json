@@ -1,0 +1,73 @@
+{
+	"signal": [
+			{"name": "clk",				"wave": "p......"},
+		{},
+		['Fetch',
+			{"name": "PCSel",			"wave": "0x..0x.", "data": ["0", "0", "0"]},
+			{"name": "PC",				"wave": "2======", "data": ["0", "4", "8",	"12", "16", "20", "24", "28"]},
+			{"name": "PC+4",			"wave": "=2=====", "data": ["4", "8", "12", "16", "20", "24", "28", "32"]},
+			{"name": "inst",			"wave": "2x.....", "data": ["ADDI"]},
+		],
+		{},
+		['Decode',
+			{"name": "inst[11:7]",		"wave": "x2x....", "data": ["&rd"]},
+			{"name": "AddrD",			"wave": "x...2x.", "data": ["&rd"]},
+			{"name": "inst[19:15]",		"wave": "x2x....", "data": ["&R1"]},
+			{"name": "inst[24:20]",		"wave": "x2x....", "data": ["imm[4:0]"]},
+			{"name": "inst[31:7]",		"wave": "x2x....", "data": ["imm[11:5]"]}
+		],
+		{},
+		['Immediate',
+			{"name": "Imm. Sel",		"wave": "x=x....", "data": ["imm_op"]},
+			{"name": "Imm[31:0]",		"wave": "x.=x...", "data": ["imm[11:0]"]}
+		],
+		{},
+		['Registry',
+           	{"name": "WBSel2",			"wave": "x...0x.", "data": []},
+			{"name": "RegWEn",			"wave": "x...1x.", "data": []},
+			{"name": "DataD",			"wave": "x...2x.", "data": ["R1+imm"]},
+			{"name": "Reg[rs1]",		"wave": "xx2x...", "data": ["R1"]},
+			{"name": "Reg[rs2]",		"wave": "xx2x...", "data": ["N/A"]}
+		],
+		{},
+		['Branch Comp',
+			{"name": "BrUn",			"wave": "x......", "data": []},
+			{"name": "BrEq",			"wave": "x......", "data": []},
+			{"name": "BrLT",			"wave": "x......", "data": []}
+		],
+		{},
+		['ALU',
+			{"name": "A1sel",			"wave": "x.0x...", "data": []},
+			{"name": "B1sel",			"wave": "x.=x...", "data": ["N/A"]},
+			{"name": "A2sel",			"wave": "x.0x...", "data": []},
+			{"name": "B2sel",			"wave": "x.1x...", "data": []},
+			{"name": "ALUSel",			"wave": "x.2x...", "data": ["code_add"]},
+			{"name": "alu",				"wave": "x..2x..", "data": ["R1+imm"]}
+		],
+		{},
+		['Memory',
+			{"name": "MemRW",			"wave": "x..0x..", "data": []},
+			{"name": "mem",				"wave": ".......", "data": []}
+		],
+		{},
+		['Write Back',
+			{"name": "WBSel1",			"wave": "x...1x.", "data": []},
+			{"name": "wb",				"wave": "x...=x.", "data": ["R1+imm"]}
+		]
+	],
+	head:{
+		text:['tspan',
+			['tspan', {class:'h3'}, 'ADDI - Add Immediate'],
+		]
+	},
+	foot: {
+		text:['tspan',
+			['tspan', {class:'info h3'}, 'Commentaire : '],
+			['tspan', {class:'info h4'}, 'OK']
+		]
+	},
+	"config": {
+		"hscale": 3,
+		"tickscale": 2
+	}
+}
