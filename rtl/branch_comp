@@ -1,16 +1,43 @@
  module branch_comp (
-	input  [31:0]  in_A,
-	input  [31:0]  in_B,
-	input  [1:0]   BrUn,
+	input  logic [31:0]  in_A,
+	input  logic [31:0]  in_B,
+	input  logic [1:0]   BrUn,
     	output logic   BrEq,
     	output logic   BrLT
 );
-    	always_comb
+    	always_comb //in_A, in_B, BrUn
     	begin
-    		if (brUn == 1'b1)
-    		begin
-    			if(in_A = in_B) assign BrEq = 1b'1;
-    		end
+    		if(in_A == in_B)
+    			begin	
+    				assign BrEq = 1'b1;
+    				assign BrLT = 1'b0;
+    			end
+    		else if (brUn == 1'b1)
+	    		begin
+	    			if (&signed(in_A) < &signed(in_B))
+		    			begin	
+		    				assign BrEq = 1'b0;
+		    				assign BrLT = 1'b1;
+		    			end
+	    			else 
+		    			begin	
+		    				assign BrEq = 1'b0;
+		    				assign BrLT = 1'b0;
+		    			end
+	    		end
+    		else
+	    		begin
+	    			if (in_A < in_B)
+		    			begin	
+		    				assign BrEq = 1'b0;
+		    				assign BrLT = 1'b1;
+		    			end
+	    			else 
+		    			begin	
+		    				assign BrEq = 1'b0;
+		    				assign BrLT = 1'b0;
+		    			end
+	    		end
     	end
     	
  endmodule
