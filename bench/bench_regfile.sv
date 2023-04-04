@@ -96,7 +96,7 @@ $monitor ( "time=%t, RegWEn=%b, reset=%d, AddrA=%d, AddrB=%d, AddrD=%d, DataD=%d
     @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h8; DataD = 32'h15; @(negedge clk) xpect(32'h0, 32'h0); //attente pour les 3clk
     @(posedge clk) RegWEn = 1'b1; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h4; DataD = 32'h16; @(negedge clk) xpect(32'h0, 32'h0); //remplir R2 (3clk avant) avec 16 (ie 22 en h)
     @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h1; AddrD = 5'h3; DataD = 32'h17; @(negedge clk) xpect(32'h0, 32'h0); //voir si bien ecrit
-    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h8; AddrB = 5'h1; AddrD = 5'h5; DataD = 32'h18; @(negedge clk) xpect(32'h16, 32'h0); //lire / ecrire en meme tps
+    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h2; AddrB = 5'h1; AddrD = 5'h5; DataD = 32'h18; @(negedge clk) xpect(32'h16, 32'h0); //lire / ecrire en meme tps
     @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h8; AddrD = 5'h3; DataD = 32'h14; @(negedge clk) xpect(32'h16, 32'h18); //voir si bien ecrit
     @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h2; AddrD = 5'h3; DataD = 32'h14; @(negedge clk) xpect(32'h16, 32'h16); //Lire le meme registre
     //avec bulles
