@@ -35,7 +35,7 @@ char process_backslash_in_group(char* source) {
 
 int process_char_group(string_t regexp, char_group* group) {
   char* c = string_get(regexp) + 1;      // Permet de parcourir source (on saute le premier caractère)
-  char interval_start;                   // Sauvegarde le début d'un intervalle
+  char interval_start = 0;               // Sauvegarde le début d'un intervalle
   char exclude = 0;                      // Indique si les caractères dans le groupe sont exclus
   
   // On vérifie s'il y a un symbôle d'exclusion et on initialise

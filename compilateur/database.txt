@@ -51,10 +51,10 @@ insn::SUB					sub
 integer::dec				[\-+]?[0-9]+
 symbole::register			r[0-9]+
 symbole::register			zero
-symbole::register           pc
+symbole::register			pc
 symbole::register			s[01p]
-symbole::register           a[0-7]
-symbole::register           ra
+symbole::register			a[0-7]
+symbole::register			ra
 symbole::label				[a-zA-Z_\.][a-zA-Z_0-9\.]*
 
 # Parenthèses, crochets et double points

@@ -2,8 +2,8 @@
 chcp 65001
 setlocal enabledelayedexpansion
 
-set PROJECT_PATH=C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/
-REM set PROJECT_PATH=D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V
+REM set PROJECT_PATH=C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/
+set PROJECT_PATH=D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V
 set WINCONFIG_PATH=winconfig
 set RTL_PATH=rtl
 set BENCH_PATH=bench
@@ -11,9 +11,27 @@ set LIB_PATH=libs/libMiniproj_RISCV
 set LIB_NAME=LIB_Miniproj_RISCV
 set COMP_ARGS=-reportprogress 300 -work
 
-set RTL_FILE[0]=control_logic.sv
+set RTL_FILE[0]=3dff.sv
+set RTL_FILE[1]=alu.sv
+set RTL_FILE[2]=control_logic.sv
+set RTL_FILE[3]=dff.sv
+set RTL_FILE[4]=fetch_imem.sv
+set RTL_FILE[5]=fetch_in.sv
+set RTL_FILE[6]=imm_gen.sv
+set RTL_FILE[7]=mem.sv
+set RTL_FILE[8]=opti.sv
+set RTL_FILE[9]=regfile.sv
+set RTL_FILE[10]=riscv.sv
+set RTL_FILE[11]=wb.sv
 
 set BENCH_FILE[0]=bench_control_logic.sv
+set BENCH_FILE[1]=bench_regfile.sv
+set BENCH_FILE[2]=test_branch_comp.sv
+set BENCH_FILE[3]=test_fetch_imem.sv
+set BENCH_FILE[4]=test_fetch_in.sv
+set BENCH_FILE[5]=test_imm_gen.sv
+set BENCH_FILE[6]=test_mem.sv
+set BENCH_FILE[7]=test_opti.sv
 
 :start
 cls
@@ -35,8 +53,8 @@ if ERRORLEVEL 1 (
 
 echo.
 
-for /l %%i in (0,1,0) do call :display "!RTL_FILE[%%i]!"  %RTL_PATH%
-for /l %%i in (0,1,0) do call :display "!BENCH_FILE[%%i]!" %BENCH_PATH%
+for /l %%i in (0,1,11) do call :display "!RTL_FILE[%%i]!"  %RTL_PATH%
+for /l %%i in (0,1,7) do call :display "!BENCH_FILE[%%i]!" %BENCH_PATH%
 
 echo [94m========== Exécution de ModelSim ==========[0m
 vsim

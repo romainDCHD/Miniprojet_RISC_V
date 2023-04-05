@@ -26,7 +26,7 @@ char* string_get(string_t str) {return str.content;}
 int string_length(string_t str) {return str.length;}
 
 int string_set(string_t* str, char* content, int length) {
-    // Si le nouveeau contenue est de taille inférieur au nouveau on réassigne simplement
+    // Si le nouveau contenu est de taille inférieur au nouveau on réassigne simplement
     if (string_length(*str) >= length) {
         str->length = length;
         for (int i = 0; i < length; i=i+1) {

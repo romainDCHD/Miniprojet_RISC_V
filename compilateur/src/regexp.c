@@ -83,9 +83,9 @@ regexp_t regexp_new(string_t name, string_t source) {
   char reading_state = INIT;             // Indique l'état de la machine d'état de lecture
   char inverse_exp = 0;                  // 1 si l'on inverse le groupe qui arrive, ex : ^[0-9]+
   char* start_pointer;                   // Poiteur sur le début de l'expression du groupe
-  char_group* group;                     // Permet de manipuler les poiteur de char_group
+  char_group* group = NULL;              // Permet de manipuler les poiteur de char_group
   string_t str_buffer;                   // Contient l'éventuelle expression d'un char_group
-  char saved;                            // Indique si le dernier group a été sauvegarder
+  char saved = 0;                        // Indique si le dernier group a été sauvegarder
 
   regexp = malloc(sizeof(*regexp));
   assert(regexp);
@@ -145,13 +145,13 @@ regexp_t regexp_new(string_t name, string_t source) {
         // Si on atteint le bout du groupe
         if (*(c-1) != '\\' && *c == ']') {
           // On vérifie s'il ne reste pas d'opérateur
-          if (c < end-1 && *(c+1) != '*' && *(c+1) != '+' && *(c+1) != '?') {
-            string_set(&str_buffer, start_pointer, c-start_pointer+1);   // Récupération du texte contenant le groupe
-          }
-          else {
+          if (c < end-1 && (*(c+1) == '*' || *(c+1) == '+' || *(c+1) == '?')) {
             string_set(&str_buffer, start_pointer, c-start_pointer+2);   // Récupération du texte contenant le groupe
             c = c + 1;                                                   // On saute l'opérateur
           }
+          else
+            string_set(&str_buffer, start_pointer, c-start_pointer+1);   // Récupération du texte contenant le groupe
+          
           process_char_group(str_buffer, group);                         // Traitement du groupe
           if (inverse_exp) char_group_inverse(group);                    // Inversement du groupe si nécessaire
           regexp->groups = list_add_last(regexp->groups, group);         // Sauvegarde du groupe
@@ -194,7 +194,7 @@ regexp_t regexp_new(string_t name, string_t source) {
 
 list_t regexp_read(char* filename) {
 	char* c;                           // Pointeur sur le caractère lu dans le fichier
-	char* start_point;                 // Indique le début du mot à utiliser
+	char* start_point = NULL;          // Indique le début du mot à utiliser
   int reading_state = READ_FIRST_BLANKS;
 	regexp_t regexp;
 	string_t name;
