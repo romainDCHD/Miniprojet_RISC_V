@@ -34,8 +34,8 @@ reg[4:0]        buffer;
 wire byte_zero;
 wire byte_one;
 
-assign byte_zero	<= 32'h00000000;
-assign byte_one		<= 32'h11111111;
+assign byte_zero = 32'h00000000;
+assign byte_one  = 32'h11111111;
 
 //-----------------------------------------------------------------
 // ALU
@@ -109,4 +109,4 @@ end
 
 assign alu_result_o    = result_r;
 
-endmodule0
+endmodule

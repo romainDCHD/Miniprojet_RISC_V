@@ -45,7 +45,6 @@ insn::JALR					jalr
 insn::JAL					jal
 insn::SUB					sub
 
-
 # Description des constantes
 #integer::hex				0x[0-9A-Za-z]+
 integer::dec				[\-+]?[0-9]+

@@ -3,7 +3,7 @@ module riscv #(parameter  n=20)
     input   logic   clk,
     input   logic   rst,
     input   [31:0]  tab_inst[n:0]
-)
+);
 
 logic pc_4;
 logic [31:0] wb;

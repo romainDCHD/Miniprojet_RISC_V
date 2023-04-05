@@ -54,13 +54,12 @@ module control_logic (
         NOP,
         ADD,		// Also used for BEQ, BNE, BGE, BGEU, AUIPC
         AND,
-        BEQ,
         SLL,
         SRL,
         OR,
         XOR,
-        SLT,
-        SLTU,
+        OUT_ONE,    // Usefull for SLT, SLTU instructions
+        OUT_ZERO,
         SRA,
         LUI,		// Just take the immediate value (already returned on the right format)
         SUB

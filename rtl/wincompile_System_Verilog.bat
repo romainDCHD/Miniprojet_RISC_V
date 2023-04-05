@@ -53,8 +53,8 @@ if ERRORLEVEL 1 (
 
 echo.
 
-for /l %%i in (0,1,11) do call :display "!RTL_FILE[%%i]!"  %RTL_PATH%
-for /l %%i in (0,1,7) do call :display "!BENCH_FILE[%%i]!" %BENCH_PATH%
+for /l %%i in (2,1,2) do call :display "!RTL_FILE[%%i]!"  %RTL_PATH%
+for /l %%i in (0,1,0) do call :display "!BENCH_FILE[%%i]!" %BENCH_PATH%
 
 echo [94m========== Exécution de ModelSim ==========[0m
 vsim
