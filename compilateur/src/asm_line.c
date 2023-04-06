@@ -5,6 +5,7 @@
 #include "../include/rv32ias/asm_line.h"
 #include "../include/rv32ias/list.h"
 #include "../include/rv32ias/string.h"
+#include "../include/unitest/logging.h"
 
 insn_t insnset2insn(insnset_t insn_set) {
     insn_t insn;
@@ -298,10 +299,12 @@ void asm_line_nop_add(list_t* insn_list, int line_addr) {
     *insn_list = list_add_last(*insn_list, line);
 }
 
-void asm_line_update_adress(list_t* insn_list) {
+int asm_line_update_adress(list_t* insn_list) {
     asm_line_t* line;
+    int label_found = 0;
     // Cherche tous les instructions de banchement ou de sauft dans le code
     for (list_t l = *insn_list; !list_empty(l) ; l = list_next(l)) {
+        label_found = 0;
         line = list_first(l);
         if (line->type == INSN_LINE && (
             line->insn_line.insn.type == TYPE_BRANCH ||
@@ -310,11 +313,22 @@ void asm_line_update_adress(list_t* insn_list) {
                 // Cherche le label correspondant
                 for (list_t l = *insn_list; !list_empty(l) ; l = list_next(l)) {
                     asm_line_t* line2 = list_first(l);
-                    if (line2->type == LABEL_LINE && string_compare(line2->label.name, line->insn_line.label))
+                    if (line2->type == LABEL_LINE && string_compare(line2->label.name, line->insn_line.label)) {
                         line->insn_line.imm = line2->label.line_addr - line->insn_line.line_addr;
+                        label_found = 1;
+                    }
+                }
+                if (!label_found) {
+                    STYLE(stderr, COLOR_RED, STYLE_HIGH_INTENSITY_TEXT);
+                    printf("Impossible de trouver le label \"");
+                    string_print(line->insn_line.label);
+                    printf("\".\n");
+                    STYLE_RESET(stderr);
+                    return -1;
                 }
         }
     }
+    return 0;
 }
 
 void print_binary(int n, int size) {

@@ -353,8 +353,9 @@ void asm_line_nop_add(list_t* insn_list, int line_addr);
  * @brief Met à jour les adresses des jumps et branches
  * 
  * @param insn_list Liste des instructions
+ * @return int - 0 si tout s'est bien passé, -1 sinon
  */
-void asm_line_update_adress(list_t* insn_list);
+int asm_line_update_adress(list_t* insn_list);
 /**
  * @brief Affiche un nombre binaire sur la sortie standard
  * 

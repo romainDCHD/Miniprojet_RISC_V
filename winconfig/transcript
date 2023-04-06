@@ -23,5 +23,5 @@ sim:/bench_control_logic/control_logic_inst/pc_sel_o \
 sim:/bench_control_logic/control_logic_inst/inst_reg0 \
 sim:/bench_control_logic/control_logic_inst/inst_reg1 \
 sim:/bench_control_logic/control_logic_inst/inst_reg2
-# Can't move the Now cursor.
+run
 run

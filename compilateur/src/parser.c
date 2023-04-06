@@ -1,7 +1,7 @@
 /*
 <code>        ::= ['comment'] <code-line> <eol> ( [<code-line>] <eol> )*
 <code-line>   ::= <instruction> | {'label'}
-<instruction> ::= <insn-regreg> | <insn-imm> | <insn-branch> | <insn-load> | <insn-store> | <insn-jal> | <insn-jalr> | <insn-upper>
+<instruction> ::= <insn-regreg> | <insn-imm> | <insn-branch> | <insn-load> | <insn-store> | <insn-jal> | <insn-jalr> | <insn-upper> | <unsninsn>
 
 <insn-regreg> ::= ({'insn::ADD'}  | {'insn::AND'}   | {'insn::SLL'}  | 
                    {'insn::SRL'}  | {'insn::OR'}    | {'insn::XOR'}  | 
@@ -17,6 +17,12 @@
 <insn-jal>    ::= {'insn::JAL'}  {‘blank’} {'symbole::register'} {'comma'} {'label'}
 <insn-jalr>   ::= ({'insn::JALR'}) {‘blank’} {'symbole::register'} {'comma'} {'symbole::register'} {'comma'} {'symbole::label'}
 <insn-upper>  ::= ({'insn::LUI'} | {'insn::AUIPC'}) {‘blank’} {'symbole::register'} {'comma'} {'integer::dec'}
+
+<unsninsn>    ::= <unsinsn-J> | <unsinsn-LI> | <unsinsn-MV> | <unsinsn-BLE>
+<unsinsn-J>   ::= {'unsinsn::J'} {‘blank’} {'symbole::label'}
+<unsinsn-LI>  ::= {'unsinsn::LI'} {‘blank’} {'symbole::register'} {'comma'} {'integer::dec'}
+<unsinsn-MV>  ::= {'unsinsn::MV'} {‘blank’} {'symbole::register'} {'comma'} {'symbole::register'}
+<unsinsn-BLE> ::= {'unsinsn::BLE'} {‘blank’} {'symbole::register'} {'comma'} {'symbole::register'} {'comma'} {'symbole::label'}
 
 <eol>         ::= ([{‘blank’}] [{‘comment’}] {‘newline’} [{’blank’}])*
 
@@ -87,7 +93,7 @@ int parse_code_line(func_args) {
     ret(-1)
 }
 
-// <instruction> ::= <insn-regreg> | <insn-imm> | <insn-branch> | <insn-load> | <insn-store> | <insn-jal> | <insn-jalr> | <insn-upper>
+// <instruction> ::= <insn-regreg> | <insn-imm> | <insn-branch> | <insn-load> | <insn-store> | <insn-jal> | <insn-jalr> | <insn-upper> | <unsninsn>
 int parse_insn(func_args) {
     upd_depth("insn");
 
@@ -101,6 +107,7 @@ int parse_insn(func_args) {
     chk_opt_non_term(parse_insn_jal, ret(0));
     chk_opt_non_term(parse_insn_jalr, ret(0));
     chk_opt_non_term(parse_insn_upper, ret(0));
+    chk_opt_non_term(parse_unsninsn, ret(0));
 
     ret(-1)
 }
@@ -334,6 +341,101 @@ int parse_insn_upper(func_args) {
 
             ret(0)
     }
+    ret(-1)
+}
+
+// <unsninsn> ::= <unsinsn-J> | <unsinsn-LI> | <unsinsn-MV> | <unsinsn-BLE>
+int parse_unsninsn(func_args) {
+    upd_depth("unsninsn");
+
+    list_t l;
+
+    chk_opt_non_term(parse_unsninsn_j, ret(0))
+    chk_opt_non_term(parse_unsninsn_li, ret(0))
+    chk_opt_non_term(parse_unsninsn_mv, ret(0))
+    chk_opt_non_term(parse_unsninsn_ble, ret(0))
+
+    ret(-1)
+}
+
+// <unsinsn-J> ::= {'unsinsn::J'} {‘blank’} {'symbole::label'} remplacé par JAL
+int parse_unsninsn_j(func_args) {
+    upd_depth("unsinsn-j");
+
+    insn_t insn;
+    chk_term("unsinsn::J", insn = insnset2insn(JAL))
+    chk_term("blank")
+    char *label;
+    chk_term("symbole::label", label = ((lexem_t)(list_first(*lexems)))->value)
+    
+    asm_line_jal_add(instructions, insn, R6, label, *line_addr);
+    *line_addr = *line_addr + 4;
+
+    ret(0)
+}
+
+// <unsinsn-LI> ::= {'unsinsn::LI'} {‘blank’} {'symbole::register'} {'comma'} {'integer::dec'} remplacé par ADDI
+int parse_unsninsn_li(func_args) {
+    upd_depth("unsinsn-li");
+
+    insn_t insn;
+    chk_term("unsinsn::LI", insn = insnset2insn(ADDI))
+    chk_term("blank")
+    reg_t rd;
+    chk_term("symbole::register", rd = str2reg(((lexem_t)(list_first(*lexems)))->value))
+    chk_term("comma")
+    int imm;
+    chk_term("integer::dec", imm = atoi(((lexem_t)(list_first(*lexems)))->value))
+
+    asm_line_imm_add(instructions, insn, rd, R0, imm, *line_addr);
+    *line_addr = *line_addr + 4;
+
+    ret(0)
+}
+
+// <unsinsn-MV> ::= {'unsinsn::MV'} {‘blank’} {'symbole::register'} {'comma'} {'symbole::register'} remplacé par ADD
+int parse_unsninsn_mv(func_args) {
+    upd_depth("unsinsn-mv");
+
+    insn_t insn;
+    chk_term("unsinsn::MV", insn = insnset2insn(ADD))
+    chk_term("blank")
+    reg_t rd;
+    chk_term("symbole::register", rd = str2reg(((lexem_t)(list_first(*lexems)))->value))
+    chk_term("comma")
+    reg_t rs1;
+    chk_term("symbole::register", rs1 = str2reg(((lexem_t)(list_first(*lexems)))->value))
+
+    asm_line_regreg_add(instructions, insn, rd, rs1, R0, *line_addr);
+    *line_addr = *line_addr + 4;
+
+    ret(0)
+}
+
+// <unsinsn-BLE> ::= {'unsinsn::BLE'} {‘blank’} {'symbole::register'} {'comma'} {'symbole::register'} {'comma'} {'symbole::label'}
+int parse_unsninsn_ble(func_args) {
+    // Pour se débaraasser des warnings
+    #ifdef __MINGW32__
+        long long l = (long long)instructions;
+        l = (long long)line_addr;
+    #else
+        long l = (long)instructions;
+        l = (long)line_addr;
+    #endif
+    l = l + 1;
+    upd_depth("unsinsn-ble");
+
+    STYLE(stderr, COLOR_RED, STYLE_HIGH_INTENSITY_TEXT);
+    chk_term("unsinsn::BLE", printf("Instruction BLE non supportée par le compilateur\n");)
+    STYLE_RESET(stderr);
+    // chk_term("blank")
+    // chk_term("symbole::register")
+    // chk_term("comma")
+    // chk_term("symbole::register")
+    // chk_term("comma")
+    // chk_term("symbole::label")
+
+    // ret(0)
     ret(-1)
 }
 

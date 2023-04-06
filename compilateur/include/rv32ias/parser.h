@@ -36,9 +36,10 @@ Non-terminal            fonction
 #define ret(code) \
     if (verbose) { \
         string_print(curr_depth); \
-        if (!code) STYLE(stderr, COLOR_GREEN, STYLE_BOLD); \
+        if (!code) STYLE(stderr, COLOR_GREEN, STYLE_HIGH_INTENSITY_TEXT); \
+        else       STYLE(stderr, COLOR_RED, STYLE_HIGH_INTENSITY_TEXT); \
         printf("\treturn\t%d\n", code); \
-        if (!code) STYLE_RESET(stderr); \
+        STYLE_RESET(stderr); \
         string_free(&curr_depth); \
     } \
     return code;
@@ -94,5 +95,10 @@ int parse_insn_store(func_args);
 int parse_insn_jal(func_args);
 int parse_insn_jalr(func_args);
 int parse_insn_upper(func_args);
+int parse_unsninsn(func_args);
+int parse_unsninsn_j(func_args);
+int parse_unsninsn_li(func_args);
+int parse_unsninsn_mv(func_args);
+int parse_unsninsn_ble(func_args);
 int parse_eol(func_args);
 int parse_eol(func_args);

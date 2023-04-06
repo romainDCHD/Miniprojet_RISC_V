@@ -66,6 +66,7 @@ int main(int argc, char* argv[]) {
         if (!verbose) printf("Relancer le programme avec l'option -v pour plus d'information\n");
         STYLE_RESET(stderr);
         list_delete(lexems, lexem_delete);
+        list_delete(instructions, asm_line_free);
         exit(EXIT_FAILURE);
     }
 
@@ -74,7 +75,11 @@ int main(int argc, char* argv[]) {
         printf("Aucune erreur dans l'expression !\n");
         STYLE_RESET(stderr);
         printf("\n\nMise à jours des adresses des jumps et des branchement : \n");
-        asm_line_update_adress(&instructions);
+        if (asm_line_update_adress(&instructions)) {
+            list_delete(lexems, lexem_delete);
+            list_delete(instructions, asm_line_free);
+            exit(EXIT_FAILURE);
+        }
         list_print(instructions, asm_line_print);
         printf("\n\nEcriture du code assembleur : \n");
     }

@@ -148,10 +148,15 @@ module control_logic (
                             alu_op_o = SUB;
                         if (inst_reg0[14:12] == 3'b001)
                             alu_op_o = SLL;
-                        if (inst_reg0[14:12] == 3'b010)
-                            alu_op_o = SLT;
-                        if (inst_reg0[14:12] == 3'b011)
-                            alu_op_o = SLTU;
+                        if (inst_reg0[14:12] == 3'b010) begin  // SLT
+                            if (br_lt_i && !br_eq_i) alu_op_o = OUT_ONE;
+                            else                     alu_op_o = OUT_ZERO;
+                        end
+                        if (inst_reg0[14:12] == 3'b011) begin  // SLTU
+                            br_un_o = 1'b1;                    // Unsigned comparison is enabled
+                            if (br_lt_i && !br_eq_i) alu_op_o = OUT_ONE;
+                            else                     alu_op_o = OUT_ZERO;
+                        end
                         if (inst_reg0[14:12] == 3'b100)
                             alu_op_o = XOR;
                         if (inst_reg0[14:12] == 3'b101 && inst_reg0[31:25] == 7'b0000000)
@@ -167,8 +172,15 @@ module control_logic (
                         case (inst_reg0[14:12])
                             3'b000: alu_op_o = ADD;
                             3'b001: alu_op_o = SLL;
-                            3'b010: alu_op_o = SLT;
-                            3'b011: alu_op_o = SLTU;
+                            3'b010: begin // SLT
+                                if (br_lt_i && !br_eq_i) alu_op_o = OUT_ONE;
+                                else                     alu_op_o = OUT_ZERO;
+                            end
+                            3'b011: begin // SLTU
+                                br_un_o = 1'b1;                // Unsigned comparison is enabled
+                                if (br_lt_i && !br_eq_i) alu_op_o = OUT_ONE;
+                                else                     alu_op_o = OUT_ZERO;
+                            end
                             3'b100: alu_op_o = XOR;
                             3'b110: alu_op_o = OR;
                             3'b111: alu_op_o = AND;
