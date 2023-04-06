@@ -1,14 +1,14 @@
-module riscv #(parameter  n=20)
+module riscv 
 (
     input   logic   clk,
     input   logic   rst,
-    input   [31:0]  tab_inst[n:0]
+    input   [31:0]  inst_i,
+    output  logic [31:0]  pc
 );
 
 logic pc_4;
 logic [31:0] wb;
 logic pc_sel;
-logic pc;
 logic [31:0] inst;
 logic [2:0]  Immsel;
 logic [31:0] Imm;
@@ -42,10 +42,10 @@ fetch_in fetch_in1(
     .pc_out(pc)
 );
 
-logic   [8:0]  count = pc>>2;
 dff dff1(
     .clk(clk),
-    .d(tab_inst[count]),
+    .rst(rst),
+    .d(inst_i),
     .q(inst)
 );
 
@@ -92,6 +92,7 @@ opti opti1(
 
 dff dff2(
     .clk(clk),
+    .rst(rst),
     .d(Data_o),
     .q(Data_w)
 );
