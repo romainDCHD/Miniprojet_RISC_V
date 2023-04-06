@@ -1,9 +1,7 @@
 //==============================================================================
-//  Filename    : ALU module                                        
-//  Designer    : Romain DUCHADEAU
-//  Description : Perform operations with variables 
+//  Filename    : ALU module
+//  Description : Perform mathematical operations between alu_a and alu_b
 //==============================================================================
-
  
  module riscv_alu (
      // Inputs
@@ -14,20 +12,20 @@
      // Outputs
      ,output [ 31:0]  alu_result_o
  );
- 
- `define ADD 0		// also used for BEQ, BNE, BGE, BGEU, AUIPC
- `define AND 6
- `define BEQ 8
- `define SLL 7
- `define SRL 8
- `define OR 5
- `define XOR 4
- `define OUT_ONE 2	// usefull for SLT, SLTU instructions
- `define OUT_ZERO 2
- `define SRA 9
- `define LUI 8		// just take the immediate value (already returned on the right format)
- `define SUB 1
- 
+  
+ typedef enum  {
+        ADD,		// Also used for BEQ, BNE, BGE, BGEU, AUIPC
+        AND,
+        SLL,
+        SRL,
+        OR,
+        XOR,
+        OUT_ONE,    // Usefull for SLT, SLTU instructions
+        OUT_ZERO,
+        SRA,
+        LUI,		// Just take the immediate value (already returned on the right format)
+        SUB
+    } alu_op_t;
 
 reg [31:0]      result_r;
 reg[4:0]        buffer;
@@ -46,59 +44,59 @@ begin
        //----------------------------------------------
        // Arithmetic
        //----------------------------------------------
-       `ADD : 
+       ADD : 
        begin
             result_r      = (alu_a_i + alu_b_i);
        end
-       `SUB : 
+       SUB : 
        begin
             result_r      = (alu_a_i - alu_b_i);
        end
        //----------------------------------------------
        // Logical
        //----------------------------------------------       
-       `AND : 
+       AND : 
        begin
             result_r      = (alu_a_i & alu_b_i);
        end
-       `OR  : 
+       OR  : 
        begin
             result_r      = (alu_a_i | alu_b_i);
        end
-       `XOR : 
+       XOR : 
        begin
             result_r      = (alu_a_i ^ alu_b_i);
        end
        //----------------------------------------------
        // Shift
        //----------------------------------------------
-       `SLL : 
+       SLL : 
        begin
-       	    buffer	 <= alu_b_i[4:0];//ne sais pas si ça marche pour prendre les bits de poids faible
-            result_r      = (alu_a_i << buffer);
+       	    buffer	 = alu_b_i[4:0];//ne sais pas si ça marche pour prendre les bits de poids faible
+            result_r     = (alu_a_i << buffer);
        end
-       `SRL : 
+       SRL : 
        begin
-            buffer	 <= alu_b_i[4:0];//ne sais pas si ça marche pour prendre les bits de poids faible
-            result_r      = (alu_a_i >> buffer);
+            buffer	 = alu_b_i[4:0];//ne sais pas si ça marche pour prendre les bits de poids faible
+            result_r     = (alu_a_i >> buffer);
        end
-       `SRA : 
+       SRA : 
        begin
-            buffer	 <= alu_b_i[4:0];//ne sais pas si ça marche pour prendre les bits de poids faible
+            buffer	  = alu_b_i[4:0];//ne sais pas si ça marche pour prendre les bits de poids faible
             result_r      = (alu_a_i >>> buffer);
        end
-       `LUI : 
+       LUI : 
        begin
             result_r      = (alu_b_i);
        end
        //----------------------------------------------
        // Others
        //----------------------------------------------
-       `OUT_ONE : 
+       OUT_ONE : 
        begin
             result_r      = byte_one;
        end
-       `OUT_ZERO : 
+       OUT_ZERO : 
        begin
             result_r      = byte_zero;
        end
@@ -107,6 +105,7 @@ begin
     endcase
 end
 
-assign alu_result_o    = result_r;
+always_ff @(posedge clk)
+	assign alu_result_o    = result_r;
 
 endmodule
