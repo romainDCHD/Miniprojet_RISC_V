@@ -3,21 +3,6 @@ module test_opti();
 timeunit      1ns;
 timeprecision 1ns;
 
-initial $timeformat ( -9, 1, " ns", 12 );
-
-// Clock and Reset Definition
-`define PERIOD 10
-
-  initial
-    begin
-      clk = 1'b1  ;
-      reset = 1'b1;
-      #1 reset = 1'b0;
-    end
-
-always
-    #(`PERIOD/2) clk = ~clk;
-
 bit clk=1'b0;
 bit rst;
 logic A1_sel;
@@ -25,7 +10,8 @@ logic B1_sel;
 logic A2_sel;
 logic B2_sel;
 logic Brun;
-logic Brlt;
+logic BrLt;
+logic BrEq;
 logic [31:0] Rs1;
 logic [31:0] Rs2;
 logic [31:0] alu;
@@ -34,6 +20,23 @@ logic [31:0] reg1;
 logic [31:0] reg2;
 logic [31:0] Imm;
 logic [31:0] data_w;
+
+
+initial $timeformat ( -9, 1, " ns", 12 );
+
+// Clock and Reset Definition
+
+`define PERIOD 10
+
+  initial
+    begin
+      clk = 1'b1  ;
+      rst = 1'b1;
+      #1 rst = 1'b0;
+    end
+
+always
+    #(`PERIOD/2) clk = ~clk;
 
 opti opti1(
     .clk(clk),
@@ -52,7 +55,7 @@ opti opti1(
     .imm(Imm),
     .reg1(reg1),
     .reg2(reg2),
-    .data_w(Data_o)
+    .data_w(data_w)
 );
 
   task xpect (input [31:0] expect_A, input [31:0] expect_B, input [31:0] expect_C ) ;
@@ -106,14 +109,14 @@ Rs1 = 32'haaaaaaaa;
 Rs2 = 32'hcccccccc;
 alu = 32'hdddddddd;
 pc = 32'heeeeeeee;
-imm = 32'hffffffff;
+Imm = 32'hffffffff;
 @(posedge clk)
 @(posedge clk) A1_sel = 1'b0; A2_sel = 1'b0; B1_sel = 1'b0; B2_sel = 1'b0; 
 @(negedge clk) xpect(Rs1, Rs2, Rs2);
 @(posedge clk) A1_sel = 1'b1; A2_sel = 1'b0; B1_sel = 1'b1; B2_sel = 1'b0; 
 @(negedge clk) xpect(alu, alu, alu);
 @(posedge clk) A1_sel = 1'b1; A2_sel = 1'b1; B1_sel = 1'b1; B2_sel = 1'b1; 
-@(negedge clk) xpect(pc, imm, alu);
+@(negedge clk) xpect(pc, Imm, alu);
 
 
 end    

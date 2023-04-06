@@ -6,7 +6,6 @@ module opti (
     input   logic   A2_sel,
     input   logic   B2_sel,
     input   logic   Brun,
-    input   logic   ALU_sel,
     output  logic   Breq,
     output  logic   Brlt,
     input   [31:0]  reg_rs1,
@@ -26,7 +25,7 @@ module opti (
         .in_B(Br2),
         .BrUn(Brun),
         .BrEq(Breq),
-        .BrLt(Brlt)
+        .BrLT(Brlt)
     );
     
     always_comb // toutes les entrées sauf clk et reset
