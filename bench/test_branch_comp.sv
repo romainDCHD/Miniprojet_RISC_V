@@ -1,9 +1,8 @@
 //==============================================================================
-//  Filename    : Testbench of the branch_comp module                                        
-//  Designer    : Romain DUCHADEAU
+//  Filename    : Testbench of the branch_comp module 
 //  Description : Most exhausitive possible test for the branch_comp module
 //==============================================================================
-module bench_regfile();
+module bench_branch_comp();
 
 timeunit      1ns;
 timeprecision 1ns;
@@ -75,17 +74,15 @@ branch_comp comp (
   endtask
   
   
- // Apply Stimulus de
+ // Apply Stimulus
  initial
 	begin
-    @(posedge clk)
-    //sans bulles
-    @(posedge clk) in_A = 32'b00000000000000000000000000000000101; in_B = 32'b00000000000000000000000000000000101; BrUn = 1'b0  @(negedge clk) xpect(1'b1, 1'b0); //cas d'égalité non signé
-    @(posedge clk) in_A = 32'b00000000000000000000000000000000101; in_B = 32'b00000000000000000000000000000000101; BrUn = 1'b1  @(negedge clk) xpect(1'b1, 1'b0); //cas d'égalité signé
-    @(posedge clk) in_A = 32'b00000000000000000000000000000000101; in_B = 32'b10000000000000000000000000000000101; BrUn = 1'b0  @(negedge clk) xpect(1'b0, 1'b1); //inf non signé
-    @(posedge clk) in_A = 32'b10000000000000000000000000000000101; in_B = 32'b00000000000000000000000000000000101; BrUn = 1'b0  @(negedge clk) xpect(1'b0, 1'b0); //sup non signé
-    @(posedge clk) in_A = 32'b00000000000000000000000000000000101; in_B = 32'b10000000000000000000000000000000101; BrUn = 1'b1  @(negedge clk) xpect(1'b0, 1'b0); //inf  signé
-    @(posedge clk) in_A = 32'b10000000000000000000000000000000101; in_B = 32'b00000000000000000000000000000000101; BrUn = 1'b1  @(negedge clk) xpect(1'b0, 1'b1); //sup  signé
+    @(posedge clk) in_A = 32'b00000000000000000000000000000101; in_B = 32'b00000000000000000000000000000101; BrUn = 1'b0;  @(negedge clk) xpect(1'b1, 1'b0); //cas d'égalité non signé
+    @(posedge clk) in_A = 32'b00000000000000000000000000000101; in_B = 32'b00000000000000000000000000000101; BrUn = 1'b1;  @(negedge clk) xpect(1'b1, 1'b0); //cas d'égalité signé
+    @(posedge clk) in_A = 32'b00000000000000000000000000000101; in_B = 32'b10000000000000000000000000000101; BrUn = 1'b0;  @(negedge clk) xpect(1'b0, 1'b1); //inf non signé
+    @(posedge clk) in_A = 32'b10000000000000000000000000000101; in_B = 32'b00000000000000000000000000000101; BrUn = 1'b0;  @(negedge clk) xpect(1'b0, 1'b0); //sup non signé
+    @(posedge clk) in_A = 32'b00000000000000000000000000000101; in_B = 32'b10000000000000000000000000000101; BrUn = 1'b1;  @(negedge clk) xpect(1'b0, 1'b0); //inf  signé
+    @(posedge clk) in_A = 32'b10000000000000000000000000000101; in_B = 32'b00000000000000000000000000000101; BrUn = 1'b1;  @(negedge clk) xpect(1'b0, 1'b1); //sup  signé
 
   	$display ( "TEST PASSED" ) ;
   	$stop ;
