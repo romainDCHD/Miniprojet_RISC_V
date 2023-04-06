@@ -1,7 +1,7 @@
 //==============================================================================
 //  Filename    : Testbench of the Control Logic module                                       
 //  Designer    : Gaël Ousset
-//  Description :  TODO : regarder le wbsel1 qui ne se met pas à 1, Prendre en compte le cas où tous les bits sont à 0 dans l'instruction. 
+//  Description : OK
 //==============================================================================
 
 module bench_control_logic();

@@ -51,7 +51,6 @@ module control_logic (
 
     // ALU operations
     typedef enum  {
-        NOP,
         ADD,		// Also used for BEQ, BNE, BGE, BGEU, AUIPC
         AND,
         SLL,
@@ -86,7 +85,7 @@ module control_logic (
         B1_sel_o = 1'b0;                 // Select the second register
         A2_sel_o = 1'b0;                 // Select the first register
         B2_sel_o = 1'b0;                 // Select the second register
-        alu_op_o = NOP;                  // ALU operation is NOP
+        alu_op_o = OUT_ZERO;             // ALU operation is NOP
         mem_rw_o = 1'b0;                 // Memory write is disabled
         wb_sel1_o = 1'b0;                // Select the data from memory
         wb_sel2_o = 1'b0;                // Select the data from the writeback
