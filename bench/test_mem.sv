@@ -1,76 +1,63 @@
+//==============================================================================
+//  Filename    : test_mem
+//  Description : fichier test de mem (l'étage de mémoire donnée)
+//==============================================================================
+
 module test_mem ();
 
 timeunit      1ns;
 timeprecision 1ns;
 
-bit clk=1'b0;
+bit clk;
 bit reset;     
 logic   dmem;
 logic   [31:0]  data_w;
-//logic   [31:0]  r_mem[3:0];
 logic   [31:0]  addr;
-logic [31:0]  data_r;
+logic   [31:0]  data_o;
 
 
-mem #(3) mem1(
-    .clk(clk),
-    .rst(reset),
-    .dmem(dmem),
-    .data_w(data_w),
-    .addr(addr),
-    .data_r(data_r)
+mem #(5) mem1(
+    .clk	( clk    ),
+    .rst	( reset  ),
+    .dmem       ( dmem   ),
+    .data_w     ( data_w ),
+    .addr	( addr   ),
+    .data_o     ( data_o )
 );
 
-initial $timeformat ( -9, 1, " ns", 12 );
+initial 
+	begin
+		$timeformat ( -9, 1, " ns", 12 );
+		$monitor ("data_o=%d",data_o);
+	end
 
 // Clock and Reset Definition
-`define PERIOD 10
+`define PERIOD 20
 
   initial
     begin
-      clk = 1'b1  ;
-      reset = 1'b1;
-      #1 reset = 1'b0;
+      clk <= 1'b0  ;
+      reset <= 1'b1;
+      #21 reset <= 1'b0;
     end
 
 always
     #(`PERIOD/2) clk = ~clk;
 
 
-initial  forever
+
+initial
    begin  
-    // r_mem[0] = 32'haaaaaaaa;
-    // r_mem[1] = 32'hbbbbbbbb;
-    // r_mem[2] = 32'hcccccccc;
-    // r_mem[3] = 32'hdddddddd;
-    dmem = 0;
-    data_w = 32'haaaaaaaa;
-    addr = 0;
-	  #100
-    data_w = 32'hbbbbbbbb;
-    addr = 1;
-	  #100
-    data_w = 32'hcccccccc;
-    addr = 2;
-	  #100
-    data_w = 32'hdddddddd;
-    addr = 3;
-	  #100
-    addr = 2;
-    dmem = 1;
-  	#100;
+    @(posedge clk) dmem = 0; data_w = 32'haaaaaaaa; addr = 32'h0; //ecriture dans registre 0
+    @(posedge clk) dmem = 0; data_w = 32'haaaaaaaa; addr = 32'h0; //ecriture dans registre 0
+    @(posedge clk) dmem = 0; data_w = 32'hbbbbbbbb; addr = 32'h3; //ecriture dans registre 2
+    @(posedge clk) dmem = 1; data_w = 32'hcccccccc; addr = 32'h3; //lecture dans registre 2
+    @(posedge clk) dmem = 1; data_w = 32'hcccccccc; addr = 32'h0; //lecture dans registre 2
+    @(posedge clk) dmem = 1; data_w = 32'hcccccccc; addr = 32'h0; //lecture dans registre 2
+    
+    
+  	$display ( "MEM TEST FINISHED" ) ;
+  	$stop ;
    end                                                                        
 
-// Automatic checker to compare Filter value with expected Output
-
 endmodule
-
-
-
-
-
-
-
-
-
-
