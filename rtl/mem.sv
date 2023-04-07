@@ -43,10 +43,8 @@ module mem #(parameter  n=20) (
             r_mem[ short_addr ] <= data_w;
             data_r <= 32'b0;
         end
-
-    end
-
+        end
 
 
-endmodule  
-endmodule    
+
+endmodule   

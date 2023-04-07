@@ -14,10 +14,8 @@ bit reset;
 // le paramètre est la taille de la mémoire imem
 riscv #(28) riscv1 (
     .clk(clk),
-    .reset(reset)
+    .rst(reset)
 );
-
-
 
 
 // Clock and Reset Definitin
@@ -29,7 +27,7 @@ riscv #(28) riscv1 (
   initial
     begin
         //permet de charger le fichier binaire dans la mémoire instruction
-        &readmemb("instructions.txt", riscv1.imem.tab_inst);
+        $readmemb("instructions.txt", riscv1.imem1.tab_inst);
       clk <= 1'b0  ;
       reset <= 1'b1;
       #21 reset <= 1'b0;

@@ -11,12 +11,14 @@ vlib ${TP_PATH}/libs/lib_verilog
 vmap lib_verilog ${TP_PATH}/libs/lib_verilog 
 
 #compilation des fichiers
-vlog +acc -work  lib_verilog ${TP_PATH}/rtl/regfile.sv
-vlog +acc -work lib_verilog ${TP_PATH}/rtl/3dff.sv
-vlog +acc -work lib_verilog ${TP_PATH}/bench/bench_regfile.sv
+vlog +acc -work  lib_verilog ${TP_PATH}/rtl/*.sv
+vlog +acc -work  lib_verilog ${TP_PATH}/bench/*.sv
+#vlog +acc -work lib_verilog ${TP_PATH}/rtl/3dff.sv
+#vlog +acc -work lib_verilog ${TP_PATH}/bench/bench_regfile.sv
 
 #lancer la simulation
-vsim -voptargs=+acc lib_verilog.bench_regfile
-add wave sim:/bench_regfile/*
-run 200
+vsim -voptargs=+acc lib_verilog.bench_riscv
+#vsim -voptargs=+acc lib_verilog.bench_regfile
+#add wave sim:/bench_regfile/*
+#run 200
 

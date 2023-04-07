@@ -5,7 +5,7 @@
 module riscv #(parameter  n=20)
 (
     input   logic   clk,
-    input   logic   rst,
+    input   logic   rst
 );
 //All the Wires of the system
 logic [31:0] pc_4;
@@ -122,7 +122,7 @@ mem mem1(
     .dmem(MemRW),
     .data_w(Data_w),
     .addr(alu),
-    .data_r(data_mem)
+    .data_o(data_mem)
 );
 
 wb_out wbout1(

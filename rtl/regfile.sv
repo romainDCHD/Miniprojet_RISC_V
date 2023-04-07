@@ -125,8 +125,8 @@ module riscv_regfile(
 	    wait_for_data[AddrD_i]	<= 1'b1;
 	    end
 	end   
-	assign DataA_o = DataA_r;
-	assign DataB_o = DataB_r;
+	DataA_o <= DataA_r;
+	DataB_o <= DataB_r;
   end
 
 endmodule

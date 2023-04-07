@@ -101,6 +101,10 @@ begin
        begin
             result_r      = byte_zero;
        end
+       default :
+       begin
+          result_r      = byte_zero;
+       end
        
        
     endcase
