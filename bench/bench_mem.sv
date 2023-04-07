@@ -1,9 +1,9 @@
 //==============================================================================
-//  Filename    : test_mem
+//  Filename    : bench_mem
 //  Description : fichier test de mem (l'étage de mémoire donnée)
 //==============================================================================
 
-module test_mem ();
+module bench_mem ();
 
 timeunit      1ns;
 timeprecision 1ns;
