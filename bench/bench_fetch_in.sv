@@ -1,4 +1,9 @@
-module test_fetch_in ();
+//==============================================================================
+//  Filename    : bench_fetch_in        
+//  Description : Testbench of the fetch stage module
+//==============================================================================
+
+module bench_fetch_in ();
 
 timeunit      1ns;
 timeprecision 1ns;
