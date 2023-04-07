@@ -8,13 +8,11 @@ module wb_out (
     input   [31:0]  pc_4_i,
     input   [31:0]  alu_i,
     input   [31:0]  mem_i,
-    input   [2:0]   wb_sel1_i,
-    input   [2:0]   wb_sel2_i,
-    input   [2:0]   pc_sel_i,
+    input   wb_sel1_i,
+    input   wb_sel2_i,
 
     output  logic [31:0]  wb_o,
-    output  logic [31:0]  datad_o,
-    output  logic [31:0]  pc_o
+    output  logic [31:0]  datad_o
     );
 
     //== Variable Declaration ======================================================
@@ -41,11 +39,5 @@ module wb_out (
         else           wb_o = wb;
     end
 
-    //----- MUX entre wb et pc_4
-    always_comb // wb, pc_4_i, pc_sel_i
-    begin
-        if (pc_sel_i) pc_o = wb;
-        else          pc_o = pc_4_i;
-    end
 
 endmodule
