@@ -12,7 +12,7 @@
 #compilateur/bin/parser.exe
 
 # On indique à Git d'ignorer tous les fichier dont le dossier libs/libMiniproj_RISCV/
-libs/libMiniproj_RISCV/
+libs/*
 
 # On indique à Git d'ignorer le script de compilation
 wincompile_System_Verilog.bat

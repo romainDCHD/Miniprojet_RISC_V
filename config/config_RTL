@@ -17,7 +17,9 @@
 # selon que le script est exécuté ou sourcé.
 ###########################################################################################
 
-export TP_PATH=$(/tp/outils/cheminduparent $BASH_SOURCE)
+#export TP_PATH=$(/tp/outils/cheminduparent $BASH_SOURCE)
+export TP_PATH=$(/home/romain/intelFPGA_pro/22.4/questa_fse/bin)
+
 printf "\nTP_PATH (base de l'arborescence du TP) = \n%s\n\n" "$TP_PATH"
 
 source /softslin/configCAO/MentorGraphics/licence_mentor_graphics

@@ -1,13 +1,11 @@
 //==============================================================================
-//  Description : Global code of the processsor 
+//  Description : Top module of the processsor 
 //==============================================================================
 
-module riscv 
+module riscv #(parameter  n=20)
 (
     input   logic   clk,
     input   logic   rst,
-    input   [31:0]  inst_i, //the next instruction will be given by the test bench
-    output  logic [31:0]  pc //the programm counter is send back to the test bench
 );
 //All the Wires of the system
 logic [31:0] pc_4;
@@ -52,6 +50,13 @@ fetch_in fetch_in1(
     .pc_sel(pc_sel),
     .pc_out(pc)
 );
+
+imem #(n) imem1  ( 
+    .clk(clk),
+    .rst(rst),
+    .pc(pc),
+    .inst_out (inst)
+  );
 
 dff dff1(
     .clk(clk),

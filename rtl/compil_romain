@@ -1,0 +1,16 @@
+#! /bin/bash 
+# -*- coding: UTF-8 -*-
+
+set TP_PATH "/home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V"
+
+vdel -lib  ${TP_PATH}/libs/lib_verilog -all
+
+vlib ${TP_PATH}/libs/lib_verilog
+
+vmap lib_verilog ${TP_PATH}/libs/lib_verilog 
+
+vlog +acc -work  lib_verilog ${TP_PATH}/rtl/regfile.sv
+vlog +acc -work lib_verilog ${TP_PATH}/rtl/3dff.sv
+
+vlog +acc -work lib_verilog ${TP_PATH}/bench/bench_regfile.sv
+

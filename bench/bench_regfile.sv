@@ -50,8 +50,8 @@ riscv_regfile regfile (
   initial
 	begin
  	$timeformat ( -9, 0, "ns", 3 ) ;	//for details cf notes
-$monitor ( "time=%t, RegWEn=%b, reset=%d, AddrA=%d, AddrB=%d, AddrD=%d, DataD=%d, DataA=%d, DataB=%d",
-        	$time,   RegWEn, reset, AddrA,  AddrB, AddrD, DataD, DataA , DataB  ) ;
+  $monitor ( "time=%t, RegWEn=%b, reset=%d, AddrA=%d, AddrB=%d, AddrD=%d, DataD=%d, DataA=%d, DataB=%d",
+            $time,   RegWEn, reset, AddrA,  AddrB, AddrD, DataD, DataA , DataB  ) ;
 	end
   // Verify Results for sum
   task xpect (input [31:0] expect_A, input [31:0] expect_B ) ;
