@@ -1,4 +1,9 @@
-module test_imm_gen ();
+//==============================================================================
+//  Filename    : bench_imm_gen        
+//  Description : Testbench of the immediate gestion module 
+//==============================================================================
+
+module bench_imm_gen ();
 
 timeunit      1ns;
 timeprecision 1ns;
