@@ -10,12 +10,14 @@ module riscv #(parameter  n=20)
 //All the Wires of the system
 logic [31:0] pc_4;
 logic [31:0] wb;
+logic [31:0] data_d;
 logic [31:0] inst;
 logic [2:0]  Immsel;
 logic [31:0] Imm;
 logic [31:0] Data_o;
 logic [31:0] Data_w;
 logic [31:0] alu;
+logic [31:0] alu_o;
 logic [31:0] mem;
 logic [31:0] Rs1;
 logic [31:0] Rs2;
@@ -40,7 +42,8 @@ logic [3:0] AluSel;
 //choose between writing or reading the memory
 logic MemRW;
 //choose what to write back
-logic [1:0] WBSel;
+logic wb_sel1;
+logic wb_sel2;
 
 fetch_in fetch_in1(
     .clk(clk),
@@ -61,8 +64,8 @@ imem #(n) imem1  (
 dff dff1(
     .clk(clk),
     .rst(rst),
-    .d(inst_i),
-    .q(inst)
+    .d(alu),
+    .q(alu_o)
 );
 
 
@@ -126,12 +129,12 @@ wb_out wbout1(
     .clk(clk),
     .rst(rst),
     .pc_4_i(pc_4),
-    .alu_i(alu),
+    .alu_i(alu_o),
     .mem_i(data_mem),
-    .wb_sel1_i(WBSel[0]),
-    .wb_sel2_i(WBSel[1]),
-    .pc_sel_i(pc_sel),
-    .wb(wb)
+    .wb_sel1_i(wb_sel1),
+    .wb_sel2_i(wb_sel2),
+    .wb(wb),
+    .datad_o(data_d)
 );
 
 control_logic control_logic1(
@@ -147,7 +150,8 @@ control_logic control_logic1(
     .B2_sel_o(B2_sel),
     .alu_op_o(AluSel),
     .mem_rw_o(MemRW),
-    .wb_sel_o(WBSel),
+    .wb_sel1_o(wb_sel1),
+    .wb_sel2_o(wb_sel2),
     .reg_w_en_o(RegWen),
     .pc_sel_o(pc_sel)
 );
