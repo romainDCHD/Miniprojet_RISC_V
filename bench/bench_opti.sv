@@ -1,4 +1,9 @@
-module test_opti();
+//==============================================================================
+//  Filename    : bench_opti     
+//  Description : Testbench of the execute module (between registers and ALU) 
+//==============================================================================
+
+module bench_opti();
 
 timeunit      1ns;
 timeprecision 1ns;
