@@ -3,14 +3,15 @@
 //  Description : Perform mathematical operations between alu_a and alu_b
 //==============================================================================
  
- module riscv_alu (
+ module alu (
      // Inputs
       input  [  3:0]  alu_op_i
      ,input  [ 31:0]  alu_a_i
      ,input  [ 31:0]  alu_b_i
+     ,input clk
 
      // Outputs
-     ,output [ 31:0]  alu_result_o
+     ,output logic [ 31:0]  alu_result_o
  );
   
  typedef enum  {
@@ -87,7 +88,7 @@ begin
        end
        LUI : 
        begin
-            result_r      = (alu_b_i);
+            result_r      = (alu_b_i << 12);
        end
        //----------------------------------------------
        // Others
@@ -106,6 +107,6 @@ begin
 end
 
 always_ff @(posedge clk)
-	assign alu_result_o    = result_r;
+	alu_result_o  <= result_r;
 
 endmodule
