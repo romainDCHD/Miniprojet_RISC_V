@@ -214,7 +214,7 @@ module control_logic (
                         alu_op_o = ADD;
                     end
                     `INST_NOP: begin
-                        alu_op_o = NOP;
+                        alu_op_o = OUT_ZERO;
                     end
                 endcase
             end
