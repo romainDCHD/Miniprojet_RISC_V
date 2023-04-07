@@ -101,4 +101,3 @@ int parse_unsninsn_li(func_args);
 int parse_unsninsn_mv(func_args);
 int parse_unsninsn_ble(func_args);
 int parse_eol(func_args);
-int parse_eol(func_args);

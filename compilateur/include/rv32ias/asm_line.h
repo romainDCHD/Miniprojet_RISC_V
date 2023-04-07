@@ -362,14 +362,15 @@ int asm_line_update_adress(list_t* insn_list);
  * @param n Nombre à afficher
  * @param size Taille du nombre en bits
  */
-void print_binary(int n, int size);
+void print_binary(FILE* file, int n, int size);
 /**
  * @brief Ecrit une ligne assembleur dans un fichier
  * 
  * @param asm_line Ligne assembleur à écrire
  * @param file Fichier dans lequel écrire
+ * @return int - 0 si tout s'est bien passé, -1 sinon
  */
-void asm_line_write(list_t* insn_list/*, FILE* file*/);
+int asm_line_write(list_t* insn_list, char* filename);
 /**
  * @brief Affiche une ligne assembleur
  * 

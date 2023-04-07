@@ -21,14 +21,15 @@ int main(int argc, char* argv[]) {
         printf("========== Description ==========\n");
         printf("Extrait et affiches les lexems d'un code source.\n\n");
         printf("========== Syntaxe ==========\n");
-        printf("%s source_file regexps_file [-v]\n", argv[0]);
+        printf("%s source_file regexps_file binfile [-v]\n", argv[0]);
         printf("source_file\tCode source à lire\n");
         printf("regexps_file\tFichier contenant la syntaxe souhaitée\n");
+        printf("binfile\t\tNom du fichier binaire à générer\n");
         printf("-v\t\tAffiche la progression du parsing\n");
         return 0;
     }
 
-    char verbose = (argc==4 && argv[3][0]=='-' && argv[3][1]=='v');
+    char verbose = (argc==5 && argv[4][0]=='-' && argv[4][1]=='v');
 
     list_t regexps;
     list_t lexems;
@@ -85,14 +86,17 @@ int main(int argc, char* argv[]) {
     }
 
     // Ecriture du code assembleur
-    printf("33222222222211111111110000000000\n");
-    printf("10987654321098765432109876543210\n");
-    asm_line_write(&instructions/*, argv[1]*/);
+    // printf("33222222222211111111110000000000\n");
+    // printf("10987654321098765432109876543210\n");
+    if (asm_line_write(&instructions, argv[3])) {
+        list_delete(lexems, lexem_delete);
+        list_delete(instructions, asm_line_free);
+        exit(EXIT_FAILURE);
+    }
     
     list_delete(lexems, lexem_delete);
     list_delete(instructions, asm_line_free);
     
-
     return 0;
 }
 

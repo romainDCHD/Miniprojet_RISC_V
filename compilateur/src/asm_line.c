@@ -331,320 +331,328 @@ int asm_line_update_adress(list_t* insn_list) {
     return 0;
 }
 
-void print_binary(int n, int size) {
+void print_binary(FILE* file, int n, int size) {
     int i;
     for (i = size - 1; i >= 0; i--) {
         int k = n >> i;
         if (k & 1)
-            printf("1");
+            fprintf(file, "1");
         else
-            printf("0");
+            fprintf(file, "0");
     }
 }
 
-void asm_line_write(list_t* insn_list/*, FILE* file*/) {
+int asm_line_write(list_t* insn_list, char* filename) {
+    FILE* file = fopen(filename, "w");
+    if (file == NULL) {
+        STYLE(stderr, COLOR_RED, STYLE_HIGH_INTENSITY_TEXT);
+        printf("Impossible d'ouvrir le fichier \"%s\".\n", filename);
+        STYLE_RESET(stderr);
+        return -1;
+    }
+
     for (list_t l = *insn_list; !list_empty(l) ; l = list_next(l)) {
         asm_line_t* line = list_first(l);
         if (line->type == INSN_LINE) {
             switch (line->insn_line.insn.type) {
                 case TYPE_NOP:
-                    print_binary(0, 32);                                          //31-0
-                    printf("\n");
+                    print_binary(file, 0, 32);                                          //31-0
+                    fprintf(file, "\n");
                 break;
                 case TYPE_REGREG:
                     switch (line->insn_line.insn.insn) {
                         case ADD:
-                            printf("%s", ADD_FUNCT7);                             // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", ADD_FUNCT3);                             // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            fprintf(file, "%s", ADD_FUNCT7);                             // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", ADD_FUNCT3);                             // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SUB:
-                            printf("%s", SUB_FUNCT7);                             // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SUB_FUNCT3);                             // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            fprintf(file, "%s", SUB_FUNCT7);                             // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SUB_FUNCT3);                             // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case AND:
-                            printf("%s", AND_FUNCT7);                             // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", AND_FUNCT3);                             // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            fprintf(file, "%s", AND_FUNCT7);                             // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", AND_FUNCT3);                             // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case OR:
-                            printf("%s", OR_FUNCT7);                              // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", OR_FUNCT3);                              // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            fprintf(file, "%s", OR_FUNCT7);                              // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", OR_FUNCT3);                              // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case XOR:
-                            printf("%s", XOR_FUNCT7);                             // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", XOR_FUNCT3);                             // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            fprintf(file, "%s", XOR_FUNCT7);                             // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", XOR_FUNCT3);                             // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SLL:
-                            printf("%s", SLL_FUNCT7);                             // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SLL_FUNCT3);                             // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            fprintf(file, "%s", SLL_FUNCT7);                             // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SLL_FUNCT3);                             // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SRL:
-                            printf("%s", SRL_FUNCT7);                             // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SRL_FUNCT3);                             // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            fprintf(file, "%s", SRL_FUNCT7);                             // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SRL_FUNCT3);                             // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SRA:
-                            printf("%s", SRA_FUNCT7);                             // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SRA_FUNCT3);                             // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            fprintf(file, "%s", SRA_FUNCT7);                             // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SRA_FUNCT3);                             // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SLT:
-                            printf("%s", SLT_FUNCT7);                             // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SLT_FUNCT3);                             // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            fprintf(file, "%s", SLT_FUNCT7);                             // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SLT_FUNCT3);                             // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SLTU:
-                            printf("%s", SLTU_FUNCT7);                            // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SLTU_FUNCT3);                            // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            fprintf(file, "%s", SLTU_FUNCT7);                            // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SLTU_FUNCT3);                            // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         default:
 
                         break;
                     }
-                    printf("%s\n", REGREG_OPCODE);                                // 6-0
+                    fprintf(file, "%s\n", REGREG_OPCODE);                                // 6-0
                 break;
                 case TYPE_REGIMM:
                     switch (line->insn_line.insn.insn) {
                         case ADDI:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", ADDI_FUNCT3);                            // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", ADDI_FUNCT3);                            // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case ANDI:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", ANDI_FUNCT3);                            // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", ANDI_FUNCT3);                            // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case ORI:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", ORI_FUNCT3);                             // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", ORI_FUNCT3);                             // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case XORI:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", XORI_FUNCT3);                            // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", XORI_FUNCT3);                            // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SLLI:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SLLI_FUNCT3);                            // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SLLI_FUNCT3);                            // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SRLI:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SRLI_FUNCT3);                            // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SRLI_FUNCT3);                            // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SRAI:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SRAI_FUNCT3);                            // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SRAI_FUNCT3);                            // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SLTI:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SLTI_FUNCT3);                            // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SLTI_FUNCT3);                            // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SLTIU:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SLTIU_FUNCT3);                           // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SLTIU_FUNCT3);                           // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         default:
 
                         break;
                     }
-                    printf("%s\n", REGIMM_OPCODE);                                // 6-0
+                    fprintf(file, "%s\n", REGIMM_OPCODE);                                // 6-0
                 break;
                 case TYPE_BRANCH:
                     switch (line->insn_line.insn.insn) {
                         case BEQ:
-                            printf("%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
-                            print_binary((line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", BEQ_FUNCT3);                             // 14-12
-                            print_binary(line->insn_line.imm & 0x1E, 4);          // 11-8
-                            printf("%d", (line->insn_line.imm & 0x800) >> 11);    // 7
+                            fprintf(file, "%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
+                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", BEQ_FUNCT3);                             // 14-12
+                            print_binary(file, line->insn_line.imm & 0x1E, 4);          // 11-8
+                            fprintf(file, "%d", (line->insn_line.imm & 0x800) >> 11);    // 7
                         break;
                         case BNE:
-                            printf("%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
-                            print_binary((line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", BNE_FUNCT3);                             // 14-12
-                            print_binary(line->insn_line.imm & 0x1E, 4);          // 11-8
-                            printf("%d", (line->insn_line.imm & 0x800) >> 11);    // 7
+                            fprintf(file, "%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
+                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", BNE_FUNCT3);                             // 14-12
+                            print_binary(file, line->insn_line.imm & 0x1E, 4);          // 11-8
+                            fprintf(file, "%d", (line->insn_line.imm & 0x800) >> 11);    // 7
                         break;
                         case BLT:
-                            // printf("%d\n", line->insn_line.imm);
-                            printf("%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
-                            print_binary((line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", BLT_FUNCT3);                             // 14-12
-                            print_binary(line->insn_line.imm & 0x1E, 4);          // 11-8
-                            printf("%d", (line->insn_line.imm & 0x800) >> 11);    // 7
+                            // fprintf(file, "%d\n", line->insn_line.imm);
+                            fprintf(file, "%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
+                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", BLT_FUNCT3);                             // 14-12
+                            print_binary(file, line->insn_line.imm & 0x1E, 4);          // 11-8
+                            fprintf(file, "%d", (line->insn_line.imm & 0x800) >> 11);    // 7
                         break;
                         case BGE:
-                            printf("%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
-                            print_binary((line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", BGE_FUNCT3);                             // 14-12
-                            print_binary(line->insn_line.imm & 0x1E, 4);          // 11-8
-                            printf("%d", (line->insn_line.imm & 0x800) >> 11);    // 7
+                            fprintf(file, "%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
+                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", BGE_FUNCT3);                             // 14-12
+                            print_binary(file, line->insn_line.imm & 0x1E, 4);          // 11-8
+                            fprintf(file, "%d", (line->insn_line.imm & 0x800) >> 11);    // 7
                         break;
                         case BLTU:
-                            printf("%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
-                            print_binary((line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", BLTU_FUNCT3);                            // 14-12
-                            print_binary(line->insn_line.imm & 0x1E, 4);          // 11-8
-                            printf("%d", (line->insn_line.imm & 0x800) >> 11);    // 7
+                            fprintf(file, "%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
+                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", BLTU_FUNCT3);                            // 14-12
+                            print_binary(file, line->insn_line.imm & 0x1E, 4);          // 11-8
+                            fprintf(file, "%d", (line->insn_line.imm & 0x800) >> 11);    // 7
                         break;
                         case BGEU:
-                            printf("%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
-                            print_binary((line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", BGEU_FUNCT3);                            // 14-12
-                            print_binary(line->insn_line.imm & 0x1E, 4);          // 11-8
-                            printf("%d", (line->insn_line.imm & 0x800) >> 11);    // 7
+                            fprintf(file, "%d", (line->insn_line.imm & 0x1000) >> 12);   // 31
+                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 6);   // 30-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", BGEU_FUNCT3);                            // 14-12
+                            print_binary(file, line->insn_line.imm & 0x1E, 4);          // 11-8
+                            fprintf(file, "%d", (line->insn_line.imm & 0x800) >> 11);    // 7
                         break;
                         default:
 
                         break;
                     }
-                    printf("%s\n", BRANCH_OPCODE);                                // 6-0
+                    fprintf(file, "%s\n", BRANCH_OPCODE);                                // 6-0
                 break;
                 case TYPE_LOAD:
                     switch (line->insn_line.insn.insn) {
                         case LB:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", LB_FUNCT3);                              // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", LB_FUNCT3);                              // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case LH:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", LH_FUNCT3);                              // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", LH_FUNCT3);                              // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case LW:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", LW_FUNCT3);                              // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", LW_FUNCT3);                              // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case LBU:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", LBU_FUNCT3);                             // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", LBU_FUNCT3);                             // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case LHU:
-                            print_binary(line->insn_line.imm, 12);                // 31-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", LHU_FUNCT3);                             // 14-12
-                            printf("%s", reg2code(line->insn_line.rd));           // 11-7
+                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", LHU_FUNCT3);                             // 14-12
+                            fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         default:
 
                         break;
                     }
-                    printf("%s\n", LOAD_OPCODE);                                  // 6-0
+                    fprintf(file, "%s\n", LOAD_OPCODE);                                  // 6-0
                 break;
                 case TYPE_STORE:
                     switch (line->insn_line.insn.insn) {
                         case SB:
-                            print_binary((line->insn_line.imm >> 5) & 0x3F, 7);   // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SB_FUNCT3);                              // 14-12
-                            print_binary(line->insn_line.imm & 0x1F, 5);          // 11-7
+                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 7);   // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SB_FUNCT3);                              // 14-12
+                            print_binary(file, line->insn_line.imm & 0x1F, 5);          // 11-7
                         break;
                         case SH:
-                            print_binary((line->insn_line.imm >> 5) & 0x3F, 7);   // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SH_FUNCT3);                              // 14-12
-                            print_binary(line->insn_line.imm & 0x1F, 5);          // 11-7
+                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 7);   // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SH_FUNCT3);                              // 14-12
+                            print_binary(file, line->insn_line.imm & 0x1F, 5);          // 11-7
                         break;
                         case SW:
-                            print_binary((line->insn_line.imm >> 5) & 0x3F, 7);   // 31-25
-                            printf("%s", reg2code(line->insn_line.rs2));          // 24-20
-                            printf("%s", reg2code(line->insn_line.rs1));          // 19-15
-                            printf("%s", SW_FUNCT3);                              // 14-12
-                            print_binary(line->insn_line.imm & 0x1F, 5);          // 11-7
+                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 7);   // 31-25
+                            fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
+                            fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
+                            fprintf(file, "%s", SW_FUNCT3);                              // 14-12
+                            print_binary(file, line->insn_line.imm & 0x1F, 5);          // 11-7
                         break;
                         default:
 
                         break;
                     }
-                    printf("%s\n", STORE_OPCODE);                                 // 6-0
+                    fprintf(file, "%s\n", STORE_OPCODE);                                 // 6-0
                 break;
                 case TYPE_JAL:
-                    printf("%d", (line->insn_line.imm & 0x10000) >> 20);          // 31
-                    print_binary((line->insn_line.imm >> 1) & 0x3FF, 10);         // 30-21
-                    printf("%d", (line->insn_line.imm & 0x800) >> 11);            // 20
-                    print_binary((line->insn_line.imm >> 12) & 0xFF, 8);          // 19-12
-                    printf("%s", reg2code(line->insn_line.rd));                   // 11-7
-                    printf("%s\n", JAL_OPCODE);                                   // 6-0
+                    fprintf(file, "%d", (line->insn_line.imm & 0x10000) >> 20);          // 31
+                    print_binary(file, (line->insn_line.imm >> 1) & 0x3FF, 10);         // 30-21
+                    fprintf(file, "%d", (line->insn_line.imm & 0x800) >> 11);            // 20
+                    print_binary(file, (line->insn_line.imm >> 12) & 0xFF, 8);          // 19-12
+                    fprintf(file, "%s", reg2code(line->insn_line.rd));                   // 11-7
+                    fprintf(file, "%s\n", JAL_OPCODE);                                   // 6-0
                 break;
                 case TYPE_JALR:
-                    print_binary(line->insn_line.imm, 12);                        // 31-20
-                    printf("%s", reg2code(line->insn_line.rs1));                  // 19-15
-                    printf("%s", JALR_FUNCT3);                                    // 14-12
-                    printf("%s", reg2code(line->insn_line.rd));                   // 11-7
-                    printf("%s\n", JALR_OPCODE);                                  // 6-0
+                    print_binary(file, line->insn_line.imm, 12);                        // 31-20
+                    fprintf(file, "%s", reg2code(line->insn_line.rs1));                  // 19-15
+                    fprintf(file, "%s", JALR_FUNCT3);                                    // 14-12
+                    fprintf(file, "%s", reg2code(line->insn_line.rd));                   // 11-7
+                    fprintf(file, "%s\n", JALR_OPCODE);                                  // 6-0
                 break;
                 case TYPE_LUI:
-                    print_binary(line->insn_line.imm, 20);                        // 31-12
-                    printf("%s", reg2code(line->insn_line.rd));                   // 11-7
-                    printf("%s\n", LUI_OPCODE);                                   // 6-0
+                    print_binary(file, line->insn_line.imm, 20);                        // 31-12
+                    fprintf(file, "%s", reg2code(line->insn_line.rd));                   // 11-7
+                    fprintf(file, "%s\n", LUI_OPCODE);                                   // 6-0
                 break;
                 case TYPE_AUIPC:
-                    print_binary(line->insn_line.imm >> 12, 20);                  // 31-12
-                    printf("%s", reg2code(line->insn_line.rd));                   // 11-7
-                    printf("%s\n", AUIPC_OPCODE);                                 // 6-0
+                    print_binary(file, line->insn_line.imm >> 12, 20);                  // 31-12
+                    fprintf(file, "%s", reg2code(line->insn_line.rd));                   // 11-7
+                    fprintf(file, "%s\n", AUIPC_OPCODE);                                 // 6-0
                 break;
                 default:
 
@@ -652,6 +660,10 @@ void asm_line_write(list_t* insn_list/*, FILE* file*/) {
             }
         }
     }
+
+    fclose(file);
+
+    return 0;
 }
 
 int asm_line_print(void* asm_line) {

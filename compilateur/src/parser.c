@@ -64,6 +64,8 @@ int parse_code(func_args) {
     upd_depth("code");
     list_t l;
 
+    asm_line_label_add(instructions, "PROG_START:", *line_addr);          // Label de début de programme
+
     if (next_lexem_is(lexems, "comment")) 
         lexem_advance(lexems);
     
@@ -72,6 +74,9 @@ int parse_code(func_args) {
     while (parse_code_line(args) == 0) {
         chk_non_term(parse_eol)
     }
+
+    insn_t insn = insnset2insn(JAL);                                     // On fait reboucler le programme sur lui même
+    asm_line_jal_add(instructions, insn, R6, "PROG_START", *line_addr);
 
     if (list_empty(*lexems)) {ret( 0)}
     else                     {ret(-1)}
