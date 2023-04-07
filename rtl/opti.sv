@@ -1,25 +1,38 @@
+//==============================================================================
+//  Description : Optimization part before the ALU and the Memory 
+//==============================================================================
+
 module opti ( 
     input   logic   clk,
     input   logic   rst,
+    //MUX
     input   logic   A1_sel,
     input   logic   B1_sel,
     input   logic   A2_sel,
     input   logic   B2_sel,
+    //Branch_comp
     input   logic   Brun,
     output  logic   Breq,
     output  logic   Brlt,
+    //data from the regfile
     input   [31:0]  reg_rs1,
     input   [31:0]  reg_rs2,
+    //data from the ALU
     input   [31:0]  alu,
+    //next programm counter
     input   [31:0]  pc,
+    //immediate value
     input   [31:0]  imm,
+    //data send to the ALU
     output  logic [31:0]  reg1,
     output  logic [31:0]  reg2,
+    //data send to the Memory
     output  logic [31:0]  data_w
     );
     logic [31:0]  Br1;
     logic [31:0]  Br2;
     
+    //The branch_comp module is included in this module
     branch_comp branch_comp1(
         .in_A(Br1),
         .in_B(Br2),
@@ -28,8 +41,8 @@ module opti (
         .BrLT(Brlt)
     );
     
-    always_comb // toutes les entrées sauf clk et reset
-    begin
+    always_comb // every input except clk and reset
+    begin //combinatory part that represents the logic of the optimization
         case({A1_sel,A2_sel})
             2'b00: reg1 = reg_rs1;
             2'b10: reg1 = alu;

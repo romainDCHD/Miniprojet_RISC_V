@@ -1,18 +1,20 @@
+//==============================================================================
+//  Description : Global code of the processsor 
+//==============================================================================
+
 module riscv 
 (
     input   logic   clk,
     input   logic   rst,
-    input   [31:0]  inst_i,
-    output  logic [31:0]  pc
+    input   [31:0]  inst_i, //the next instruction will be given by the test bench
+    output  logic [31:0]  pc //the programm counter is send back to the test bench
 );
-
-logic pc_4;
+//All the Wires of the system
+logic [31:0] pc_4;
 logic [31:0] wb;
-logic pc_sel;
 logic [31:0] inst;
 logic [2:0]  Immsel;
 logic [31:0] Imm;
-logic RegWen;
 logic [31:0] Data_o;
 logic [31:0] Data_w;
 logic [31:0] alu;
@@ -22,16 +24,25 @@ logic [31:0] Rs2;
 logic [31:0] reg1;
 logic [31:0] reg2;
 logic [31:0] data_mem;
+//Multiplexers
 logic A1_sel;
 logic B1_sel;
 logic A2_sel;
 logic B2_sel;
+//MUX: choose between PC+4 or the one that come from the ALU
+logic pc_sel;
+//choose between writing or reading in the destination register
+logic RegWen;
+//branch_comp
 logic BrUn;
 logic BrEq;
 logic BrLt;
+//choose what to do in the ALU
 logic [3:0] AluSel;
+//choose between writing or reading the memory
 logic MemRW;
-logic [2:0] WBSel;
+//choose what to write back
+logic [1:0] WBSel;
 
 fetch_in fetch_in1(
     .clk(clk),
@@ -109,10 +120,12 @@ mem mem1(
 wb_out wbout1(
     .clk(clk),
     .rst(rst),
-    .pc_4(pc_4),
-    .alu(alu),
-    .mem(data_mem),
-    .wb_sel(WBSel),
+    .pc_4_i(pc_4),
+    .alu_i(alu),
+    .mem_i(data_mem),
+    .wb_sel1_i(WBSel[0]),
+    .wb_sel2_i(WBSel[1]),
+    .pc_sel_i(pc_sel),
     .wb(wb)
 );
 
