@@ -1,4 +1,8 @@
-module test_fetch_imem ();
+//==============================================================================
+//  Filename    : bench_imem        
+//  Description : Testbench of the instruction memory module
+//==============================================================================
+module bench_imem ();
 
 timeunit      1ns;
 timeprecision 1ns;
