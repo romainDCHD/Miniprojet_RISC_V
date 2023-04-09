@@ -3,36 +3,36 @@
 //==============================================================================
 
 module opti ( 
-    input   logic   clk,
-    input   logic   rst,
-    //MUX
-    input   logic   A1_sel,
-    input   logic   B1_sel,
-    input   logic   A2_sel,
-    input   logic   B2_sel,
-    //Branch_comp
-    input   logic   Brun,
-    output  logic   Breq,
-    output  logic   Brlt,
-    //data from the regfile
-    input   [31:0]  reg_rs1,
-    input   [31:0]  reg_rs2,
-    //data from the ALU
+    input   logic        clk,
+    input   logic        rst,
+    // MUX
+    input   logic [1:0]  A1_sel,
+    input   logic [1:0]  B1_sel,
+    input   logic [1:0]  A2_sel,
+    input   logic [1:0]  B2_sel,
+    // Branch_comp
+    input   logic        Brun,
+    output  logic        Breq,
+    output  logic        Brlt,
+    // Data from the regfile
+    input   [31:0] reg_rs1,
+    input   [31:0] reg_rs2,
+    // Data from the ALU
     input   [31:0]  alu,
-    //next programm counter
+    // Next programm counter
     input   [31:0]  pc,
-    //immediate value
+    // Immediate value
     input   [31:0]  imm,
-    //data send to the ALU
-    output  logic [31:0]  reg1,
-    output  logic [31:0]  reg2,
-    //data send to the Memory
-    output  logic [31:0]  data_w
+    // Data send to the ALU
+    output  logic [31:0] reg1,
+    output  logic [31:0] reg2,
+    // Data send to the Memory
+    output  logic [31:0] data_w
     );
     logic [31:0]  Br1;
     logic [31:0]  Br2;
     
-    //The branch_comp module is included in this module
+    // The branch_comp module is included in this module
     branch_comp branch_comp1(
         .in_A(Br1),
         .in_B(Br2),

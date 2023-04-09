@@ -1,27 +1,21 @@
-vsim -voptargs=+acc LIB_Miniproj_RISCV.bench_control_logic
-# vsim -voptargs=+acc LIB_Miniproj_RISCV.bench_control_logic 
+# vsim -voptargs=+acc LIB_Miniproj_RISCV.bench_riscv 
 # Loading sv_std.std
-# Loading LIB_Miniproj_RISCV.bench_control_logic
+# Loading LIB_Miniproj_RISCV.bench_riscv
+# Loading LIB_Miniproj_RISCV.riscv
+# Loading LIB_Miniproj_RISCV.fetch_in
+# Loading LIB_Miniproj_RISCV.imem
+# Loading LIB_Miniproj_RISCV.dff
+# Loading LIB_Miniproj_RISCV.riscv_regfile
+# Loading LIB_Miniproj_RISCV.three_dff
+# Loading LIB_Miniproj_RISCV.imm_gen
+# Loading LIB_Miniproj_RISCV.opti
+# Loading LIB_Miniproj_RISCV.branch_comp
+# Loading LIB_Miniproj_RISCV.mem
+# Loading LIB_Miniproj_RISCV.wb
 # Loading LIB_Miniproj_RISCV.control_logic
-add wave -position insertpoint  \
-sim:/bench_control_logic/control_logic_inst/clk \
-sim:/bench_control_logic/control_logic_inst/rst \
-sim:/bench_control_logic/control_logic_inst/inst_i \
-sim:/bench_control_logic/control_logic_inst/br_un_o \
-sim:/bench_control_logic/control_logic_inst/br_eq_i \
-sim:/bench_control_logic/control_logic_inst/br_lt_i \
-sim:/bench_control_logic/control_logic_inst/A1_sel_o \
-sim:/bench_control_logic/control_logic_inst/B1_sel_o \
-sim:/bench_control_logic/control_logic_inst/A2_sel_o \
-sim:/bench_control_logic/control_logic_inst/B2_sel_o \
-sim:/bench_control_logic/control_logic_inst/alu_op_o \
-sim:/bench_control_logic/control_logic_inst/mem_rw_o \
-sim:/bench_control_logic/control_logic_inst/wb_sel1_o \
-sim:/bench_control_logic/control_logic_inst/wb_sel2_o \
-sim:/bench_control_logic/control_logic_inst/reg_w_en_o \
-sim:/bench_control_logic/control_logic_inst/pc_sel_o \
-sim:/bench_control_logic/control_logic_inst/inst_reg0 \
-sim:/bench_control_logic/control_logic_inst/inst_reg1 \
-sim:/bench_control_logic/control_logic_inst/inst_reg2
 run
-run
+# ** Warning: (vsim-7) Failed to open readmem file "instructions.txt" in read mode.
+# 
+# No such file or directory. (errno = ENOENT)    : C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv(29)
+#    Time: 0 ns  Iteration: 0  Instance: /bench_riscv
+# time=      0.0 ns,  

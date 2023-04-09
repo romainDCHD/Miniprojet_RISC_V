@@ -3,12 +3,12 @@
 //==============================================================================
 
 module fetch_in ( 
-    input   logic   clk,
-    input   logic   rst,
-    input   [31:0]  pc_4, //next programm counter in the list of instruction 
-    input   [31:0]  wb, //programm counter that has been written back
-    input   logic   pc_sel,//choice between pc+4 or wb
-    output  logic [31:0]  pc_out //next PC to treat
+    input   logic        clk,
+    input   logic        rst,
+    input   logic [31:0] pc_4,           // Next programm counter in the list of instruction 
+    input   logic [31:0] wb,             // Programm counter that has been written back
+    input   logic [1:0]  pc_sel,         // Choice between pc+4 or wb
+    output  logic [31:0] pc_out          // Next PC to treat
     );
     //Choose to take the initial PC at 0
     logic   [31:0]  PC_INIT = 32'h00000000;
@@ -27,8 +27,6 @@ module fetch_in (
         if(pc_sel) pc = pc_4;
         else pc = wb;
     end
-
-
 
 endmodule
 

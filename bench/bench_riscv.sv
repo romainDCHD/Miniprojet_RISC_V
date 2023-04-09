@@ -17,7 +17,6 @@ riscv #(28) riscv1 (
     .rst(reset)
 );
 
-
 // Clock and Reset Definitin
   `define PERIOD 20
 
@@ -40,8 +39,5 @@ initial
         $monitor ( "time=%t, ",
         	$time,   ) ;
 	end
-
-
-
 
 endmodule

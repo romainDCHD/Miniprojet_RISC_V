@@ -7,7 +7,8 @@ module riscv #(parameter  n=20)
     input   logic   clk,
     input   logic   rst
 );
-//All the Wires of the system
+// All the Wires of the system
+logic [31:0] pc;
 logic [31:0] pc_4;
 logic [31:0] wb;
 logic [31:0] data_d;
@@ -24,26 +25,26 @@ logic [31:0] Rs2;
 logic [31:0] reg1;
 logic [31:0] reg2;
 logic [31:0] data_mem;
-//Multiplexers
-logic A1_sel;
-logic B1_sel;
-logic A2_sel;
-logic B2_sel;
-//MUX: choose between PC+4 or the one that come from the ALU
-logic pc_sel;
-//choose between writing or reading in the destination register
+// Multiplexers
+logic [1:0]  A1_sel;
+logic [1:0]  B1_sel;
+logic [1:0]  A2_sel;
+logic [1:0]  B2_sel;
+// MUX: choose between PC+4 or the one that come from the ALU
+logic [1:0] pc_sel;
+// Choose between writing or reading in the destination register
 logic RegWen;
-//branch_comp
+// Branch_comp
 logic BrUn;
 logic BrEq;
 logic BrLt;
-//choose what to do in the ALU
+// Choose what to do in the ALU
 logic [3:0] AluSel;
-//choose between writing or reading the memory
+// Choose between writing or reading the memory
 logic MemRW;
-//choose what to write back
-logic wb_sel1;
-logic wb_sel2;
+// Choose what to write back
+logic [1:0] wb_sel1;
+logic [1:0] wb_sel2;
 
 fetch_in fetch_in1(
     .clk(clk),
@@ -125,7 +126,8 @@ mem mem1(
     .data_o(data_mem)
 );
 
-wb_out wbout1(
+// A MODIFIER POUR LA FUTUR VERSION DE WB
+wb wb1(
     .clk(clk),
     .rst(rst),
     .pc_4_i(pc_4),
@@ -133,9 +135,21 @@ wb_out wbout1(
     .mem_i(data_mem),
     .wb_sel1_i(wb_sel1),
     .wb_sel2_i(wb_sel2),
-    .wb(wb),
+    .wb_o(wb),
     .datad_o(data_d)
 );
+
+// wb_out wbout1(
+//     .clk(clk),
+//     .rst(rst),
+//     .pc_4_i(pc_4),
+//     .alu_i(alu_o),
+//     .mem_i(data_mem),
+//     .wb_sel1_i(wb_sel1),
+//     .wb_sel2_i(wb_sel2),
+//     .wb(wb),
+//     .datad_o(data_d)
+// );
 
 control_logic control_logic1(
     .clk(clk),
