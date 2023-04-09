@@ -46,14 +46,6 @@ logic MemRW;
 logic [1:0] wb_sel1;
 logic [1:0] wb_sel2;
 
-fetch_in fetch_in1(
-    .clk(clk),
-    .rst(rst),
-    .pc_4(pc_4),
-    .wb(wb),
-    .pc_sel(pc_sel),
-    .pc_out(pc)
-);
 
 imem #(n) imem1  ( 
     .clk(clk),
@@ -61,13 +53,6 @@ imem #(n) imem1  (
     .pc(pc),
     .inst_out (inst)
   );
-
-dff dff1(
-    .clk(clk),
-    .rst(rst),
-    .d(alu),
-    .q(alu_o)
-);
 
 
 riscv_regfile riscv_regfile1(
@@ -110,46 +95,29 @@ opti opti1(
     .data_w(Data_o)
 );
 
-dff dff2(
+mem #(20) mem1(
     .clk(clk),
     .rst(rst),
-    .d(Data_o),
-    .q(Data_w)
-);
-
-mem mem1(
-    .clk(clk),
-    .rst(rst),
-    .dmem(MemRW),
-    .data_w(Data_w),
-    .addr(alu),
-    .data_o(data_mem)
+    .memRW(MemRW),
+    .dataW_i(Data_w),
+    .addr_i(alu),
+    .data_o(data_mem),
+    .alu_o(alu_o)
 );
 
 // A MODIFIER POUR LA FUTUR VERSION DE WB
 wb wb1(
     .clk(clk),
     .rst(rst),
-    .pc_4_i(pc_4),
     .alu_i(alu_o),
     .mem_i(data_mem),
     .wb_sel1_i(wb_sel1),
     .wb_sel2_i(wb_sel2),
-    .wb_o(wb),
-    .datad_o(data_d)
+    .pc_sel_i(pc_sel),
+    .pc_o(pc),
+    .dataD_o(data_d)
 );
 
-// wb_out wbout1(
-//     .clk(clk),
-//     .rst(rst),
-//     .pc_4_i(pc_4),
-//     .alu_i(alu_o),
-//     .mem_i(data_mem),
-//     .wb_sel1_i(wb_sel1),
-//     .wb_sel2_i(wb_sel2),
-//     .wb(wb),
-//     .datad_o(data_d)
-// );
 
 control_logic control_logic1(
     .clk(clk),
