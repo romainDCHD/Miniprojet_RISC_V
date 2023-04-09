@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
 
     if (argc < 3) {
         printf("========== Description ==========\n");
-        printf("Extrait et affiches les lexems d'un code source.\n\n");
+        printf("Compile du code assembleur RV32I en code machine.\n\n");
         printf("========== Syntaxe ==========\n");
         printf("%s source_file regexps_file binfile [-v]\n", argv[0]);
         printf("source_file\tCode source à lire\n");
