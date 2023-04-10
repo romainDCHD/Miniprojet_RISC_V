@@ -14,8 +14,4 @@
 # Loading LIB_Miniproj_RISCV.wb
 # Loading LIB_Miniproj_RISCV.control_logic
 run
-# ** Warning: (vsim-7) Failed to open readmem file "instructions.txt" in read mode.
-# 
-# No such file or directory. (errno = ENOENT)    : C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv(29)
-#    Time: 0 ns  Iteration: 0  Instance: /bench_riscv
-# time=      0.0 ns,  
+# time =       0.0 ns

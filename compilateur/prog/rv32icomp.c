@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
         setlocale(LC_ALL, "fr_FR.UTF-8");
     #endif
 
-    if (argc < 3) {
+    if (argc < 4) {
         printf("========== Description ==========\n");
         printf("Compile du code assembleur RV32I en code machine.\n\n");
         printf("========== Syntaxe ==========\n");
