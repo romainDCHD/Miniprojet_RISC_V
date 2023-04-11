@@ -440,55 +440,58 @@ int asm_line_write(list_t* insn_list, char* filename) {
                 case TYPE_REGIMM:
                     switch (line->insn_line.insn.insn) {
                         case ADDI:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            print_binary(file, line->insn_line.imm, 12);                 // 31-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", ADDI_FUNCT3);                            // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case ANDI:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            print_binary(file, line->insn_line.imm, 12);                 // 31-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", ANDI_FUNCT3);                            // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case ORI:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            print_binary(file, line->insn_line.imm, 12);                 // 31-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", ORI_FUNCT3);                             // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case XORI:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            print_binary(file, line->insn_line.imm, 12);                 // 31-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", XORI_FUNCT3);                            // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SLLI:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", SLLI_FUNCT7);                            // 31-25
+                            print_binary(file, line->insn_line.imm, 5);                  // 24-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", SLLI_FUNCT3);                            // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SRLI:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", SRLI_FUNCT7);                            // 31-25
+                            print_binary(file, line->insn_line.imm, 5);                  // 24-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", SRLI_FUNCT3);                            // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SRAI:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            fprintf(file, "%s", SRAI_FUNCT7);                            // 31-25
+                            print_binary(file, line->insn_line.imm, 5);                  // 24-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", SRAI_FUNCT3);                            // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SLTI:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            print_binary(file, line->insn_line.imm, 12);                 // 31-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", SLTI_FUNCT3);                            // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case SLTIU:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            print_binary(file, line->insn_line.imm, 12);                 // 31-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", SLTIU_FUNCT3);                           // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7

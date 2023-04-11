@@ -22,11 +22,11 @@
 ;#define VALUE2 0x0F
 ;#define VALUE3 0x01
 ;
-;#define VALUE4 255FE
+;#define VALUE4 0xFFFE
 ;#define VALUE5 0x000F
 ;#define VALUE6 0x0000
 ;
-;#define VALUE7 255FFFFFE
+;#define VALUE7 0xFFFFFFFE
 ;#define VALUE8 0x0F0F0F0F
 ;#define VALUE9 0x00000000
 ;
@@ -137,7 +137,7 @@
 ;    //----- SLT
 ;    // avec LB, LH, SB, SH et ANDI
 ;    // c = a < b;
-;    // f = e < d;
+;    // f = d < e;
 ;    asm(
 ;        "lb      a4,-17(s0)\n\t"
 ;        "lb      a5,-18(s0)\n\t"
@@ -146,7 +146,7 @@
 ;        "sb      a5,-19(s0)\n\t"
 ;        "lh      a4,-24(s0)\n\t"
 ;        "lh      a5,-22(s0)\n\t"
-;        "slt     a5,a4,a5\n\t"
+;        "slt     a5,a5,a4\n\t"
 ;        "andi    a5,a5,255\n\t"
 ;        "sh      a5,-26(s0)\n\t"
 ;    );
@@ -166,7 +166,7 @@
 ;
 ;    //----- SUB
 ;    // avec LB, LH, SB et SH
-;    c = a - b;
+;    c = b - a;
 ;    f = e - d;                       // Debordement
 ;    #ifdef DEBUG
 ;    CHECK_VALUE("c = a - b (SUB)", c, 8)
@@ -188,8 +188,13 @@
 ;
 ;    //----- SRLI
 ;    // avec LHU, LBU, SB et SH
-;    f = d >> 16;                      // Debordement
-;    c = a >> 5;
+;    //f = d >> 16;                      // Debordement
+;    asm(
+;        "lhu     a5,-28(s0)\n\t"
+;        "srli    a5,a5,16\n\t"
+;        "sh      a5,-32(s0)\n\t"
+;    );
+;    c = a >> 3;
 ;    #ifdef DEBUG
 ;    CHECK_VALUE("f = d >> 5 (SRLI)", f, 16)
 ;    CHECK_VALUE("c = a >> 5 (SRLI)", c, 8)
@@ -201,8 +206,8 @@
 ;    asm(
 ;        "lw      a4,-32(s0)\n\t"       // Chargement de g
 ;        "lw      a5,-36(s0)\n\t"       // Chargement de h
-;        "ori     a6,a4,252645135\n\t"  // i = g | VALUE8;
-;        "ori     a7,a6,252641280\n\t"  // h = i | 0x0F0F0000;
+;        "ori     a6,a4,252645135\n\t"  // i = i | VALUE8;
+;        "ori     a7,a6,4294967294\n\t" // h = i | VALUE7;
 ;        "sw      a6,-40(s0)\n\t"       // Stockage de i
 ;        "sw      a7,-36(s0)\n\t"       // Stockage de h
 ;    );
@@ -227,16 +232,16 @@
 ;    //----- SLTIU
 ;    // avec LHU, LBU, SB et SH
 ;    c = a < VALUE2;
-;    // f = e < VALUE4;
+;    // f = d < VALUE5;
 ;    asm(
-;        "lhu     a4,-24(s0)\n\t"
-;        "sltiu   a5,a4,65534\n\t"
+;        "lhu     a4,-28(s0)\n\t"
+;        "sltiu   a5,a4,15\n\t"
 ;        "andi    a5,a5,255\n\t"
 ;        "sh      a5,-26(s0)\n\t"
 ;    );
 ;    #ifdef DEBUG
 ;    CHECK_VALUE("c = a < VALUE2 (SLTIU)", c, 8)
-;    CHECK_VALUE("f = e < VALUE4 (SLTIU)", f, 16)
+;    CHECK_VALUE("f = d < VALUE5 (SLTIU)", f, 16)
 ;    #endif
 ;    RESET_VAR_VALUES
 ;
@@ -249,16 +254,16 @@
 ;        "andi    a5,a5,255\n\t"
 ;        "sh      a5,-19(s0)\n\t"
 ;    );
-;    // f = e < VALUE4;
+;    // f = d < VALUE5;
 ;    asm(
-;        "lh      a4,-24(s0)\n\t"
-;        "slti    a5,a4,65534\n\t"
+;        "lh      a4,-28(s0)\n\t"
+;        "slti    a5,a4,15\n\t"
 ;        "andi    a5,a5,255\n\t"
 ;        "sh      a5,-26(s0)\n\t"
 ;    );
 ;    #ifdef DEBUG
 ;    CHECK_VALUE("c = a < VALUE2 (SLTI)", c, 8)
-;    CHECK_VALUE("f = e < VALUE4 (SLTI)", f, 16)
+;    CHECK_VALUE("f = d < VALUE5 (SLTI)", f, 16)
 ;    #endif
 ;    RESET_VAR_VALUES
 ;
@@ -410,18 +415,17 @@
 ;    asm(
 ;        "lw      a4,-40(s0)\n\t"        // On charge i
 ;        "lw      a5,-36(s0)\n\t"        // On charge h
-;        "jalr    a4,a5,LABEL4"
-;        "addi    a4,zero,0"             // Si ca marche pas i = 0
-;        "LABEL4:"
+;        "jalr    a4,a5,LABEL4\n\t"
+;        "addi    a4,zero,0\n\t"             // Si ca marche pas i = 0
+;        "LABEL4:\n\t"
 ;    );
 ;    #ifdef DEBUG
-;    CHECK_VALUE("JAL i,offset", i, 32)
+;    CHECK_VALUE("JALR i,offset", i, 32)
 ;    #endif
 ;    RESET_VAR_VALUES
 ;
 ;    return 0;
 ;}
-
 ;        .file   "example.c"
 ;        .option nopic
 ;        .attribute arch, "rv32i2p0_m2p0_a2p0_f2p0_d2p0_c2p0"
@@ -618,7 +622,7 @@ main:
         sb      a5,-19(s0)
         lh      a4,-24(s0)
         lh      a5,-22(s0)
-        slt     a5,a4,a5
+        slt     a5,a5,a4
         andi    a5,a5,255
         sh      a5,-26(s0)
 
@@ -660,8 +664,8 @@ main:
         addi    a5,a5,-241
         sw      a5,-40(s0)
         sw      zero,-44(s0)
-        lbu     a4,-17(s0)
-        lbu     a5,-25(s0)
+        lbu     a4,-25(s0)
+        lbu     a5,-17(s0)
         sub     a5,a4,a5
         sb      a5,-26(s0)
         lhu     a4,-30(s0)
@@ -709,10 +713,11 @@ main:
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lhu     a5,-28(s0)
-        srai    a5,a5,16
+        srli    a5,a5,16
         sh      a5,-32(s0)
+
         lbu     a5,-17(s0)
-        srli    a5,a5,5
+        srli    a5,a5,3
         sb      a5,-26(s0)
         li      a5,14
         sb      a5,-17(s0)
@@ -734,7 +739,7 @@ main:
         lw      a4,-32(s0)
         lw      a5,-36(s0)
         ori     a6,a4,252645135
-        ori     a7,a6,252641280
+        ori     a7,a6,4294967294
         sw      a6,-40(s0)
         sw      a7,-36(s0)
 
@@ -785,8 +790,8 @@ main:
         sltiu   a5,a5,15
         andi    a5,a5,255
         sb      a5,-26(s0)
-        lhu     a4,-24(s0)
-        sltiu   a5,a4,65534
+        lhu     a4,-28(s0)
+        sltiu   a5,a4,15
         andi    a5,a5,255
         sh      a5,-26(s0)
 
@@ -812,8 +817,8 @@ main:
         andi    a5,a5,255
         sh      a5,-19(s0)
 
-        lh      a4,-24(s0)
-        slti    a5,a4,65534
+        lh      a4,-28(s0)
+        slti    a5,a4,15
         andi    a5,a5,255
         sh      a5,-26(s0)
 
@@ -1070,7 +1075,8 @@ LABEL3:
         lw      a5,-36(s0)
         jalr    a4,a5,LABEL4
         addi    a4,zero,0
-        LABEL4:
+LABEL4:
+
         li      a5,14
         sb      a5,-17(s0)
         li      a5,15

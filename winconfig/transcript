@@ -2,9 +2,7 @@
 # Loading sv_std.std
 # Loading LIB_Miniproj_RISCV.bench_riscv
 # Loading LIB_Miniproj_RISCV.riscv
-# Loading LIB_Miniproj_RISCV.fetch_in
 # Loading LIB_Miniproj_RISCV.imem
-# Loading LIB_Miniproj_RISCV.dff
 # Loading LIB_Miniproj_RISCV.riscv_regfile
 # Loading LIB_Miniproj_RISCV.three_dff
 # Loading LIB_Miniproj_RISCV.imm_gen
@@ -13,5 +11,3 @@
 # Loading LIB_Miniproj_RISCV.mem
 # Loading LIB_Miniproj_RISCV.wb
 # Loading LIB_Miniproj_RISCV.control_logic
-run
-# time =       0.0 ns

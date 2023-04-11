@@ -1,6 +1,7 @@
 #ifndef _ASM_LINE_H_
 #define _ASM_LINE_H_
 
+#include <stdio.h>
 #include "list.h"
 #include "string.h"
 
@@ -56,7 +57,9 @@
 #define AND_FUNCT7   "0000000"
 #define BEQ_FUNCT3   "000"
 #define SLLI_FUNCT3  "001"
+#define SLLI_FUNCT7  "0000000"
 #define SRLI_FUNCT3  "101"
+#define SRLI_FUNCT7  "0000000"
 #define SLL_FUNCT3   "001"
 #define SLL_FUNCT7   "0000000"
 #define SRL_FUNCT3   "101"
@@ -77,6 +80,7 @@
 #define SLT_FUNCT3   "010"
 #define SLT_FUNCT7   "0000000"
 #define SRAI_FUNCT3  "101"
+#define SRAI_FUNCT7  "0100000"
 #define SRA_FUNCT3   "101"
 #define SRA_FUNCT7   "0100000"
 #define SUB_FUNCT3   "000"
