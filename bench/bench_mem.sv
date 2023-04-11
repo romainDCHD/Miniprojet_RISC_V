@@ -17,11 +17,11 @@ logic   [31:0]  data_o;
 
 
 mem #(5) mem1(
-    .clk	( clk    ),
-    .rst	( reset  ),
+    .clk	      ( clk    ),
+    .rst	      ( reset  ),
     .dmem       ( dmem   ),
     .data_w     ( data_w ),
-    .addr	( addr   ),
+    .addr	      ( addr   ),
     .data_o     ( data_o )
 );
 

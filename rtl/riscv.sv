@@ -105,7 +105,7 @@ mem #(20) mem1(
     .alu_o(alu_o)
 );
 
-// A MODIFIER POUR LA FUTUR VERSION DE WB
+
 wb wb1(
     .clk(clk),
     .rst(rst),
