@@ -10,9 +10,9 @@ module wb (
     input   logic [31:0]  alu_i,
     input   logic [31:0]  mem_i,
     //selection
-    input   logic [1:0]   wb_sel1_i,
-    input   logic [1:0]   wb_sel2_i,
-    input   logic [1:0]   pc_sel_i,
+    input   logic         wb_sel1_i,
+    input   logic         wb_sel2_i,
+    input   logic         pc_sel_i,
 
     output  logic [31:0]  dataD_o,
     output  logic [31:0]  pc_o

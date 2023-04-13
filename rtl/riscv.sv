@@ -27,25 +27,25 @@ logic [31:0] reg1;
 logic [31:0] reg2;
 logic [31:0] data_mem;
 // Multiplexers
-logic [1:0]  A1_sel;
-logic [1:0]  B1_sel;
-logic [1:0]  A2_sel;
-logic [1:0]  B2_sel;
+logic        A1_sel;
+logic        B1_sel;
+logic        A2_sel;
+logic        B2_sel;
 // MUX: choose between PC+4 or the one that come from the ALU
-logic [1:0] pc_sel;
+logic        pc_sel;
 // Choose between writing or reading in the destination register
-logic RegWen;
+logic        RegWen;
 // Branch_comp
-logic BrUn;
-logic BrEq;
-logic BrLt;
+logic        BrUn;
+logic        BrEq;
+logic        BrLt;
 // Choose what to do in the ALU
-logic [3:0] AluSel;
+logic [3:0]  AluSel;
 // Choose between writing or reading the memory
-logic MemRW;
+logic        MemRW;
 // Choose what to write back
-logic [1:0] wb_sel1;
-logic [1:0] wb_sel2;
+logic        wb_sel1;
+logic        wb_sel2;
 
 
 imem #(n) imem1  ( 

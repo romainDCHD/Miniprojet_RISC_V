@@ -1,6 +1,6 @@
 //==============================================================================
 //  Filename    : Mem
-//  Description : c'est l'étage de mémoire donnée. On prend addr sur 32 bit pour ne garder que les 8 bits de poids faible. Au départ nous n'initialisons pas la mémoire à 0
+//  Description : c'est l'étage de mémoire donnée. On prend addr sur 32 bit pour ne garder que les 8 bits de poids faible.
 //==============================================================================
 
 module mem #(parameter  n=20) ( 
@@ -36,19 +36,25 @@ module mem #(parameter  n=20) (
     
     //----------l'accès à la mémoire-----------------
     always_comb// memRW, dataW_i, addr
-      begin
-      short_addr = addr_i;
-      	//lecture
-        if(memRW == 1'b1) 
-        begin
-            data_r <= r_mem[ 0 ];
+    begin
+        if (!rst) begin
+            short_addr = addr_i;
+            //lecture
+            if(memRW == 1'b1) 
+            begin
+                data_r <= r_mem[ 0 ];
+            end
+            //ecriture
+            else 
+            begin
+                r_mem[ short_addr ] <= dataW_i;
+                data_r <= 32'b0;
+            end
         end
-        //ecriture
-        else 
-        begin
-            r_mem[ short_addr ] <= dataW_i;
-            data_r <= 32'b0;
+        else begin
+            for (int i = 0; i < n; i=i+1) 
+                r_mem[i] <= 32'hFFFFFFFF;
         end
-        end
+    end
 
 endmodule   

@@ -14,21 +14,21 @@ module control_logic (
     input  logic        br_eq_i,         // Equal output of the branch comparator block
     input  logic        br_lt_i,         // Less than output of the branch comparator block
     // Multiplexers
-    output logic [1:0]  A1_sel_o,        // Select between the ALU previous output and the first register
-    output logic [1:0]  B1_sel_o,        // Select between the ALU previous output and the second register
-    output logic [1:0]  A2_sel_o,        // Select between the PC and the first mux output
-    output logic [1:0]  B2_sel_o,        // Select between the immediate value and the second mux output
+    output logic        A1_sel_o,        // Select between the ALU previous output and the first register
+    output logic        B1_sel_o,        // Select between the ALU previous output and the second register
+    output logic        A2_sel_o,        // Select between the PC and the first mux output
+    output logic        B2_sel_o,        // Select between the immediate value and the second mux output
     // ALU
     output logic [3:0]  alu_op_o,        // ALU operation
     // Memory
     output logic        mem_rw_o,        // Memory write enable
     // Writeback
-    output logic [1:0]  wb_sel1_o,       // Select between the data from the ALU and the data from the memory
-    output logic [1:0]  wb_sel2_o,       // Select between the data from the writeback and PC+4
+    output logic        wb_sel1_o,       // Select between the data from the ALU and the data from the memory
+    output logic        wb_sel2_o,       // Select between the data from the writeback and PC+4
     // Registers
     output logic        reg_w_en_o,      // Register write enable
     // PC
-    output logic [1:0]  pc_sel_o         // Select between the PC+4 and the branch target
+    output logic        pc_sel_o         // Select between the PC+4 and the branch target
 );
 
     //== Variable Declaration ======================================================

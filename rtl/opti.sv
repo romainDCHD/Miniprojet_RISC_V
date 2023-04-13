@@ -6,10 +6,10 @@ module opti (
     input   logic        clk,
     input   logic        rst,
     // MUX
-    input   logic [1:0]  A1_sel,
-    input   logic [1:0]  B1_sel,
-    input   logic [1:0]  A2_sel,
-    input   logic [1:0]  B2_sel,
+    input   logic        A1_sel,
+    input   logic        B1_sel,
+    input   logic        A2_sel,
+    input   logic        B2_sel,
     // Branch_comp
     input   logic        Brun,
     output  logic        Breq,
