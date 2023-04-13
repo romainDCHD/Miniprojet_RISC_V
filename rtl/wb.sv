@@ -4,15 +4,15 @@
 //==============================================================================
 
 module wb ( 
-    input   logic   clk,
-    input   logic   rst,
+    input   logic         clk,
+    input   logic         rst,
     // sortie de l'étage memory
-    input   [31:0]  alu_i,
-    input   [31:0]  mem_i,
+    input   logic [31:0]  alu_i,
+    input   logic [31:0]  mem_i,
     //selection
-    input   logic       wb_sel1_i,
-    input   logic       wb_sel2_i,
-    input   logic       pc_sel_i,
+    input   logic [1:0]   wb_sel1_i,
+    input   logic [1:0]   wb_sel2_i,
+    input   logic [1:0]   pc_sel_i,
 
     output  logic [31:0]  dataD_o,
     output  logic [31:0]  pc_o

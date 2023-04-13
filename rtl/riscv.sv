@@ -107,7 +107,7 @@ alu alu1(
      .alu_result_o (alu_o)
  );
 
-mem #(20) mem1(
+mem #(256) mem1(
     .clk(clk),
     .rst(rst),
     .memRW(MemRW),

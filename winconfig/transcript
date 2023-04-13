@@ -8,6 +8,14 @@
 # Loading LIB_Miniproj_RISCV.imm_gen
 # Loading LIB_Miniproj_RISCV.opti
 # Loading LIB_Miniproj_RISCV.branch_comp
+# Loading LIB_Miniproj_RISCV.alu
 # Loading LIB_Miniproj_RISCV.mem
 # Loading LIB_Miniproj_RISCV.wb
 # Loading LIB_Miniproj_RISCV.control_logic
+run
+# ========== Test ADD sans dÿ©bordement  (CLK =          26)
+# Expected value : 0000001e
+# Read value     : xxxxxxxx
+# ========== Test ADD avec dÿ©bordement  (CLK =          30)
+# Expected value : 0f0f0f0d
+# Read value     : xxxxxxxx
