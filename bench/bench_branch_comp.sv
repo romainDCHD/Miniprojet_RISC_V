@@ -23,8 +23,8 @@ branch_comp comp (
 	.in_B	  ( in_B ),
 	.BrUn	  ( BrUn ),
 	//output
-    	.BrEq	  ( BrEq ),
-    	.BrLT	  ( BrLT )
+    .BrEq	  ( BrEq ),
+    .BrLT	  ( BrLT )
 );
 
 

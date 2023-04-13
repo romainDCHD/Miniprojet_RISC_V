@@ -19,6 +19,7 @@ logic [31:0] Data_o;
 logic [31:0] Data_w;
 logic [31:0] alu;
 logic [31:0] alu_o;
+logic [31:0] alu_mem_o;
 logic [31:0] mem;
 logic [31:0] Rs1;
 logic [31:0] Rs2;
@@ -95,21 +96,33 @@ opti opti1(
     .data_w(Data_o)
 );
 
+alu alu1(
+     // Inputs
+     .alu_op_i     (AluSel),
+     .alu_a_i      (reg1),
+     .alu_b_i      (reg2),
+     .clk          (clk),
+     .rst          (rst),
+     // Outputs
+     .alu_result_o (alu_o)
+ );
+
 mem #(20) mem1(
     .clk(clk),
     .rst(rst),
     .memRW(MemRW),
     .dataW_i(Data_w),
-    .addr_i(alu),
+    .addr_i(alu_o),
+    // Output
     .data_o(data_mem),
-    .alu_o(alu_o)
+    .alu_o(alu_mem_o)
 );
 
 
 wb wb1(
     .clk(clk),
     .rst(rst),
-    .alu_i(alu_o),
+    .alu_i(alu_mem_o),
     .mem_i(data_mem),
     .wb_sel1_i(wb_sel1),
     .wb_sel2_i(wb_sel2),

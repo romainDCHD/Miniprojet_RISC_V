@@ -26,7 +26,7 @@ riscv #(60) riscv1 (
   initial
     begin
         //permet de charger le fichier binaire dans la mémoire instruction
-        $readmemb("instructions/binary/test.bin", riscv1.imem1.tab_inst);
+        $readmemb("prog/asm_bench_global.bin", riscv1.imem1.tab_inst);
       clk <= 1'b0  ;
       reset <= 1'b1;
       #21 reset <= 1'b0;

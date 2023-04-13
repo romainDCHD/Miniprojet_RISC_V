@@ -8,7 +8,7 @@
       input  [  3:0]  alu_op_i
      ,input  [ 31:0]  alu_a_i
      ,input  [ 31:0]  alu_b_i
-     ,input clk
+     ,input clk,rst
 
      // Outputs
      ,output logic [ 31:0]  alu_result_o
@@ -111,6 +111,8 @@ begin
 end
 
 always_ff @(posedge clk)
-	alu_result_o  <= result_r;
+     if   (rst)     alu_result_o  <= 32'b0;
+     else           alu_result_o  <= result_r;
 
+	
 endmodule
