@@ -12,127 +12,6 @@
 # Loading LIB_Miniproj_RISCV.mem
 # Loading LIB_Miniproj_RISCV.wb
 # Loading LIB_Miniproj_RISCV.control_logic
-run
-# ========== Test ADD sans dÿ©bordement  (CLK =          26)
-# Expected value : 0x0000001e @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test ADD avec dÿ©bordement  (CLK =          30)
-# Expected value : 0x0f0f0f0d @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test AND                   (CLK =          51)
-# Expected value : 0x0f0f0f0e @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLL                   (CLK =          72)
-# Expected value : 0x00000000 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SRL                   (CLK =          93)
-# Expected value : 0x00000002 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test XOR                   (CLK =         135)
-# Expected value : 0xf0f0f0f1 @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTU true             (CLK =         157)
-# Expected value : 0x00000001 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTU false            (CLK =         162)
-# Expected value : 0x00000000 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLT true              (CLK =         184)
-# Expected value : 0x00000001 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLT false             (CLK =         189)
-# Expected value : 0x00000000 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SRA                   (CLK =         210)
-# Expected value : 0x00000002 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SUB sans dÿ©bordement  (CLK =         231)
-# Expected value : 0x00000001 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SUB avec dÿ©bordement  (CLK =         235)
-# Expected value : 0xffff0011 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLLI avec ÿÿ©bordement (CLK =         255)
-# Expected value : 0x0000ffc0 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLLI sans ÿÿ©bordement (CLK =         258)
-# Expected value : 0x000000c0 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SRLI sans ÿÿ©bordement (CLK =         278)
-# Expected value : 0x00000001 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SRLI avec ÿÿ©bordement (CLK =         281)
-# Expected value : 0x00000000 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test ORI                   (CLK =         303)
-# Expected value : 0x0f0f0f0f @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test ORI  avec ÿÿ©pendance  (CLK =         304)
-# Expected value : 0xffffffff @ 0x000000008
-# Read value     : 0xffffffff @ 0x000000008
-# TEST PASSED
-# ========== Test XORI                  (CLK =         326)
-# Expected value : 0xf0f0f0f1 @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test XORI                  (CLK =         326)
-# Expected value : 0xf0f0f0f1 @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTIU true            (CLK =         350)
-# Expected value : 0x00000001 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTIU false           (CLK =         354)
-# Expected value : 0x00000000 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTI true             (CLK =         375)
-# Expected value : 0x00000001 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTI false            (CLK =         379)
-# Expected value : 0x00000000 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# 
-# ==========           1 tests passed on          25
-# ** Note: $finish    : C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv(113)
-#    Time: 7590 ns  Iteration: 1  Instance: /bench_riscv
-# 1
-# Break in Module bench_riscv at C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv line 113
-restart
-# Loading sv_std.std
-# Loading LIB_Miniproj_RISCV.bench_riscv
-# Loading LIB_Miniproj_RISCV.riscv
-# Loading LIB_Miniproj_RISCV.imem
-# Loading LIB_Miniproj_RISCV.riscv_regfile
-# Loading LIB_Miniproj_RISCV.three_dff
-# Loading LIB_Miniproj_RISCV.imm_gen
-# Loading LIB_Miniproj_RISCV.opti
-# Loading LIB_Miniproj_RISCV.branch_comp
-# Loading LIB_Miniproj_RISCV.alu
-# Loading LIB_Miniproj_RISCV.mem
-# Loading LIB_Miniproj_RISCV.wb
-# Loading LIB_Miniproj_RISCV.control_logic
 add wave -position insertpoint  \
 sim:/bench_riscv/PROG_SIZE \
 sim:/bench_riscv/CLK_PERIOD \
@@ -149,18 +28,13 @@ sim:/bench_riscv/riscv1/n \
 sim:/bench_riscv/riscv1/clk \
 sim:/bench_riscv/riscv1/rst \
 sim:/bench_riscv/riscv1/pc \
-sim:/bench_riscv/riscv1/pc_4 \
-sim:/bench_riscv/riscv1/wb \
 sim:/bench_riscv/riscv1/data_d \
 sim:/bench_riscv/riscv1/inst \
 sim:/bench_riscv/riscv1/Immsel \
 sim:/bench_riscv/riscv1/Imm \
-sim:/bench_riscv/riscv1/Data_o \
 sim:/bench_riscv/riscv1/Data_w \
 sim:/bench_riscv/riscv1/alu \
-sim:/bench_riscv/riscv1/alu_o \
 sim:/bench_riscv/riscv1/alu_mem_o \
-sim:/bench_riscv/riscv1/mem \
 sim:/bench_riscv/riscv1/Rs1 \
 sim:/bench_riscv/riscv1/Rs2 \
 sim:/bench_riscv/riscv1/reg1 \
@@ -180,109 +54,5 @@ sim:/bench_riscv/riscv1/MemRW \
 sim:/bench_riscv/riscv1/wb_sel1 \
 sim:/bench_riscv/riscv1/wb_sel2
 run
-# ========== Test ADD sans dÿ©bordement  (CLK =          26)
-# Expected value : 0x0000001e @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test ADD avec dÿ©bordement  (CLK =          30)
-# Expected value : 0x0f0f0f0d @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test AND                   (CLK =          51)
-# Expected value : 0x0f0f0f0e @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLL                   (CLK =          72)
-# Expected value : 0x00000000 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SRL                   (CLK =          93)
-# Expected value : 0x00000002 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test XOR                   (CLK =         135)
-# Expected value : 0xf0f0f0f1 @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTU true             (CLK =         157)
-# Expected value : 0x00000001 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTU false            (CLK =         162)
-# Expected value : 0x00000000 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLT true              (CLK =         184)
-# Expected value : 0x00000001 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLT false             (CLK =         189)
-# Expected value : 0x00000000 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SRA                   (CLK =         210)
-# Expected value : 0x00000002 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SUB sans dÿ©bordement  (CLK =         231)
-# Expected value : 0x00000001 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SUB avec dÿ©bordement  (CLK =         235)
-# Expected value : 0xffff0011 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLLI avec ÿÿ©bordement (CLK =         255)
-# Expected value : 0x0000ffc0 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLLI sans ÿÿ©bordement (CLK =         258)
-# Expected value : 0x000000c0 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SRLI sans ÿÿ©bordement (CLK =         278)
-# Expected value : 0x00000001 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SRLI avec ÿÿ©bordement (CLK =         281)
-# Expected value : 0x00000000 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test ORI                   (CLK =         303)
-# Expected value : 0x0f0f0f0f @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test ORI  avec ÿÿ©pendance  (CLK =         304)
-# Expected value : 0xffffffff @ 0x000000008
-# Read value     : 0xffffffff @ 0x000000008
-# TEST PASSED
-# ========== Test XORI                  (CLK =         326)
-# Expected value : 0xf0f0f0f1 @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test XORI                  (CLK =         326)
-# Expected value : 0xf0f0f0f1 @ 0x000000004
-# Read value     : 0xffffffff @ 0x000000004
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTIU true            (CLK =         350)
-# Expected value : 0x00000001 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTIU false           (CLK =         354)
-# Expected value : 0x00000000 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTI true             (CLK =         375)
-# Expected value : 0x00000001 @ 0x000000016
-# Read value     : 0xffffffff @ 0x000000016
-# ERROR : Expected value is not the same as the read value
-# ========== Test SLTI false            (CLK =         379)
-# Expected value : 0x00000000 @ 0x000000010
-# Read value     : 0xffffffff @ 0x000000010
-# ERROR : Expected value is not the same as the read value
-# 
-# ==========           1 tests passed on          25
-# ** Note: $finish    : C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv(113)
-#    Time: 7590 ns  Iteration: 1  Instance: /bench_riscv
-# 1
-# Break in Module bench_riscv at C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv line 113
+run
+run

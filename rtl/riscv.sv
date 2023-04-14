@@ -9,18 +9,13 @@ module riscv #(parameter  n=20)
 );
 // All the Wires of the system
 logic [31:0] pc;
-logic [31:0] pc_4;
-logic [31:0] wb;
 logic [31:0] data_d;
 logic [31:0] inst;
 logic [2:0]  Immsel;
 logic [31:0] Imm;
-logic [31:0] Data_o;
 logic [31:0] Data_w;
 logic [31:0] alu;
-logic [31:0] alu_o;
 logic [31:0] alu_mem_o;
-logic [31:0] mem;
 logic [31:0] Rs1;
 logic [31:0] Rs2;
 logic [31:0] reg1;
@@ -60,7 +55,7 @@ riscv_regfile riscv_regfile1(
     .clk_i(clk),
     .rst_i(rst),
     .AddrD_i(inst[11:7]),
-    .DataD_i(wb),
+    .DataD_i(data_d),
     .AddrB_i(inst[24:20]),
     .AddrA_i(inst[19:15]),
     .RegWEn_i(RegWen),
@@ -93,7 +88,7 @@ opti opti1(
     .imm(Imm),
     .reg1(reg1),
     .reg2(reg2),
-    .data_w(Data_o)
+    .data_w(Data_w)
 );
 
 alu alu1(
@@ -104,7 +99,7 @@ alu alu1(
      .clk          (clk),
      .rst          (rst),
      // Outputs
-     .alu_result_o (alu_o)
+     .alu_result_o (alu)
  );
 
 mem #(256) mem1(
@@ -112,7 +107,7 @@ mem #(256) mem1(
     .rst(rst),
     .memRW(MemRW),
     .dataW_i(Data_w),
-    .addr_i(alu_o),
+    .addr_i(alu),
     // Output
     .data_o(data_mem),
     .alu_o(alu_mem_o)
