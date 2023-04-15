@@ -2,150 +2,154 @@
 //  Description : Top module of the processsor 
 //==============================================================================
 
-module riscv #(parameter  n=20)
-(
+//== Module Declaration =========================================================
+module riscv #(parameter  n=20) (
     input   logic   clk,
     input   logic   rst
 );
-// All the Wires of the system
-logic [31:0] pc;
-logic [31:0] data_d;
-logic [31:0] inst;
-logic [2:0]  Immsel;
-logic [31:0] Imm;
-logic [31:0] Data_w;
-logic [31:0] alu;
-logic [31:0] alu_mem_o;
-logic [31:0] Rs1;
-logic [31:0] Rs2;
-logic [31:0] reg1;
-logic [31:0] reg2;
-logic [31:0] data_mem;
-// Multiplexers
-logic        A1_sel;
-logic        B1_sel;
-logic        A2_sel;
-logic        B2_sel;
-// MUX: choose between PC+4 or the one that come from the ALU
-logic        pc_sel;
-// Choose between writing or reading in the destination register
-logic        RegWen;
-// Branch_comp
-logic        BrUn;
-logic        BrEq;
-logic        BrLt;
-// Choose what to do in the ALU
-logic [3:0]  AluSel;
-// Choose between writing or reading the memory
-logic        MemRW;
-// Choose what to write back
-logic        wb_sel1;
-logic        wb_sel2;
 
+//== Variable Declaration ======================================================
+// Fetch stage
+logic [31:0] pc_l;                       // Program counter
+logic [31:0] inst_l;                     // Instruction
 
+// Multiplexers selectors
+logic        A1_sel_l;                   // Choose between the register and ALU
+logic        B1_sel_l;                   // Choose between the register and ALU
+logic        A2_sel_l;                   // Choose between the previous multiplexer and PC
+logic        B2_sel_l;                   // Choose between the previous multiplexer and the immediate value
+logic        pc_sel_l;                   // Choose between PC+4 or the one that come from the ALU
+logic        wbsel1_l;                   // Choose between writing back the ALU or the memory
+logic        wbsel2_l;                   // Choose between writing back the value from the previous multiplexer or PC+4
+
+// Register file
+logic [31:0] datad_l;                    // Data to write in the register file
+logic [31:0] reg1_l;                     // Value of the first register
+logic [31:0] reg2_l;                     // Value of the second register
+logic        RegWen_l;                   // Enable the writing in the register file
+
+// Immediate selector
+logic [2:0]  ImmSel_l;                   // Choose the format of the immediate value
+logic [31:0] Imm_l;                      // Immediate value
+
+// Branch comparator
+logic        BrUn_l;                     // Unconditional branch
+logic        BrEq_l;                     // Branch if equal
+logic        BrLt_l;                     // Branch if less than
+
+// ALU
+logic [31:0] alu_l;                      // ALU output
+logic [3:0]  ALUSel_l;                   // Choose what to do in the ALU
+logic [31:0] aluA_l;                     // First input of the ALU
+logic [31:0] aluB_l;                     // Second input of the ALU
+
+// Memory
+logic [31:0] dataW_l;                    // Data to write in the memory
+logic        MemRW_l;                    // Enable the writing in the memory
+logic [2:0]  dataSize_l;                 // Choose the size of the data to read or write in the memory
+logic [31:0] mem_l;                      // Data read from the memory
+logic [31:0] alu_mem_l;                  // ALU output after the memory stage
+
+//== Main code =================================================================
 imem #(n) imem1  ( 
     .clk(clk),
     .rst(rst),
-    .pc(pc),
-    .inst_out (inst)
+    .pc(pc_l),
+    .inst_out(inst_l)
   );
 
 
 riscv_regfile riscv_regfile1(
     .clk_i(clk),
     .rst_i(rst),
-    .AddrD_i(inst[11:7]),
-    .DataD_i(data_d),
-    .AddrB_i(inst[24:20]),
-    .AddrA_i(inst[19:15]),
-    .RegWEn_i(RegWen),
-    .DataA_o(Rs1),
-    .DataB_o(Rs2)
+    .AddrD_i(inst_l[11:7]),
+    .DataD_i(datad_l),
+    .AddrB_i(inst_l[24:20]),
+    .AddrA_i(inst_l[19:15]),
+    .RegWEn_i(RegWen_l),
+    .DataA_o(reg1_l),
+    .DataB_o(reg2_l)
 );
 
 imm_gen imm_gen1(
     .clk(clk),
     .rst(rst),
-    .sig(Immsel),
-    .imm_in(inst),
-    .imm_out(Imm)
+    .sig(ImmSel_l),
+    .imm_in(inst_l),
+    .imm_out(Imm_l)
 );
 
 opti opti1(
     .clk(clk),
     .rst(rst),
-    .A1_sel(A1_sel),
-    .B1_sel(B1_sel),
-    .A2_sel(A2_sel),
-    .B2_sel(B2_sel),
-    .Brun(BrUn),
-    .Breq(BrEq),
-    .Brlt(BrLt),
-    .reg_rs1(Rs1),
-    .reg_rs2(Rs2),
-    .alu(alu),
-    .pc(pc),
-    .imm(Imm),
-    .reg1(reg1),
-    .reg2(reg2),
-    .data_w(Data_w)
+    .A1_sel(A1_sel_l),
+    .B1_sel(B1_sel_l),
+    .A2_sel(A2_sel_l),
+    .B2_sel(B2_sel_l),
+    .Brun(BrUn_l),
+    .Breq(BrEq_l),
+    .Brlt(BrLt_l),
+    .reg_rs1(reg1_l),
+    .reg_rs2(reg2_l),
+    .alu(alu_l),
+    .pc(pc_l),
+    .imm(Imm_l),
+    .reg1(aluA_l),
+    .reg2(aluB_l),
+    .data_w(dataW_l)
 );
 
 alu alu1(
      // Inputs
-     .alu_op_i     (AluSel),
-     .alu_a_i      (reg1),
-     .alu_b_i      (reg2),
-     .clk          (clk),
-     .rst          (rst),
+     .alu_op_i(ALUSel_l),
+     .alu_a_i(aluA_l),
+     .alu_b_i(aluB_l),
+     .clk(clk),
+     .rst(rst),
      // Outputs
-     .alu_result_o (alu)
+     .alu_result_o(alu_l)
  );
 
 mem #(256) mem1(
     .clk(clk),
     .rst(rst),
-    .memRW(MemRW),
-    .dataW_i(Data_w),
-    .addr_i(alu),
+    .memRW(MemRW_l),
+    .dataW_i(dataW_l),
+    .addr_i(alu_l),
     // Output
-    .data_o(data_mem),
-    .alu_o(alu_mem_o)
+    .data_o(mem_l),
+    .alu_o(alu_mem_l)
 );
-
 
 wb wb1(
     .clk(clk),
     .rst(rst),
-    .alu_i(alu_mem_o),
-    .mem_i(data_mem),
-    .wb_sel1_i(wb_sel1),
-    .wb_sel2_i(wb_sel2),
-    .pc_sel_i(pc_sel),
-    .pc_o(pc),
-    .dataD_o(data_d)
+    .alu_i(alu_mem_l),
+    .mem_i(mem_l),
+    .wb_sel1_i(wbsel1_l),
+    .wb_sel2_i(wbsel2_l),
+    .pc_sel_i(pc_sel_l),
+    .pc_o(pc_l),
+    .dataD_o(datad_l)
 );
-
 
 control_logic control_logic1(
     .clk(clk),
     .rst(rst),
-    .inst_i(inst),
-    .br_un_o(BrUn),
-    .br_eq_i(BrEq),
-    .br_lt_i(BrLt),
-    .A1_sel_o(A1_sel),
-    .B1_sel_o(B1_sel),
-    .A2_sel_o(A2_sel),
-    .B2_sel_o(B2_sel),
-    .alu_op_o(AluSel),
-    .mem_rw_o(MemRW),
-    .wb_sel1_o(wb_sel1),
-    .wb_sel2_o(wb_sel2),
-    .reg_w_en_o(RegWen),
-    .pc_sel_o(pc_sel)
+    .inst_i(inst_l),
+    .br_un_o(BrUn_l),
+    .br_eq_i(BrEq_l),
+    .br_lt_i(BrLt_l),
+    .A1_sel_o(A1_sel_l),
+    .B1_sel_o(B1_sel_l),
+    .A2_sel_o(A2_sel_l),
+    .B2_sel_o(B2_sel_l),
+    .alu_op_o(ALUSel_l),
+    .mem_rw_o(MemRW_l),
+    .wb_sel1_o(wbsel1_l),
+    .wb_sel2_o(wbsel2_l),
+    .reg_w_en_o(RegWen_l),
+    .pc_sel_o(pc_sel_l)
 );
-
-
 
 endmodule
