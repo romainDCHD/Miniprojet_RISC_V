@@ -9,6 +9,7 @@ module control_logic (
     input  logic        rst,             // Synchronous active high reset
     // Instruction
     input  logic [31:0] inst_i,          // Input instruction
+    output logic [2:0]  imm_sel_o,       // Output instruction
     // Branch Comparator
     output logic        br_un_o,         // Unsigned comparison input of the branch comparator block
     input  logic        br_eq_i,         // Equal output of the branch comparator block
@@ -22,6 +23,7 @@ module control_logic (
     output logic [3:0]  alu_op_o,        // ALU operation
     // Memory
     output logic        mem_rw_o,        // Memory write enable
+    output logic [2:0]  mem_size_o,      // Memory access size
     // Writeback
     output logic        wb_sel1_o,       // Select between the data from the ALU and the data from the memory
     output logic        wb_sel2_o,       // Select between the data from the writeback and PC+4
@@ -64,6 +66,25 @@ module control_logic (
         SUB
     } alu_op_t;
 
+    // Immediate selection
+    typedef enum  {
+        IMM_DEFAULT,
+        IMM_REGIMM,
+        IMM_LOAD,
+        IMM_STORE,
+        IMM_BRANCH,
+        IMM_JALR,
+        IMM_JAL,
+        IMM_UPPER
+    } imm_sel_t;
+
+    // Memory access size
+    typedef enum  {
+        BYTE,
+        HALF,
+        WORD
+    } mem_size_t;
+
     //== Main code =================================================================
     //----- Instruction registers
     always_ff @(posedge clk) begin
@@ -81,12 +102,14 @@ module control_logic (
     //----- Execute stage
     always_comb begin
         //----- Default values
+        imm_sel_o = IMM_DEFAULT;         // Select the default immediate value
         A1_sel_o = 1'b0;                 // Select the first register
         B1_sel_o = 1'b0;                 // Select the second register
         A2_sel_o = 1'b0;                 // Select the first register
         B2_sel_o = 1'b0;                 // Select the second register
         alu_op_o = OUT_ZERO;             // ALU operation is NOP
         mem_rw_o = 1'b0;                 // Memory write is disabled
+        mem_size_o = BYTE;               // Memory access size is 8 bits
         wb_sel1_o = 1'b0;                // Select the data from memory
         wb_sel2_o = 1'b0;                // Select the data from the writeback
         reg_w_en_o = 1'b0;               // Register write is disabled
@@ -94,6 +117,20 @@ module control_logic (
         br_un_o = 1'b0;                  // Unsigned comparison is disabled
 
         if (!rst) begin
+            //----- Immediate selection
+            case (inst_reg0[6:0])
+                `INST_REGREG: imm_sel_o = IMM_DEFAULT;
+                `INST_REGIMM: imm_sel_o = IMM_REGIMM;
+                `INST_LOAD:   imm_sel_o = IMM_LOAD;
+                `INST_STORE:  imm_sel_o = IMM_STORE;
+                `INST_BRANCH: imm_sel_o = IMM_BRANCH;
+                `INST_JALR:   imm_sel_o = IMM_JALR;
+                `INST_JAL:    imm_sel_o = IMM_JAL;
+                `INST_LUI:    imm_sel_o = IMM_UPPER;
+                `INST_AUIPC:  imm_sel_o = IMM_UPPER;
+                default:      imm_sel_o = IMM_DEFAULT;
+            endcase
+
             //----- Instruction decoding
             if (inst_reg0[6:0] != `INST_NOP) begin
                 // Detecting dependencies, begin to check if the previous instruction has a result
@@ -224,6 +261,18 @@ module control_logic (
                 // Check if the current instruction is a store
                 if (inst_reg1[6:0] == `INST_STORE)
                     mem_rw_o = 1'b1;         // Memory write is enabled
+                // If it is a load
+                else
+                    mem_rw_o = 1'b0;         // Memory write is disabled
+                
+                // Check the size of the data
+                case (inst_reg1[14:12])
+                    3'b000: mem_size_o = BYTE; // Byte
+                    3'b001: mem_size_o = HALF; // Halfword
+                    3'b010: mem_size_o = WORD; // Word
+                    3'b100: mem_size_o = BYTE; // Unsigned Byte
+                    3'b101: mem_size_o = HALF; // Unsigned Halfword
+                endcase
             end
             
             //----- Writeback stage
