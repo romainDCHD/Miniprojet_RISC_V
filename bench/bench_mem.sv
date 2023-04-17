@@ -14,15 +14,19 @@ logic   dmem;
 logic   [31:0]  data_w;
 logic   [31:0]  addr;
 logic   [31:0]  data_o;
+logic   [31:0]  alu_o;
+logic   [1:0]   dataSec;
 
 
-mem #(5) mem1(
+mem #(11) mem1(
     .clk	      ( clk    ),
     .rst	      ( reset  ),
-    .dmem       ( dmem   ),
-    .data_w     ( data_w ),
-    .addr	      ( addr   ),
-    .data_o     ( data_o )
+    .memRW     ( dmem   ),
+    .dataSec_i  (dataSec),
+    .dataW_i    ( data_w ),
+    .addr_i     ( addr   ),
+    .alu_o     ( alu_o ),
+    .data_o   (data_o)
 );
 
 initial 
@@ -48,12 +52,18 @@ always
 
 initial
    begin  
-    @(posedge clk) dmem = 0; data_w = 32'haaaaaaaa; addr = 32'h0; //ecriture dans registre 0
-    @(posedge clk) dmem = 0; data_w = 32'haaaaaaaa; addr = 32'h0; //ecriture dans registre 0
-    @(posedge clk) dmem = 0; data_w = 32'hbbbbbbbb; addr = 32'h3; //ecriture dans registre 2
-    @(posedge clk) dmem = 1; data_w = 32'hcccccccc; addr = 32'h3; //lecture dans registre 2
-    @(posedge clk) dmem = 1; data_w = 32'hcccccccc; addr = 32'h0; //lecture dans registre 2
-    @(posedge clk) dmem = 1; data_w = 32'hcccccccc; addr = 32'h0; //lecture dans registre 2
+    #100
+    dmem = 0; data_w = 32'haaaaaaaa; addr = 32'h0; dataSec = 2'b10; //ecriture dans registre 0
+    #20
+    dmem = 0; data_w = 32'hbbbbbbbb; addr = 32'h4; dataSec = 2'b01;//ecriture dans registre 0
+    #20
+    dmem = 0; data_w = 32'hcccccccc; addr = 32'h8; dataSec = 2'b00; //ecriture dans registre 2
+    #20
+    dmem = 1; data_w = 32'hcccccccc; addr = 32'h6; //lecture dans registre 2
+    #20
+    dmem = 1; data_w = 32'hcccccccc; addr = 32'h0; //lecture dans registre 2
+    #20
+    dmem = 1; data_w = 32'hcccccccc; addr = 32'h11; //lecture dans registre 2
     
     
   	$display ( "MEM TEST FINISHED" ) ;
