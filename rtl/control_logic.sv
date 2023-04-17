@@ -23,7 +23,7 @@ module control_logic (
     output logic [3:0]  alu_op_o,        // ALU operation
     // Memory
     output logic        mem_rw_o,        // Memory write enable
-    output logic [2:0]  mem_size_o,      // Memory access size
+    output logic [1:0]  mem_size_o,      // Memory access size
     // Writeback
     output logic        wb_sel1_o,       // Select between the data from the ALU and the data from the memory
     output logic        wb_sel2_o,       // Select between the data from the writeback and PC+4
@@ -118,7 +118,7 @@ module control_logic (
 
         if (!rst) begin
             //----- Immediate selection
-            case (inst_reg0[6:0])
+            case (inst_i[6:0])
                 `INST_REGREG: imm_sel_o = IMM_DEFAULT;
                 `INST_REGIMM: imm_sel_o = IMM_REGIMM;
                 `INST_LOAD:   imm_sel_o = IMM_LOAD;
@@ -278,8 +278,8 @@ module control_logic (
             //----- Writeback stage
             if (inst_reg2[6:0] != `INST_NOP) begin
                 // Manage wb_sel1_o signal
-                if (inst_reg2[6:0] == `INST_LOAD)
-                    wb_sel1_o = 1'b0;        // Select the data from memory
+                if (inst_reg2[6:0] != `INST_LOAD)
+                    wb_sel1_o = 1'b1;        // Select the data from ALU
                 // Check if the current instruction require to store PC+4
                 if (inst_reg2[6:0] == `INST_JALR || inst_reg2[6:0] == `INST_JAL)
                     wb_sel2_o = 1'b1;        // Select the data from PC+4

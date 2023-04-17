@@ -46,7 +46,7 @@ logic [31:0] aluB_l;                     // Second input of the ALU
 // Memory
 logic [31:0] dataW_l;                    // Data to write in the memory
 logic        MemRW_l;                    // Enable the writing in the memory
-logic [2:0]  dataSize_l;                 // Choose the size of the data to read or write in the memory
+logic [1:0]  dataSize_l;                 // Choose the size of the data to read or write in the memory
 logic [31:0] mem_l;                      // Data read from the memory
 logic [31:0] alu_mem_l;                  // ALU output after the memory stage
 
@@ -74,9 +74,9 @@ riscv_regfile riscv_regfile1(
 imm_gen imm_gen1(
     .clk(clk),
     .rst(rst),
-    .sig(ImmSel_l),
-    .imm_in(inst_l),
-    .imm_out(Imm_l)
+    .sel_i(ImmSel_l),
+    .imm_i(inst_l),
+    .imm_o(Imm_l)
 );
 
 opti opti1(
@@ -114,6 +114,7 @@ mem #(256) mem1(
     .clk(clk),
     .rst(rst),
     .memRW(MemRW_l),
+    .dataSec_i(dataSize_l),
     .dataW_i(dataW_l),
     .addr_i(alu_l),
     // Output
