@@ -19,7 +19,6 @@ libs/*
 
 # On indique à Git d'ignorer le script de compilation
 wincompile_System_Verilog.bat
-compil_romain
 
 # pour macos
 .DS_Store

@@ -8,7 +8,7 @@ module bench_riscv();
 timeunit      1ns;
 timeprecision 1ns;
 
-localparam PROG_SIZE = 648, CLK_PERIOD = 20, NB_TESTS = 25; // Size of the program memory
+localparam PROG_SIZE = 20, CLK_PERIOD = 20, NB_TESTS = 25; // Size of the program memory
 
 int clock_number;                                           // Number of clock cycles since the reset
 int passed_test = 0;                                        // Number of passed tests
@@ -80,7 +80,8 @@ always
 // Load the program in the instruction memory from a binary file
 initial begin
     // $readmemb("instructions/binary/test.bin", riscv1.imem1.tab_inst);
-    $readmemb("C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/prog/asm_bench_global.bin", riscv1.imem1.tab_inst);
+    $readmemb("prog/asm_load.bin", riscv1.imem1.tab_inst);
+    $readmemb("prog/asm_zero.bin", riscv1.mem1.r_mem);
     clk <= 1'b0  ;
     reset <= 1'b1;
     #21 reset <= 1'b0;
