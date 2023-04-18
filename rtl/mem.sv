@@ -14,20 +14,25 @@ module mem #(parameter  n=20) (
     output  logic [31:0]  alu_o
   );
     typedef logic [7:0] octet_mem;
-    octet_mem r_mem[n:0]; // la memoire à proprement parler avec n un multiple de 4 (-1)
+    octet_mem r_mem_f[n:0]; // la memoire à proprement parler avec n un multiple de 4 (-1)
+    octet_mem r_mem[n:0];
     logic  [31:0]  data_r;
     logic  [7:0]   short_addr;
     integer i;
+    integer k;
+    logic auto_ff;
 
     
     //----------sortie de memory/execute de manière synchrone -------
     always_ff @(posedge clk)
     begin
+        auto_ff = 0;
         if(rst) 
         begin
             data_o <= 32'hffffffff;
-            alu_o = 32'b0;
-            // for(i = 0; i<n;i=i+1) r_mem[i] <= 8'hff;
+            alu_o <= 32'b0;
+            for(i = 0; i<=n;i=i+1) r_mem_f[i] <= 8'hff;
+            auto_ff = 1;
         end
         else 
         begin
@@ -40,32 +45,34 @@ module mem #(parameter  n=20) (
    
 
     always_comb// memRW, dataW_i, addr
-      begin
-      	//lecture
-        if(rst) 
         begin
-            for(int i = 0; i<=n;i=i+1) r_mem[i] <= 8'hff;
+        if(auto_ff)
+        begin
+            for(k = 0; k<=n;k=k+1) r_mem[i] = r_mem_f[i];
         end
-        if(!rst)
-        begin
+        else begin
+            for(k = 0; k<=n;k=k+1) r_mem[i] = r_mem_f[i];            
             if(memRW == 1'b1) 
             begin
-                data_r[31:24] = r_mem[ addr_i ];
-                if(addr_i +1 >n) data_r[23:16] = 8'b0;
-                else data_r[23:16] = r_mem[ addr_i + 1];
-                if(addr_i +2 >n) data_r[15:8] = 8'b0;
-                else data_r[15:8] = r_mem[ addr_i + 2];
-                if(addr_i +3 >n) data_r[7:0] = 8'b0;
-                else data_r[7:0] = r_mem[ addr_i + 3];      
+                if(addr_i +1 >n)        data_r[31:24] = 8'hff;                  
+                else                    data_r[31:24] = r_mem[ addr_i ];
+                if(addr_i +1 >n)        data_r[23:16] = 8'hff;
+                else                    data_r[23:16] = r_mem[ addr_i + 1];
+
+                if(addr_i +2 >n)        data_r[15:8] = 8'hff;
+                else                    data_r[15:8] = r_mem[ addr_i + 2];
+
+                if(addr_i +3 >n)        data_r[7:0] = 8'hff;
+                else                    data_r[7:0] = r_mem[ addr_i + 3];      
             end
             //ecriture
             else 
             begin
-                data_r <= 32'b0;
-                if(dataSec_i == 2'b00) r_mem[ addr_i ] <= dataW_i[7:0];
+                data_r <= 32'hffffffff;
+                if(dataSec_i == 2'b00) r_mem[ addr_i ] = dataW_i[7:0];
                 else if(dataSec_i == 2'b01)
                 begin
-                    r_mem[ addr_i ] <= dataW_i[15:8];
+                    r_mem[ addr_i ] = dataW_i[15:8];
                     if(addr_i + 1 <= n) r_mem[ addr_i + 1] = dataW_i[7:0];
                 end
                 else if(dataSec_i == 2'b10)
@@ -77,6 +84,5 @@ module mem #(parameter  n=20) (
                 end  
             end
         end
-        end
-
+    end
 endmodule   
