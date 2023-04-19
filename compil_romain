@@ -12,33 +12,33 @@ vlog +acc -work  lib_verilog ${TP_PATH}/rtl/*.sv
 vlog +acc -work  lib_verilog ${TP_PATH}/bench/*.sv
 
 #lancer la simulation du bench_riscv
-    vsim -voptargs=+acc lib_verilog.bench_riscv
+    vsim -voptargs=+acc lib_verilog.bench2_riscv
     
     #ajout de rst et clk 
-    add wave sim:/bench_riscv/*
+    add wave sim:/bench2_riscv/*
     #ajout du tableau instruction
     add wave -position insertpoint  \
-    sim:/bench_riscv/riscv1/imem1/tab_inst
+    sim:/bench2_riscv/riscv1/imem1/tab_inst
     #ajout de la mémoire donnée
     add wave  \
-    sim:/bench_riscv/riscv1/mem1/r_mem
+    sim:/bench2_riscv/riscv1/mem1/r_mem
     #ajout des registres mémoires
     add wave -position insertpoint  \
-    sim:/bench_riscv/riscv1/riscv_regfile1/Registers
+    sim:/bench2_riscv/riscv1/riscv_regfile1/Registers
     #ajout de pc et next_instruction 
     add wave  \
-    sim:/bench_riscv/riscv1/imem1/inst_out
+    sim:/bench2_riscv/riscv1/imem1/inst_out
     add wave -position insertpoint  \
-    sim:/bench_riscv/riscv1/imem1/pc
+    sim:/bench2_riscv/riscv1/imem1/pc
     #rajouter tous les signaux des modules
-    add wave -group wb sim:/bench_riscv/riscv1/wb1/*
-    add wave -group regfile sim:/bench_riscv/riscv1/riscv_regfile1/*
-    add wave -group opti sim:/bench_riscv/riscv1/opti1/*
-    add wave -group imm_gen sim:/bench_riscv/riscv1/imm_gen1/*
-    add wave -group alu sim:/bench_riscv/riscv1/alu1/*
-    add wave -group mem sim:/bench_riscv/riscv1/mem1/*
-    add wave -group control_logic sim:/bench_riscv/riscv1/control_logic1/*
-    add wave -group wb sim:/bench_riscv/riscv1/wb1/*
+    add wave -group wb sim:/bench2_riscv/riscv1/wb1/*
+    add wave -group regfile sim:/bench2_riscv/riscv1/riscv_regfile1/*
+    add wave -group opti sim:/bench2_riscv/riscv1/opti1/*
+    add wave -group imm_gen sim:/bench2_riscv/riscv1/imm_gen1/*
+    add wave -group alu sim:/bench2_riscv/riscv1/alu1/*
+    add wave -group mem sim:/bench2_riscv/riscv1/mem1/*
+    add wave -group control_logic sim:/bench2_riscv/riscv1/control_logic1/*
+    add wave -group wb sim:/bench2_riscv/riscv1/wb1/*
     #run
     run 500     
 

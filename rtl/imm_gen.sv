@@ -61,7 +61,7 @@ module imm_gen (
                 imm[10:1]  = imm_i[30:21];
                 imm[20]    = imm_i[31];
             end
-            IMM_UPPER   : imm[31:12] = imm_i[31:12];
+            IMM_UPPER   : imm = imm_i[31:12];
         endcase
     end
  /*

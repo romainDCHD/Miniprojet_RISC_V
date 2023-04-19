@@ -26,7 +26,7 @@ module imem #(parameter  n=20)
     
     always_comb// tab_inst, addr, pc
       begin
-        count = pc>>2;
+        count = pc/4;
         inst = tab_inst[count];
      end
 

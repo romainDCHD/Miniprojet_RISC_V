@@ -99,32 +99,35 @@ module riscv_regfile(
 	    if (RegWEn_i == 1)
 	    begin
 		Registers[Old_AddrD]   <= DataD_i; 	
+		//Set the wait_for_data register for the destination register
+	    wait_for_data[AddrD_i]	<= 1'b1;
 	    end
 	    
 	    //lecture
-	    if (wait_for_data[AddrA_i] == 1'b0)
-	    begin    
-	     	DataA_r       <= Registers[AddrA_i];
-	    end
-	    
-	    else if (wait_for_data[AddrA_i] == 1'b1) 
-	    begin
-	    	DataA_r       <= 32'h00000008;	// cas d'erreur, a améliorer/ voir ce qu'on fait.
-	    end
-	    	
-	    if(wait_for_data[AddrB_i] == 1'b0)
-	    begin
-	     	DataB_r       <= Registers[AddrB_i];
-	    end
-	    
-	    else if (wait_for_data[AddrA_i] == 1'b1)
-	    begin 
-	     	DataB_r       <= 32'h00000008;	// idem
-	     	
-	    //Set the wait_for_data register for the destination register
-	    wait_for_data[AddrD_i]	<= 1'b1;
+		else
+		begin
+			if (wait_for_data[AddrA_i] == 1'b0)
+			begin    
+				DataA_r       <= Registers[AddrA_i];
+			end
+			
+			else if (wait_for_data[AddrA_i] == 1'b1) 
+			begin
+				DataA_r       <= 32'h00000000;	// cas d'erreur
+			end
+				
+			if(wait_for_data[AddrB_i] == 1'b0)
+			begin
+				DataB_r       <= Registers[AddrB_i];
+			end
+			
+			else if (wait_for_data[AddrB_i] == 1'b1)
+			begin 
+				DataB_r       <= 32'h00000000;	// idem
+			end
 	    end
 	end   
+
 	DataA_o <= DataA_r;
 	DataB_o <= DataB_r;
   end
