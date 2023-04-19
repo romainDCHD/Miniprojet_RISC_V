@@ -21,18 +21,19 @@ vlog +acc -work  lib_verilog ${TP_PATH}/bench/*.sv
     sim:/bench2_riscv/riscv1/imem1/tab_inst
     #ajout de la mémoire donnée
     add wave  \
-    sim:/bench2_riscv/riscv1/mem1/r_mem
+    sim:/bench2_riscv/riscv1/mem1/mem
     #ajout des registres mémoires
     add wave -position insertpoint  \
-    sim:/bench2_riscv/riscv1/riscv_regfile1/Registers
+    sim:/bench2_riscv/riscv1/regfile1/Registers
     #ajout de pc et next_instruction 
     add wave  \
     sim:/bench2_riscv/riscv1/imem1/inst_out
     add wave -position insertpoint  \
     sim:/bench2_riscv/riscv1/imem1/pc
     #rajouter tous les signaux des modules
+    add wave -group imem sim:/bench2_riscv/riscv1/imem1/*
     add wave -group wb sim:/bench2_riscv/riscv1/wb1/*
-    add wave -group regfile sim:/bench2_riscv/riscv1/riscv_regfile1/*
+    add wave -group regfile sim:/bench2_riscv/riscv1/regfile1/*
     add wave -group opti sim:/bench2_riscv/riscv1/opti1/*
     add wave -group imm_gen sim:/bench2_riscv/riscv1/imm_gen1/*
     add wave -group alu sim:/bench2_riscv/riscv1/alu1/*
@@ -43,6 +44,8 @@ vlog +acc -work  lib_verilog ${TP_PATH}/bench/*.sv
     run 500     
 
 # #lancer simulation d'un autre module
-#     vsim -voptargs=+acc lib_verilog.bench_wb
-#     add wave sim:/bench_wb/wb1/*
-#     run 200  
+#     vsim -voptargs=+acc lib_verilog.bench_regfile
+#     add wave sim:/bench_regfile/regfile/*
+#     add wave -position insertpoint  \
+#     sim:/bench_regfile/regfile/Registers
+#     run 500  

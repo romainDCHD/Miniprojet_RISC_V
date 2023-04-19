@@ -1,0 +1,1653 @@
+# //  Questa Intel Starter FPGA Edition-64
+# //  Version 2022.1 linux_x86_64 Jan 29 2022
+# //
+# //  Copyright 1991-2022 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+source compil_romain
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:33:01 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 10:33:01 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:33:01 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 10:33:02 on Apr 19,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" lib_verilog.bench_regfile 
+# Start time: 10:33:02 on Apr 19,2023
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.bench_regfile(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# time=0ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=21ns, RegWEn=x, reset=0, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=30ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 2, DataD=        20, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=50ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 3, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=70ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 8, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=90ns, RegWEn=1, reset=0, AddrA= 0, AddrB= 1, AddrD= 4, DataD=        22, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=110ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 1, AddrD= 3, DataD=        23, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=130ns, RegWEn=1, reset=0, AddrA= 2, AddrB= 1, AddrD= 5, DataD=        24, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# ** Note: $stop    : /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv(65)
+#    Time: 143 ns  Iteration: 0  Instance: /bench_regfile
+# Break in Task xpect at /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv line 65
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:38:09 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 10:38:09 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:38:09 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 10:38:09 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 10:38:26 on Apr 19,2023, Elapsed time: 0:05:24
+# Errors: 0, Warnings: 1
+# vsim -voptargs="+acc" lib_verilog.bench_regfile 
+# Start time: 10:38:26 on Apr 19,2023
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading sv_std.std
+# Loading work.bench_regfile(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# time=0ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=21ns, RegWEn=x, reset=0, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=30ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 2, DataD=        20, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=50ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 3, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=70ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 8, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=90ns, RegWEn=1, reset=0, AddrA= 0, AddrB= 1, AddrD= 4, DataD=        22, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=110ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 1, AddrD= 3, DataD=        23, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=130ns, RegWEn=1, reset=0, AddrA= 2, AddrB= 1, AddrD= 5, DataD=        24, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# ** Note: $stop    : /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv(65)
+#    Time: 143 ns  Iteration: 0  Instance: /bench_regfile
+# Break in Task xpect at /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv line 65
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:40:19 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 10:40:19 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:40:19 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 10:40:19 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 10:40:56 on Apr 19,2023, Elapsed time: 0:02:30
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" lib_verilog.bench_regfile 
+# Start time: 10:40:56 on Apr 19,2023
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading sv_std.std
+# Loading work.bench_regfile(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# time=0ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=21ns, RegWEn=x, reset=0, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=30ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 2, DataD=        20, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=50ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 3, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=70ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 8, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=90ns, RegWEn=1, reset=0, AddrA= 0, AddrB= 1, AddrD= 4, DataD=        22, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=110ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 1, AddrD= 3, DataD=        23, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=130ns, RegWEn=1, reset=0, AddrA= 2, AddrB= 1, AddrD= 5, DataD=        24, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# ** Note: $stop    : /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv(65)
+#    Time: 143 ns  Iteration: 0  Instance: /bench_regfile
+# Break in Task xpect at /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv line 65
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:41:31 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 10:41:31 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:41:31 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 10:41:32 on Apr 19,2023, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# End time: 10:41:52 on Apr 19,2023, Elapsed time: 0:00:56
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" lib_verilog.bench_regfile 
+# Start time: 10:41:52 on Apr 19,2023
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.bench_regfile(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# time=0ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=21ns, RegWEn=x, reset=0, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=30ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 2, DataD=        20, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=50ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 3, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=70ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 8, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=90ns, RegWEn=1, reset=0, AddrA= 0, AddrB= 1, AddrD= 4, DataD=        22, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=110ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 1, AddrD= 3, DataD=        23, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=130ns, RegWEn=1, reset=0, AddrA= 2, AddrB= 1, AddrD= 5, DataD=        24, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# ATOMIC TEST PASSED
+# time=150ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 8, AddrD= 3, DataD=        20, DataA=        22, DataB=         0
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000018
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=170ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=        22, DataB=         0
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=190ns, RegWEn=1, reset=0, AddrA= 5, AddrB= 1, AddrD= 6, DataD=        18, DataA=        22, DataB=        24
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:44:26 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 10:44:26 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:44:27 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 10:44:27 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 10:44:44 on Apr 19,2023, Elapsed time: 0:02:52
+# Errors: 0, Warnings: 1
+# vsim -voptargs="+acc" lib_verilog.bench_regfile 
+# Start time: 10:44:44 on Apr 19,2023
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.bench_regfile(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# time=0ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=21ns, RegWEn=x, reset=0, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=30ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 2, DataD=        20, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=50ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 3, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=70ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 8, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=90ns, RegWEn=1, reset=0, AddrA= 0, AddrB= 1, AddrD= 4, DataD=        22, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=110ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 1, AddrD= 3, DataD=        23, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=130ns, RegWEn=1, reset=0, AddrA= 2, AddrB= 1, AddrD= 5, DataD=        24, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# ATOMIC TEST PASSED
+# time=150ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 8, AddrD= 3, DataD=        20, DataA=        22, DataB=         0
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000018
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=170ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=        22, DataB=         0
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=190ns, RegWEn=1, reset=0, AddrA= 5, AddrB= 1, AddrD= 6, DataD=        18, DataA=        22, DataB=        24
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:46:46 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 10:46:46 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:46:46 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 10:46:46 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 10:47:03 on Apr 19,2023, Elapsed time: 0:02:19
+# Errors: 0, Warnings: 1
+# vsim -voptargs="+acc" lib_verilog.bench2_riscv 
+# Start time: 10:47:03 on Apr 19,2023
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.bench2_riscv(fast)
+# Loading work.riscv(fast)
+# Loading work.imem(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# Loading work.imm_gen(fast)
+# Loading work.opti(fast)
+# Loading work.branch_comp(fast)
+# Loading work.alu(fast)
+# Loading work.mem(fast)
+# Loading work.wb(fast)
+# Loading work.control_logic(fast)
+# ** UI-Msg (Warning): (vish-4014) No objects found matching '/bench2_riscv/riscv1/mem1/r_mem'.
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:48:30 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 10:48:30 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:48:30 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 10:48:30 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 10:48:47 on Apr 19,2023, Elapsed time: 0:01:44
+# Errors: 0, Warnings: 1
+# vsim -voptargs="+acc" lib_verilog.bench2_riscv 
+# Start time: 10:48:47 on Apr 19,2023
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading sv_std.std
+# Loading work.bench2_riscv(fast)
+# Loading work.riscv(fast)
+# Loading work.imem(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# Loading work.imm_gen(fast)
+# Loading work.opti(fast)
+# Loading work.branch_comp(fast)
+# Loading work.alu(fast)
+# Loading work.mem(fast)
+# Loading work.wb(fast)
+# Loading work.control_logic(fast)
+# ** UI-Msg (Warning): (vish-4014) No objects found matching '/bench2_riscv/riscv1/riscv_regfile1/Registers'.
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:50:11 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 10:50:11 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:50:11 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 10:50:11 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 10:50:28 on Apr 19,2023, Elapsed time: 0:01:41
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" lib_verilog.bench2_riscv 
+# Start time: 10:50:28 on Apr 19,2023
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading sv_std.std
+# Loading work.bench2_riscv(fast)
+# Loading work.riscv(fast)
+# Loading work.imem(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# Loading work.imm_gen(fast)
+# Loading work.opti(fast)
+# Loading work.branch_comp(fast)
+# Loading work.alu(fast)
+# Loading work.mem(fast)
+# Loading work.wb(fast)
+# Loading work.control_logic(fast)
+# ** UI-Msg (Warning): (vish-4014) No objects found matching '/bench2_riscv/riscv1/riscv_regfile1/*'.
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:50:56 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 10:50:56 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:50:56 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 10:50:56 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 10:51:14 on Apr 19,2023, Elapsed time: 0:00:46
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" lib_verilog.bench2_riscv 
+# Start time: 10:51:14 on Apr 19,2023
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading sv_std.std
+# Loading work.bench2_riscv(fast)
+# Loading work.riscv(fast)
+# Loading work.imem(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# Loading work.imm_gen(fast)
+# Loading work.opti(fast)
+# Loading work.branch_comp(fast)
+# Loading work.alu(fast)
+# Loading work.mem(fast)
+# Loading work.wb(fast)
+# Loading work.control_logic(fast)
+# time=      0.0 ns,  
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:53:38 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 10:53:38 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 10:53:38 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 10:53:38 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 10:53:56 on Apr 19,2023, Elapsed time: 0:02:42
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" lib_verilog.bench2_riscv 
+# Start time: 10:53:56 on Apr 19,2023
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading sv_std.std
+# Loading work.bench2_riscv(fast)
+# Loading work.riscv(fast)
+# Loading work.imem(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# Loading work.imm_gen(fast)
+# Loading work.opti(fast)
+# Loading work.branch_comp(fast)
+# Loading work.alu(fast)
+# Loading work.mem(fast)
+# Loading work.wb(fast)
+# Loading work.control_logic(fast)
+# time=      0.0 ns,  
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:04:48 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# ** Error (suppressible): /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(104): (vlog-7033) Variable 'wait_for_data' driven in a combinational block, may not be driven by any other process. See /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(56).
+# ** Error (suppressible): /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(109): (vlog-7033) Variable 'Registers' driven in a combinational block, may not be driven by any other process. See /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(58).
+# ** Error (suppressible): /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(111): (vlog-7033) Variable 'wait_for_data' driven in a combinational block, may not be driven by any other process. See /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(56).
+# ** Error (suppressible): /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(117): (vlog-7033) Variable 'DataA_r' driven in a combinational block, may not be driven by any other process. See /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(91).
+# ** Error (suppressible): /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(122): (vlog-7033) Variable 'DataA_r' driven in a combinational block, may not be driven by any other process. See /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(91).
+# ** Error (suppressible): /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(127): (vlog-7033) Variable 'DataB_r' driven in a combinational block, may not be driven by any other process. See /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(90).
+# ** Error (suppressible): /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(132): (vlog-7033) Variable 'DataB_r' driven in a combinational block, may not be driven by any other process. See /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(90).
+# -- Compiling module riscv
+# -- Compiling module wb
+# End time: 11:04:49 on Apr 19,2023, Elapsed time: 0:00:01
+# Errors: 7, Warnings: 0
+# /home/romain/intelFPGA_pro/22.4/questa_fse/linux_x86_64/vlog failed.
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:16:25 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# ** Error (suppressible): /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(112): (vlog-7033) Variable 'Registers' driven in a combinational block, may not be driven by any other process. See /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(59).
+# -- Compiling module riscv
+# -- Compiling module wb
+# End time: 11:16:25 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# /home/romain/intelFPGA_pro/22.4/questa_fse/linux_x86_64/vlog failed.
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:20:54 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# ** Error: /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(58): (vlog-2730) Undefined variable: 'rst_register'.
+# ** Error: /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(66): (vlog-2730) Undefined variable: 'rst_register'.
+# ** Error: /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(77): (vlog-2730) Undefined variable: 'rst_register'.
+# -- Compiling module riscv
+# -- Compiling module wb
+# End time: 11:20:54 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 3, Warnings: 0
+# /home/romain/intelFPGA_pro/22.4/questa_fse/linux_x86_64/vlog failed.
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:21:13 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 11:21:13 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:21:13 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 11:21:13 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:21:31 on Apr 19,2023, Elapsed time: 0:27:35
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" lib_verilog.bench2_riscv 
+# Start time: 11:21:31 on Apr 19,2023
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.bench2_riscv(fast)
+# Loading work.riscv(fast)
+# Loading work.imem(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# Loading work.imm_gen(fast)
+# Loading work.opti(fast)
+# Loading work.branch_comp(fast)
+# Loading work.alu(fast)
+# Loading work.mem(fast)
+# Loading work.wb(fast)
+# Loading work.control_logic(fast)
+# time=      0.0 ns,  
+# Causality operation skipped due to absence of debug database file
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:23:25 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 11:23:25 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:23:25 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 11:23:25 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:23:42 on Apr 19,2023, Elapsed time: 0:02:11
+# Errors: 0, Warnings: 1
+# vsim -voptargs="+acc" lib_verilog.bench_regfile 
+# Start time: 11:23:42 on Apr 19,2023
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.bench_regfile(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# time=0ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=10ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         0, DataB=         0
+# time=21ns, RegWEn=x, reset=0, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         0, DataB=         0
+# time=30ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 2, DataD=        20, DataA=         x, DataB=         x
+# ATOMIC TEST PASSED
+# time=50ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 3, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=70ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 8, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=90ns, RegWEn=1, reset=0, AddrA= 0, AddrB= 1, AddrD= 4, DataD=        22, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=110ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 1, AddrD= 3, DataD=        23, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=130ns, RegWEn=1, reset=0, AddrA= 2, AddrB= 1, AddrD= 5, DataD=        24, DataA=        22, DataB=         0
+# ATOMIC TEST PASSED
+# time=150ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 8, AddrD= 3, DataD=        20, DataA=        22, DataB=         0
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000018
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=170ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=        22, DataB=        24
+# --------------------------------------------------------------
+# DataB is 00000018 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=190ns, RegWEn=1, reset=0, AddrA= 5, AddrB= 1, AddrD= 6, DataD=        18, DataA=        22, DataB=        22
+# --------------------------------------------------------------
+# DataA is 00000016 and should be 00000000
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000016 and should be 00000000
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=210ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=230ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=        22, DataB=        22
+# ATOMIC TEST PASSED
+# REGFILE TEST PASSED
+# ** Note: $stop    : /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv(103)
+#    Time: 243 ns  Iteration: 0  Instance: /bench_regfile
+# Break in Module bench_regfile at /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv line 103
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:29:42 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# ** Error: /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(69): (vlog-2730) Undefined variable: 'wait_for_data'.
+# -- Compiling module riscv
+# -- Compiling module wb
+# End time: 11:29:42 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# /home/romain/intelFPGA_pro/22.4/questa_fse/linux_x86_64/vlog failed.
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:30:00 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 11:30:00 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:30:01 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 11:30:01 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:30:18 on Apr 19,2023, Elapsed time: 0:06:36
+# Errors: 0, Warnings: 1
+# vsim -voptargs="+acc" lib_verilog.bench_regfile 
+# Start time: 11:30:18 on Apr 19,2023
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.bench_regfile(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# time=0ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=10ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         0, DataB=         0
+# time=21ns, RegWEn=x, reset=0, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         0, DataB=         0
+# time=30ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 2, DataD=        20, DataA=         x, DataB=         x
+# ATOMIC TEST PASSED
+# time=50ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 3, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=70ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 8, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=90ns, RegWEn=1, reset=0, AddrA= 0, AddrB= 1, AddrD= 4, DataD=        22, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=110ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 1, AddrD= 3, DataD=        23, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=130ns, RegWEn=1, reset=0, AddrA= 2, AddrB= 1, AddrD= 5, DataD=        24, DataA=        22, DataB=         0
+# ATOMIC TEST PASSED
+# time=150ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 8, AddrD= 3, DataD=        20, DataA=        22, DataB=         0
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000018
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=170ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=        22, DataB=        24
+# --------------------------------------------------------------
+# DataB is 00000018 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=190ns, RegWEn=1, reset=0, AddrA= 5, AddrB= 1, AddrD= 6, DataD=        18, DataA=        22, DataB=        22
+# --------------------------------------------------------------
+# DataA is 00000016 and should be 00000000
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000016 and should be 00000000
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=210ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=230ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=        22, DataB=        22
+# ATOMIC TEST PASSED
+# REGFILE TEST PASSED
+# ** Note: $stop    : /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv(103)
+#    Time: 243 ns  Iteration: 0  Instance: /bench_regfile
+# Break in Module bench_regfile at /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv line 103
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:37:54 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# ** Error (suppressible): /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv(26): (vlog-12003) Variable 'out' written by continuous and procedural assignments. See /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv(14). 
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# ** Error: /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv(47): (vlog-2110) Illegal reference to net "Old_AddrD_a".
+# -- Compiling module riscv
+# -- Compiling module wb
+# End time: 11:37:54 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+# /home/romain/intelFPGA_pro/22.4/questa_fse/linux_x86_64/vlog failed.
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:38:53 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# ** Error (suppressible): /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv(26): (vlog-12003) Variable 'out' written by continuous and procedural assignments. See /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv(14). 
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# End time: 11:38:53 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# /home/romain/intelFPGA_pro/22.4/questa_fse/linux_x86_64/vlog failed.
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:39:59 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# ** Error (suppressible): /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv(14): (vlog-7061) Variable 'out' driven in an always_ff block, may not be driven by any other process. See /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv(23).
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# End time: 11:39:59 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# /home/romain/intelFPGA_pro/22.4/questa_fse/linux_x86_64/vlog failed.
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:40:52 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 11:40:52 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:40:52 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 11:40:52 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:41:10 on Apr 19,2023, Elapsed time: 0:10:52
+# Errors: 0, Warnings: 1
+# vsim -voptargs="+acc" lib_verilog.bench_regfile 
+# Start time: 11:41:10 on Apr 19,2023
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.bench_regfile(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# time=0ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=10ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         0, DataB=         0
+# time=21ns, RegWEn=x, reset=0, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         0, DataB=         0
+# time=30ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 2, DataD=        20, DataA=         x, DataB=         x
+# ATOMIC TEST PASSED
+# time=50ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 3, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=70ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 8, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=90ns, RegWEn=1, reset=0, AddrA= 0, AddrB= 1, AddrD= 4, DataD=        22, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=110ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 1, AddrD= 3, DataD=        23, DataA=        22, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000016 and should be 00000000
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# ATOMIC TEST PASSED
+# time=130ns, RegWEn=1, reset=0, AddrA= 2, AddrB= 1, AddrD= 5, DataD=        24, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# ATOMIC TEST PASSED
+# time=150ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 8, AddrD= 3, DataD=        20, DataA=        24, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000018 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000018
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=170ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=        24, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000018 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=190ns, RegWEn=1, reset=0, AddrA= 5, AddrB= 1, AddrD= 6, DataD=        18, DataA=        24, DataB=        24
+# --------------------------------------------------------------
+# DataA is 00000018 and should be 00000000
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000018 and should be 00000000
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=210ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=230ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=        24, DataB=        24
+# --------------------------------------------------------------
+# DataA is 00000018 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000018 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# REGFILE TEST PASSED
+# ** Note: $stop    : /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv(103)
+#    Time: 243 ns  Iteration: 0  Instance: /bench_regfile
+# Break in Module bench_regfile at /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv line 103
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:48:55 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 11:48:55 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:48:55 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 11:48:55 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:49:13 on Apr 19,2023, Elapsed time: 0:08:03
+# Errors: 0, Warnings: 1
+# vsim -voptargs="+acc" lib_verilog.bench_regfile 
+# Start time: 11:49:13 on Apr 19,2023
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.bench_regfile(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# time=0ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=10ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         0, DataB=         0
+# time=21ns, RegWEn=x, reset=0, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         0, DataB=         0
+# time=30ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 2, DataD=        20, DataA=         x, DataB=         x
+# ATOMIC TEST PASSED
+# time=50ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 3, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=70ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 8, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=90ns, RegWEn=1, reset=0, AddrA= 0, AddrB= 1, AddrD= 4, DataD=        22, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=110ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 1, AddrD= 3, DataD=        23, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=130ns, RegWEn=1, reset=0, AddrA= 2, AddrB= 1, AddrD= 5, DataD=        24, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# ATOMIC TEST PASSED
+# time=150ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 8, AddrD= 3, DataD=        20, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000018
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=170ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=190ns, RegWEn=1, reset=0, AddrA= 5, AddrB= 1, AddrD= 6, DataD=        18, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=210ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# REGFILE TEST PASSED
+# ** Note: $stop    : /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv(103)
+#    Time: 243 ns  Iteration: 0  Instance: /bench_regfile
+# Break in Module bench_regfile at /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv line 103
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:53:00 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 11:53:00 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:53:00 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 11:53:00 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:53:18 on Apr 19,2023, Elapsed time: 0:04:05
+# Errors: 0, Warnings: 1
+# vsim -voptargs="+acc" lib_verilog.bench_regfile 
+# Start time: 11:53:18 on Apr 19,2023
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.bench_regfile(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# time=0ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         x, DataB=         x
+# time=10ns, RegWEn=x, reset=1, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         0, DataB=         0
+# time=21ns, RegWEn=x, reset=0, AddrA= x, AddrB= x, AddrD= x, DataD=         x, DataA=         0, DataB=         0
+# time=30ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 2, DataD=        20, DataA=         x, DataB=         x
+# ATOMIC TEST PASSED
+# time=50ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 3, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=70ns, RegWEn=0, reset=0, AddrA= 0, AddrB= 1, AddrD= 8, DataD=        21, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=90ns, RegWEn=1, reset=0, AddrA= 0, AddrB= 1, AddrD= 4, DataD=        22, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=110ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 1, AddrD= 3, DataD=        23, DataA=         0, DataB=         0
+# ATOMIC TEST PASSED
+# time=130ns, RegWEn=1, reset=0, AddrA= 2, AddrB= 1, AddrD= 5, DataD=        24, DataA=        22, DataB=         0
+# ATOMIC TEST PASSED
+# time=150ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 8, AddrD= 3, DataD=        20, DataA=        22, DataB=         0
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000018
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=170ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=        22, DataB=        24
+# --------------------------------------------------------------
+# DataB is 00000018 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=190ns, RegWEn=1, reset=0, AddrA= 5, AddrB= 1, AddrD= 6, DataD=        18, DataA=        22, DataB=        22
+# --------------------------------------------------------------
+# DataA is 00000016 and should be 00000000
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000016 and should be 00000000
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=210ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=         0, DataB=         0
+# --------------------------------------------------------------
+# DataA is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON A
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# DataB is 00000000 and should be 00000016
+# REGFILE TEST FAILED ON B
+# --------------------------------------------------------------
+# time=230ns, RegWEn=0, reset=0, AddrA= 2, AddrB= 2, AddrD= 3, DataD=        20, DataA=        22, DataB=        22
+# ATOMIC TEST PASSED
+# REGFILE TEST PASSED
+# ** Note: $stop    : /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv(103)
+#    Time: 243 ns  Iteration: 0  Instance: /bench_regfile
+# Break in Module bench_regfile at /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv line 103
+source compil_romain
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is romain@romain-PORTEGE-R830.
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:55:15 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/3dff.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/rtl/wb.sv 
+# -- Compiling module three_dff
+# -- Compiling module alu
+# -- Compiling module branch_comp
+# -- Compiling module control_logic
+# -- Compiling module imem
+# -- Compiling module imm_gen
+# -- Compiling module mem
+# -- Compiling module opti
+# -- Compiling module riscv_regfile
+# -- Compiling module riscv
+# -- Compiling module wb
+# 
+# Top level modules:
+# 	riscv
+# End time: 11:55:15 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Questa Intel Starter FPGA Edition-64 vlog 2022.1 Compiler 2022.01 Jan 29 2022
+# Start time: 11:55:15 on Apr 19,2023
+# vlog -reportprogress 300 "+acc" -work lib_verilog /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench2_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_alu.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_branch_comp.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_control_logic.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_imm_gen.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_mem.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_opti.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_regfile.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv /home/romain/Documents/2022_2023/Phelma/Miniprojet_RISC_V/bench/bench_wb.sv 
+# -- Compiling module bench2_riscv
+# -- Compiling module bench_alu
+# -- Compiling module bench_branch_comp
+# -- Compiling module bench_control_logic
+# -- Compiling module bench_imem
+# -- Compiling module bench_imm_gen
+# -- Compiling module bench_mem
+# -- Compiling module bench_opti
+# -- Compiling module bench_regfile
+# -- Compiling module bench_riscv
+# -- Compiling module bench_wb
+# 
+# Top level modules:
+# 	bench2_riscv
+# 	bench_alu
+# 	bench_branch_comp
+# 	bench_control_logic
+# 	bench_imem
+# 	bench_imm_gen
+# 	bench_mem
+# 	bench_opti
+# 	bench_regfile
+# 	bench_riscv
+# 	bench_wb
+# End time: 11:55:15 on Apr 19,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# End time: 11:55:33 on Apr 19,2023, Elapsed time: 0:02:15
+# Errors: 0, Warnings: 1
+# vsim -voptargs="+acc" lib_verilog.bench2_riscv 
+# Start time: 11:55:33 on Apr 19,2023
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# Loading sv_std.std
+# Loading work.bench2_riscv(fast)
+# Loading work.riscv(fast)
+# Loading work.imem(fast)
+# Loading work.riscv_regfile(fast)
+# Loading work.three_dff(fast)
+# Loading work.imm_gen(fast)
+# Loading work.opti(fast)
+# Loading work.branch_comp(fast)
+# Loading work.alu(fast)
+# Loading work.mem(fast)
+# Loading work.wb(fast)
+# Loading work.control_logic(fast)
+# time=      0.0 ns,  
