@@ -1,4 +1,4 @@
-# vsim -voptargs=+acc LIB_Miniproj_RISCV.bench_riscv 
+# vsim -do C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/prep_riscv_bench.tcl -voptargs=+acc LIB_Miniproj_RISCV.bench_riscv 
 # Loading sv_std.std
 # Loading LIB_Miniproj_RISCV.bench_riscv
 # Loading LIB_Miniproj_RISCV.riscv
@@ -12,7 +12,7 @@
 # Loading LIB_Miniproj_RISCV.mem
 # Loading LIB_Miniproj_RISCV.wb
 # Loading LIB_Miniproj_RISCV.control_logic
-run
+# do C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/prep_riscv_bench.tcl 
 # ========== Test ADD sans dÿ©bordement  (CLK =          29)
 # Expected value : 0x0000001e @ 0x000000016
 # Read value     : 0xff ff ff ff @ 0x000000016
@@ -115,5 +115,3 @@ run
 # ERROR : Expected value is not the same as the read value
 # 
 # ==========           1 tests passed on          25
-# ** Note: $finish    : C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/bench/bench_riscv.sv(157)
-#    Time: 7650 ns  Iteration: 1  Instance: /bench_riscv

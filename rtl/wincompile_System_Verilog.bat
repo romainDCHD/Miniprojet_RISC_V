@@ -61,7 +61,7 @@ for /l %%i in (0,1,0) do call :display "!BENCH_FILE[%%i]!" %BENCH_PATH%
 
 echo [94m========== Exécution de ModelSim ==========[0m
 REM vsim
-vsim -voptargs=+acc LIB_Miniproj_RISCV.bench_riscv
+vsim -voptargs=+acc -do %PROJECT_PATH%/%BENCH_PATH%/prep_riscv_bench.tcl LIB_Miniproj_RISCV.bench_riscv
 
 goto end
 

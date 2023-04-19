@@ -154,7 +154,7 @@ always @(posedge clk) begin
     if (done_test == NB_TESTS) begin
         $display("");
         $display("========== %d tests passed on %d", passed_test, done_test);
-        $finish;
+        // $finish;
     end
 end
 

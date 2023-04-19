@@ -39,13 +39,18 @@ module imm_gen (
       end
  
     always_comb begin                     // sel_i,imm_i
-        imm = 0;
+        // Checking if the value is negative
+        if (imm_i[31] == 1'b1)
+            imm = 32'hFFFFFFFF;
+        else
+            imm = 0;
+        
         case(sel_i)
             IMM_DEFAULT : imm = 0;
             IMM_REGIMM  : imm[11:0] = imm_i[31:20];
             IMM_LOAD    : imm[11:0] = imm_i[31:20];
             IMM_STORE   : begin
-                imm[4:0]   = imm_i[24:20];
+                imm[4:0]   = imm_i[11:7 ];
                 imm[11:5]  = imm_i[31:25];
             end
             IMM_BRANCH  : begin
