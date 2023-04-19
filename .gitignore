@@ -7,8 +7,9 @@
 # On indique à Git d'ignorer tous les fichier dont le nom commence par ~$
 ~$*
 
-# On indique à Git d'ignorer tous les fichier transcript
-transcript
+# On indique à Git d'ignorer tous les fichier ModelSim
+winconfig/transcript
+winconfig/vsim.wlf
 
 # On indique à Git d'ignorer tous les fichier dont le dossier compilateur/bin
 #compilateur/bin/
@@ -18,7 +19,8 @@ transcript
 libs/*
 
 # On indique à Git d'ignorer le script de compilation
-rtl/wincompile_System_Verilog.bat
+wincompile_System_Verilog.bat
+compil_romain
 
 # pour macos
 .DS_Store

@@ -59,7 +59,7 @@ imem #(n) imem1  (
   );
 
 
-riscv_regfile riscv_regfile1(
+riscv_regfile regfile1(
     .clk_i(clk),
     .rst_i(rst),
     .AddrD_i(inst_l[11:7]),
@@ -110,7 +110,7 @@ alu alu1(
      .alu_result_o(alu_l)
  );
 
-mem #(256) mem1(
+mem #(63) mem1(
     .clk(clk),
     .rst(rst),
     .memRW(MemRW_l),

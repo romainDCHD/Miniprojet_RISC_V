@@ -8,11 +8,12 @@ module bench_riscv();
 timeunit      1ns;
 timeprecision 1ns;
 
-localparam PROG_SIZE = 647, CLK_PERIOD = 20, NB_TESTS = 25; // Size of the program memory (multiple de 4-1)
+localparam PROG_SIZE = 648, CLK_PERIOD = 20, NB_TESTS = 25; // Size of the program memory
 
 int clock_number;                                           // Number of clock cycles since the reset
 int passed_test = 0;                                        // Number of passed tests
 int done_test = 0;                                          // Number of done tests
+int value_ok = 0;                                           // Inidicate if the value read is the expected one
 
 int xpect_clk[2] = {19, 26};                                // Clock numbers when the expected value is read
 
@@ -80,9 +81,7 @@ always
 // Load the program in the instruction memory from a binary file
 initial begin
     // $readmemb("D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V/prog/asm_bench_global.bin", riscv1.imem1.tab_inst);
-    // $readmemb("C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/prog/asm_bench_global.bin", riscv1.imem1.tab_inst);
-    $readmemb("prog/asm_bench_global.bin", riscv1.imem1.tab_inst);
-
+    $readmemb("C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/prog/asm_bench_global.bin", riscv1.imem1.tab_inst);
     clk <= 1'b0  ;
     reset <= 1'b1;
     #21 reset <= 1'b0;
@@ -93,11 +92,55 @@ always @(posedge clk) begin
     clock_number = clock_number + 1;
     /* TODO : tests sur les valeurs initiales des variables */
     for (int i = 0; i < NB_TESTS; i++) begin
-        if (clock_number == test[i].clk) begin
+        if (clock_number == test[i].clk+3) begin      // +3 because of the stages of the pipeline
             $display("========== Test %s (CLK = %d)", test[i].name, clock_number);
             $display("Expected value : 0x%h @ 0x%h", test[i].value, test[i].address);
-            $display("Read value     : 0x%h @ 0x%h", riscv1.mem1.r_mem[test[i].address], test[i].address);
-            if (riscv1.mem1.r_mem[test[i].address] != test[i].value) begin
+            value_ok = 0;
+            case (test[i].size)
+                8: begin
+                    $display(
+                        "Read value     : 0x%h @ 0x%h", 
+                        riscv1.mem1.mem[test[i].address], 
+                        test[i].address
+                    );
+                    if (riscv1.mem1.mem[test[i].address  ][7:0]  == test[i].value[7:0]) begin
+                        value_ok = 1;
+                    end
+                end
+                16: begin
+                    $display(
+                        "Read value     : 0x%h %h @ 0x%h", 
+                        riscv1.mem1.mem[test[i].address+1], 
+                        riscv1.mem1.mem[test[i].address], 
+                        test[i].address
+                    );
+                    if (riscv1.mem1.mem[test[i].address  ][7:0]  == test[i].value[7:0] &&
+                        riscv1.mem1.mem[test[i].address+1][7:0]  == test[i].value[15:8]) begin
+                        value_ok = 1;
+                    end
+                end
+                32: begin
+                    $display(
+                        "Read value     : 0x%h %h %h %h @ 0x%h", 
+                        riscv1.mem1.mem[test[i].address+3], 
+                        riscv1.mem1.mem[test[i].address+2], 
+                        riscv1.mem1.mem[test[i].address+1], 
+                        riscv1.mem1.mem[test[i].address], 
+                        test[i].address
+                    );
+                    if (riscv1.mem1.mem[test[i].address  ][7:0]  == test[i].value[7:0] &&
+                        riscv1.mem1.mem[test[i].address+1][7:0]  == test[i].value[15:8] &&
+                        riscv1.mem1.mem[test[i].address+2][7:0]  == test[i].value[23:16] &&
+                        riscv1.mem1.mem[test[i].address+3][7:0]  == test[i].value[31:24]) begin
+                        value_ok = 1;
+                    end
+                end
+                default: begin
+                    $display("ERROR : Wrong size");
+                    $finish;
+                end
+            endcase
+            if (value_ok == 0) begin
                 $display("ERROR : Expected value is not the same as the read value");
                 // $finish;
             end
