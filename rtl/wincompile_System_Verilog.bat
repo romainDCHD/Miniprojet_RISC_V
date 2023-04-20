@@ -2,8 +2,8 @@
 chcp 65001
 setlocal enabledelayedexpansion
 
-set PROJECT_PATH=C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V
-REM set PROJECT_PATH=D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V
+rem set PROJECT_PATH=C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V
+set PROJECT_PATH=D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V
 set WINCONFIG_PATH=winconfig
 set RTL_PATH=rtl
 set BENCH_PATH=bench
@@ -61,7 +61,8 @@ for /l %%i in (0,1,0) do call :display "!BENCH_FILE[%%i]!" %BENCH_PATH%
 
 echo [94m========== Exécution de ModelSim ==========[0m
 REM vsim
-vsim -voptargs=+acc -do %PROJECT_PATH%/%BENCH_PATH%/prep_riscv_bench.tcl LIB_Miniproj_RISCV.bench_riscv
+:: On utilise la commande do au lieu de l'appeler directement pour éviter les problèmes de chemin
+vsim -voptargs=+acc -do "do {%PROJECT_PATH%/%BENCH_PATH%/prep_riscv_bench.tcl}" LIB_Miniproj_RISCV.bench_riscv
 
 goto end
 
