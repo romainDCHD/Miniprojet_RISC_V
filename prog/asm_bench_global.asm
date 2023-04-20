@@ -40,7 +40,7 @@
 ;g = VALUE7; \
 ;h = VALUE8; \
 ;i = VALUE9;
-;
+; ATTENTION : les 3 premiere ligne du code assembleur correspondant a la ligne en C ci-dessous ont ete modifie !
 ;int main() {
 ;
 ;    //----- SB
@@ -433,8 +433,8 @@
 ;        .attribute stack_align, 16
 
 main:
-        addi    sp,sp,-48
-        sw      s0,44(sp)
+        addi    sp,sp,0
+        sw      s0,48(sp)
         addi    s0,sp,48
         li      a5,14
         sb      a5,-17(s0)

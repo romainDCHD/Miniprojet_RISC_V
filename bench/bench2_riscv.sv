@@ -8,7 +8,7 @@ module bench2_riscv();
 timeunit      1ns;
 timeprecision 1ns;
 
-localparam PROG_SIZE = 7, CLK_PERIOD = 20; // Size of the program memory (multiple de 4-1)
+localparam PROG_SIZE = 11, CLK_PERIOD = 20; // Size of the program memory (multiple de 4-1)
 
 bit clk;
 bit reset;
@@ -29,7 +29,7 @@ riscv #(PROG_SIZE) riscv1 (
 initial
     begin
       //permet de charger le fichier binaire dans la mémoire instruction
-      $readmemb("prog/asm_add.bin", riscv1.imem1.tab_inst);
+      $readmemb("prog/asm_add_pb.bin", riscv1.imem1.tab_inst);
       clk <= 1'b0  ;
       reset <= 1'b1;
       #21 reset <= 1'b0;

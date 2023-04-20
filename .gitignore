@@ -12,8 +12,8 @@
 winconfig/transcript
 winconfig/vsim.wlf
 #linux
-transcript
-vsim.wlf
+# transcript
+# vsim.wlf
 
 # On indique à Git d'ignorer tous les fichier dont le dossier compilateur/bin
 #compilateur/bin/
