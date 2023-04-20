@@ -568,31 +568,31 @@ int asm_line_write(list_t* insn_list, char* filename) {
                 case TYPE_LOAD:
                     switch (line->insn_line.insn.insn) {
                         case LB:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            print_binary(file, line->insn_line.imm, 12);                 // 31-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", LB_FUNCT3);                              // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case LH:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            print_binary(file, line->insn_line.imm, 12);                 // 31-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", LH_FUNCT3);                              // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case LW:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            print_binary(file, line->insn_line.imm, 12);                 // 31-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", LW_FUNCT3);                              // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case LBU:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            print_binary(file, line->insn_line.imm, 12);                 // 31-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", LBU_FUNCT3);                             // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
                         break;
                         case LHU:
-                            print_binary(file, line->insn_line.imm, 12);                // 31-20
+                            print_binary(file, line->insn_line.imm, 12);                 // 31-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", LHU_FUNCT3);                             // 14-12
                             fprintf(file, "%s", reg2code(line->insn_line.rd));           // 11-7
@@ -606,25 +606,25 @@ int asm_line_write(list_t* insn_list, char* filename) {
                 case TYPE_STORE:
                     switch (line->insn_line.insn.insn) {
                         case SB:
-                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 7);   // 31-25
+                            print_binary(file, (line->insn_line.imm >> 5), 7);           // 31-25
                             fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", SB_FUNCT3);                              // 14-12
-                            print_binary(file, line->insn_line.imm & 0x1F, 5);          // 11-7
+                            print_binary(file, line->insn_line.imm & 0x1F, 5);           // 11-7
                         break;
                         case SH:
-                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 7);   // 31-25
+                            print_binary(file, (line->insn_line.imm >> 5), 7);           // 31-25
                             fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", SH_FUNCT3);                              // 14-12
-                            print_binary(file, line->insn_line.imm & 0x1F, 5);          // 11-7
+                            print_binary(file, line->insn_line.imm & 0x1F, 5);           // 11-7
                         break;
                         case SW:
-                            print_binary(file, (line->insn_line.imm >> 5) & 0x3F, 7);   // 31-25
+                            print_binary(file, (line->insn_line.imm >> 5), 7);           // 31-25
                             fprintf(file, "%s", reg2code(line->insn_line.rs2));          // 24-20
                             fprintf(file, "%s", reg2code(line->insn_line.rs1));          // 19-15
                             fprintf(file, "%s", SW_FUNCT3);                              // 14-12
-                            print_binary(file, line->insn_line.imm & 0x1F, 5);          // 11-7
+                            print_binary(file, line->insn_line.imm & 0x1F, 5);           // 11-7
                         break;
                         default:
 

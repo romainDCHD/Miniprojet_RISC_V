@@ -6,6 +6,7 @@ set gcc_args=-Wall -Wextra -g
 set prog[0].nam=rv32icomp
 set prog[0].dep=src/string.c src/list.c src/char_group.c src/regexp.c src/unitest.c src/lexem.c src/parser.c src/asm_line.c
 set prog[0].dir=prog/
+REM set prog[0].arg=../prog/asm_bench_global.asm database.txt ../prog/asm_bench_global.bin -v
 set prog[0].arg=test.asm database.txt test2.bin -v
 
 :start

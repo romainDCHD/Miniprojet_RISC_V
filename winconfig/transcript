@@ -115,3 +115,5 @@
 # ERROR : Expected value is not the same as the read value
 # 
 # ==========           1 tests passed on          25
+# WARNING: No extended dataflow license exists
+# dfAddDataflowFromWave: (vish-4014) No objects found matching 'wb'.
