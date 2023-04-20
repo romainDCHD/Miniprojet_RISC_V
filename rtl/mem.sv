@@ -32,6 +32,7 @@ module mem #(parameter  n=20) (
         else begin
             data_o    <= data_r;
             alu_o     <= addr_i;
+            reset_sig <= 0;
         end
     end
     
@@ -65,16 +66,11 @@ module mem #(parameter  n=20) (
                     data_r[7:0]   = mem[addr_i+3];
                 end
             end
-            // We mask the data according to the the value of dataSec_i
-            case (dataSec_i)
-                2'b00: data_r[31:8] = 24'h000000;  // Byte
-                2'b01: data_r[31:16] = 16'h0000;   // Half word
-                2'b10: data_r[31:24] = 8'h00;      // Word
-                default: begin
-                    /* No mask */
-                end
-            endcase   
         
+            // We mask the data according to the the value of dataSec_i
+
+        else 
+        begin
         //----- Write
             case (dataSec_i)
                 // Byte
@@ -96,72 +92,14 @@ module mem #(parameter  n=20) (
                 end
             endcase
         end
-    end
-endmodule   
-/*
-
-
-    //----------sortie de memory/execute de manière synchrone -------
-    always_ff @(posedge clk)
-    begin
-        auto_ff = 0;
-        if(rst) 
-        begin
-            data_o <= 32'hffffffff;
-            alu_o <= 32'b0;
-            for(i = 0; i<=n;i=i+1) r_mem_f[i] <= 8'hff;
-            auto_ff = 1;
-        end
-        else 
-        begin
-            data_o <= data_r;
-            alu_o <= addr_i;
-        end
-    end
-    
-    //----------l'accès à la mémoire-----------------
-   
-
-    always_comb// memRW, dataW_i, addr
-        begin
-        if(auto_ff)
-        begin
-            for(k = 0; k<=n;k=k+1) r_mem[i] = r_mem_f[i];
-        end
-        else begin
-            for(k = 0; k<=n;k=k+1) r_mem[i] = r_mem_f[i];            
-            if(memRW == 1'b1) 
-            begin
-                if(addr_i +1 >n)        data_r[31:24] = 8'hff;                  
-                else                    data_r[31:24] = r_mem[ addr_i ];
-                if(addr_i +1 >n)        data_r[23:16] = 8'hff;
-                else                    data_r[23:16] = r_mem[ addr_i + 1];
-
-                if(addr_i +2 >n)        data_r[15:8] = 8'hff;
-                else                    data_r[15:8] = r_mem[ addr_i + 2];
-
-                if(addr_i +3 >n)        data_r[7:0] = 8'hff;
-                else                    data_r[7:0] = r_mem[ addr_i + 3];      
-            end
-            //ecriture
-            else 
-            begin
-                data_r <= 32'hffffffff;
-                if(dataSec_i == 2'b00) r_mem[ addr_i ] = dataW_i[7:0];
-                else if(dataSec_i == 2'b01)
-                begin
-                    r_mem[ addr_i ] = dataW_i[15:8];
-                    if(addr_i + 1 <= n) r_mem[ addr_i + 1] = dataW_i[7:0];
+            case (dataSec_i)
+                2'b00: data_r[31:8] = 24'h000000;  // Byte
+                2'b01: data_r[31:16] = 16'h0000;   // Half word
+                2'b10: data_r[31:24] = 8'h00;      // Word
+                default: begin
+                    /* No mask */
                 end
-                else if(dataSec_i == 2'b10)
-                begin
-                    r_mem[ addr_i ] = dataW_i[31:24];
-                    if(addr_i + 1 <= n) r_mem[ addr_i + 1] = dataW_i[23:16];
-                    if(addr_i+2<=n) r_mem[addr_i + 2] = dataW_i[15:8];
-                    if(addr_i+3<=n) r_mem[addr_i + 3] = dataW_i[7:0];
-                end  
-            end
-        end
+            endcase   
+    end
     end
 endmodule   
-*/
