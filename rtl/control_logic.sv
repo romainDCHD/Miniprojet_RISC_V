@@ -142,7 +142,7 @@ module control_logic (
                     // Check if the current instruction require the second register
                     if (inst_reg0[6:0] == `INST_BRANCH || inst_reg0[6:0] == `INST_STORE || inst_reg0[6:0] == `INST_REGREG) begin
                         // Check dependency on the second register
-                        if (inst_reg1[11:7] == inst_reg0[24:20]) begin
+                        if (inst_reg0[11:7] == inst_reg1[24:20]) begin
                             B1_sel_o = 1'b1;     // Select the ALU output
                         end
                     end

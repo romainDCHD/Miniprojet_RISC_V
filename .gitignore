@@ -8,8 +8,12 @@
 ~$*
 
 # On indique à Git d'ignorer tous les fichier ModelSim
+# windows
 winconfig/transcript
 winconfig/vsim.wlf
+#linux
+transcript
+vsim.wlf
 
 # On indique à Git d'ignorer tous les fichier dont le dossier compilateur/bin
 #compilateur/bin/
@@ -20,7 +24,7 @@ libs/*
 
 # On indique à Git d'ignorer le script de compilation
 wincompile_System_Verilog.bat
-compil_romain
+
 
 # pour macos
 .DS_Store
