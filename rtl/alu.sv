@@ -25,7 +25,8 @@
         OUT_ZERO,
         SRA,
         LUI,		// Just take the immediate value (already returned on the right format)
-        SUB
+        SUB,
+        AUIPC
     } alu_op_t;
 
 reg [31:0]      result_r;
@@ -52,6 +53,10 @@ begin
        SUB : 
        begin
             result_r      = (alu_a_i - alu_b_i);
+       end
+       AUIPC :
+       begin
+            result_r      = (alu_a_i + alu_b_i << 12);
        end
        //----------------------------------------------
        // Logical
