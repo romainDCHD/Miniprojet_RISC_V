@@ -95,7 +95,6 @@ module mem #(parameter  n=20) (
             case (dataSec_i)
                 2'b00: data_r[31:8] = 24'h000000;  // Byte
                 2'b01: data_r[31:16] = 16'h0000;   // Half word
-                2'b10: data_r[31:24] = 8'h00;      // Word
                 default: begin
                     /* No mask */
                 end
