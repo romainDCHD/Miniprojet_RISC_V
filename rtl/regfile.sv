@@ -23,6 +23,8 @@ module riscv_regfile(
     //definition of the registers
     reg [31:0] Registers[31:0];
     
+	logic [ 31:0]  DataA_r;
+	logic [ 31:0]  DataB_r;
 
     //--------------------------------
     //keep the value of AddrD 3 clk
@@ -40,8 +42,8 @@ module riscv_regfile(
 	//-----------------------------------------------------------------
     // Combinational read
     //-----------------------------------------------------------------
-	assign DataA_o = Registers[AddrA_i];
-	assign DataB_o = Registers[AddrB_i];
+	assign DataA_r = Registers[AddrA_i];
+	assign DataB_r = Registers[AddrB_i];
 
 
 
@@ -64,6 +66,8 @@ module riscv_regfile(
 				begin
 					Registers[Old_AddrD]   <= DataD_i; 
 				end
+				DataA_o   <= DataA_r;
+				DataB_o   <= DataB_r;
 			end   
 		end
 endmodule
