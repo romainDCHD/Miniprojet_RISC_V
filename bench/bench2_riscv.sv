@@ -29,7 +29,7 @@ riscv #(PROG_SIZE) riscv1 (
 initial
     begin
       //permet de charger le fichier binaire dans la mémoire instruction
-      $readmemb("prog/asm_add_pb.bin", riscv1.imem1.tab_inst);
+      $readmemb("prog/asm_add.bin", riscv1.imem1.tab_inst);
       clk <= 1'b0  ;
       reset <= 1'b1;
       #21 reset <= 1'b0;

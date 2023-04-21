@@ -135,7 +135,7 @@ module control_logic (
             //----- Instruction decoding
             if (inst_reg0[6:0] != `INST_NOP) begin
                 // Detecting dependencies, begin to check if the previous instruction has a result
-                if (inst_reg1[6:0] != `INST_BRANCH && inst_reg1[6:0] != `INST_STORE) begin
+                if (inst_reg1[6:0] != `INST_BRANCH  && inst_reg1[6:0] != `INST_NOP  && inst_reg1[6:0] != `INST_BRANCH && inst_reg1[6:0] != `INST_STORE) begin
                     // Check dependency on the first register
                     if (inst_reg1[11:7] == inst_reg0[19:15]) begin
                         A1_sel_o = 1'b1;     // Select the ALU output

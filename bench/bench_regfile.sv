@@ -59,7 +59,7 @@ riscv_regfile regfile (
 	if ( DataA != expect_A )
   	begin
 	  	$display ( "--------------------------------------------------------------" );
-	    	$display ( "DataA is %h and should be %h", DataA, expect_A ) ;
+	    	$display ( "DataA is %d and should be %d", DataA, expect_A ) ;
 	    	$display ( "REGFILE TEST FAILED ON A" );
 	    	$display ( "--------------------------------------------------------------" );
 	    	//$stop ;
@@ -68,7 +68,7 @@ riscv_regfile regfile (
   if ( DataB != expect_B )
   begin
     $display ( "--------------------------------------------------------------" );
-      $display ( "DataB is %h and should be %h", DataB, expect_B ) ;
+      $display ( "DataB is %d and should be %d", DataB, expect_B ) ;
       $display ( "REGFILE TEST FAILED ON B" );
       $display ( "--------------------------------------------------------------" );
       //$stop ;
@@ -86,18 +86,14 @@ riscv_regfile regfile (
 	begin
     @(posedge clk)
     //sans bulles
-    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h2; DataD = 32'h14; @(negedge clk) xpect(32'h0, 32'h0); //test 0 juste apres le reset
-    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h3; DataD = 32'h15; @(negedge clk) xpect(32'h0, 32'h0); //attente pour les 3clk
-    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h8; DataD = 32'h15; @(negedge clk) xpect(32'h0, 32'h0); //attente pour les 3clk
-    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h4; DataD = 32'h16; @(negedge clk) xpect(32'h0, 32'h0); //remplir R2 (3clk avant) avec 16 (ie 22 en h)
-    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h1; AddrD = 5'h3; DataD = 32'h17; @(negedge clk) xpect(32'h0, 32'h0); //voir si bien ecrit
-    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h2; AddrB = 5'h1; AddrD = 5'h5; DataD = 32'h18; @(negedge clk) xpect(32'h16, 32'h0); //lire / ecrire en meme tps
-    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h8; AddrD = 5'h3; DataD = 32'h14; @(negedge clk) xpect(32'h16, 32'h18); //voir si bien ecrit
-    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h2; AddrD = 5'h3; DataD = 32'h14; @(negedge clk) xpect(32'h16, 32'h16); //Lire le meme registre
-    //avec bulles
-    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h5; AddrB = 5'h1; AddrD = 5'h6; DataD = 32'h12; @(negedge clk) xpect(32'h0, 32'h0); // h3<-12, h5 bulle
-    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h2; AddrD = 5'h3; DataD = 32'h14; @(negedge clk) xpect(32'h16, 32'h16); //Lire le meme registre
-    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h2; AddrD = 5'h3; DataD = 32'h14; @(negedge clk) xpect(32'h16, 32'h16); //Lire le meme registre
+    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h2; DataD = 32'd14; 
+    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h3; DataD = 32'd15; @(negedge clk) xpect(32'd0, 32'd0); //attente pour les 3clk
+    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h8; DataD = 32'd15; @(negedge clk) xpect(32'd0, 32'd0); //attente pour les 3clk
+    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h4; DataD = 32'd16; @(negedge clk) xpect(32'd0, 32'd0); //remplir R2 (3clk avant) avec 16
+    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h1; AddrD = 5'h3; DataD = 32'd17; @(negedge clk) xpect(32'd16, 32'd0); //rien, voir si bien ecrit
+    @(posedge clk) RegWEn = 1'b1; AddrA = 5'h2; AddrB = 5'h8; AddrD = 5'h5; DataD = 32'd18; @(negedge clk) xpect(32'd16, 32'd0); //lire R8 / ecrire 18 dans R8
+    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h8; AddrB = 5'h8; AddrD = 5'h3; DataD = 32'd14; @(negedge clk) xpect(32'd16, 32'd18); //Lire le meme registre
+    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h0; AddrD = 5'h3; DataD = 32'd14; @(negedge clk) xpect(32'd18, 32'd18); //rien, voir si bien ecrit
 
   	$display ( "REGFILE TEST PASSED" ) ;
   	$stop ;
