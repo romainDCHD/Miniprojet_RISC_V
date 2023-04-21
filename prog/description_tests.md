@@ -36,8 +36,9 @@
    - LUI de  6 dans le reg 2
    **pour voir si le branchement est pris**
    - AUIPC de 32770 et PC dans R3
+   - LUI de  4 dans le reg 2
    **comparaison en elle même**
-   - BGE de -5 d'offset tout le temps pris
+   - BGE avant le auicp tout le temps pris
 
  `avancement`: écrit
 
