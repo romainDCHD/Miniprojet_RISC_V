@@ -14,8 +14,8 @@ logic [31:0] pc_l;                       // Program counter
 logic [31:0] inst_l;                     // Instruction
 
 // Multiplexers selectors
-logic        A1_sel_l;                   // Choose between the register and ALU
-logic        B1_sel_l;                   // Choose between the register and ALU
+logic [1:0]  A1_sel_l;                   // Choose between the register and ALU
+logic [1:0]  B1_sel_l;                   // Choose between the register and ALU
 logic        A2_sel_l;                   // Choose between the previous multiplexer and PC
 logic        B2_sel_l;                   // Choose between the previous multiplexer and the immediate value
 logic        pc_sel_l;                   // Choose between PC+4 or the one that come from the ALU
@@ -39,14 +39,14 @@ logic        BrLt_l;                     // Branch if less than
 
 // ALU
 logic [31:0] alu_l;                      // ALU output
-logic [3:0]  ALUSel_l;                   // Choose what to do in the ALU
+logic [ 3:0]  ALUSel_l;                   // Choose what to do in the ALU
 logic [31:0] aluA_l;                     // First input of the ALU
 logic [31:0] aluB_l;                     // Second input of the ALU
 
 // Memory
 logic [31:0] dataW_l;                    // Data to write in the memory
 logic        MemRW_l;                    // Enable the writing in the memory
-logic [1:0]  dataSize_l;                 // Choose the size of the data to read or write in the memory
+logic [ 1:0]  dataSize_l;                 // Choose the size of the data to read or write in the memory
 logic [31:0] mem_l;                      // Data read from the memory
 logic [31:0] alu_mem_l;                  // ALU output after the memory stage
 
@@ -94,6 +94,7 @@ opti opti1(
     .alu_i(alu_l),
     .pc_i(pc_l),
     .imm_i(Imm_l),
+    .wb_i(datad_l),
     .reg1_o(aluA_l),
     .reg2_o(aluB_l),
     .dataW_o(dataW_l)

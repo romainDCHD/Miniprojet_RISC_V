@@ -92,7 +92,7 @@ riscv_regfile regfile (
     @(posedge clk) RegWEn = 1'b1; AddrA = 5'h0; AddrB = 5'h1; AddrD = 5'h4; DataD = 32'd16; @(negedge clk) xpect(32'd0, 32'd0); //remplir R2 (3clk avant) avec 16
     @(posedge clk) RegWEn = 1'b0; AddrA = 5'h2; AddrB = 5'h1; AddrD = 5'h3; DataD = 32'd17; @(negedge clk) xpect(32'd16, 32'd0); //rien, voir si bien ecrit
     @(posedge clk) RegWEn = 1'b1; AddrA = 5'h2; AddrB = 5'h8; AddrD = 5'h5; DataD = 32'd18; @(negedge clk) xpect(32'd16, 32'd0); //lire R8 / ecrire 18 dans R8
-    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h8; AddrB = 5'h8; AddrD = 5'h3; DataD = 32'd14; @(negedge clk) xpect(32'd16, 32'd18); //Lire le meme registre
+    @(posedge clk) RegWEn = 1'b0; AddrA = 5'h8; AddrB = 5'h8; AddrD = 5'h6; DataD = 32'd14; @(negedge clk) xpect(32'd16, 32'd18); //Lire le meme registre
     @(posedge clk) RegWEn = 1'b0; AddrA = 5'h0; AddrB = 5'h0; AddrD = 5'h3; DataD = 32'd14; @(negedge clk) xpect(32'd18, 32'd18); //rien, voir si bien ecrit
 
   	$display ( "REGFILE TEST PASSED" ) ;

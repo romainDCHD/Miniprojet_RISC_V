@@ -5,33 +5,26 @@
 module opti ( 
     input   logic        clk,
     input   logic        rst,
-    // MUX
-    input   logic        A1_sel_i,
-    input   logic        B1_sel_i,
-    input   logic        A2_sel_i,
-    input   logic        B2_sel_i,
-    // Branch_comp
-    input   logic        BrUn_i,
-    output  logic        BrEq_o,
-    output  logic        BrLT_o,
-    // Data from the regfile
+    input   logic  [1:0] A1_sel_i,  // MUX 1
+    input   logic  [1:0] B1_sel_i,  // MUX 1
+    input   logic        A2_sel_i,  // MUX 2
+    input   logic        B2_sel_i,  // MUX 2
+    input   logic        BrUn_i,    // to know if unsigned comparision or not
     input         [31:0] reg_rs1_i,
-    input         [31:0] reg_rs2_i,
-    // Data from the ALU
-    input         [31:0] alu_i,
-    // Next programm counter
-    input         [31:0] pc_i,
-    // Immediate value
-    input         [31:0] imm_i,
-    // Data send to the ALU
-    output  logic [31:0] reg1_o,
-    output  logic [31:0] reg2_o,
-    // Data send to the Memory
-    output  logic [31:0] dataW_o
+    input         [31:0] reg_rs2_i, // Data from the regfile
+    input         [31:0] alu_i,     // Data from the ALU
+    input         [31:0] pc_i,      // Next programm counter
+    input         [31:0] imm_i,     // Immediate value
+    input         [31:0] wb_i,        // write back for the dependencies
+    //output
+    output  logic        BrEq_o,    // result of comparison to control logic
+    output  logic        BrLT_o,
+    output  logic [31:0] reg1_o,    // Data send to the ALU
+    output  logic [31:0] reg2_o,    // Data send to the ALU
+    output  logic [31:0] dataW_o    // Data send to the Memory
     );
 
     //== Variable Declaration ======================================================
-    // logic [31:0] dataW;                  // 
     logic [31:0] Br1;
     logic [31:0] Br2;
     
@@ -50,28 +43,21 @@ module opti (
     always_comb // every input except clk and reset
     begin //combinatory part that represents the logic of the optimization
 
-        /*case({A1_sel_i,A2_sel_i})
-            2'b00: reg1_o = reg_rs1_i;
-            2'b10: reg1_o = alu_i;
-            default: reg1_o = pc_i;
-        endcase
-        case({B1_sel_i,B2_sel_i})
-            2'b00: reg2_o = reg_rs2_i;
-            2'b10: reg2_o = alu_i;
-            default: reg2_o = imm_i;
-        endcase*/
-
         // Default output values
-        reg1_o = 31'b0;
-        reg2_o = 31'b0;
+        reg1_o = 0;
+        reg2_o = 0;
         // The combinatory part of the module
         case(A1_sel_i)
-            1'b0: Br1 = reg_rs1_i;
-            1'b1: Br1 = alu_i;
+            2'b00: Br1 = reg_rs1_i;
+            2'b01: Br1 = alu_i;
+            2'b10: Br1 = wb_i;
+            2'b11: Br1 = reg_rs1_i;
         endcase
         case(B1_sel_i)
-            1'b0: Br2 = reg_rs2_i;
-            1'b1: Br2 = alu_i;
+            2'b00: Br2 = reg_rs2_i;
+            2'b01: Br2 = alu_i;
+            2'b10: Br2 = wb_i;
+            2'b11: Br2 = reg_rs2_i;
         endcase
         case(A2_sel_i)
             1'b0: reg1_o = Br1;

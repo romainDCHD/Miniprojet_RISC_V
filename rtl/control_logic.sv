@@ -15,8 +15,8 @@ module control_logic (
     input  logic        br_eq_i,         // Equal output of the branch comparator block
     input  logic        br_lt_i,         // Less than output of the branch comparator block
     // Multiplexers
-    output logic        A1_sel_o,        // Select between the ALU previous output and the first register
-    output logic        B1_sel_o,        // Select between the ALU previous output and the second register
+    output logic [1:0]  A1_sel_o,        // Select between the ALU previous output and the first register
+    output logic [1:0]  B1_sel_o,        // Select between the ALU previous output and the second register
     output logic        A2_sel_o,        // Select between the PC and the first mux output
     output logic        B2_sel_o,        // Select between the immediate value and the second mux output
     // ALU
@@ -104,8 +104,8 @@ module control_logic (
     always_comb begin
         //----- Default values
         imm_sel_o = IMM_DEFAULT;         // Select the default immediate value
-        A1_sel_o = 1'b0;                 // Select the first register
-        B1_sel_o = 1'b0;                 // Select the second register
+        A1_sel_o = 2'b00;                 // Select the first register
+        B1_sel_o = 2'b00;                 // Select the second register
         A2_sel_o = 1'b0;                 // Select the first register
         B2_sel_o = 1'b0;                 // Select the second register
         alu_op_o = OUT_ZERO;             // ALU operation is NOP
@@ -134,17 +134,31 @@ module control_logic (
 
             //----- Instruction decoding
             if (inst_reg0[6:0] != `INST_NOP) begin
-                // Detecting dependencies, begin to check if the previous instruction has a result
+                // Detecting dependencies for 1 clk, begin to check if the previous instruction has a result
                 if (inst_reg1[6:0] != `INST_BRANCH  && inst_reg1[6:0] != `INST_NOP  && inst_reg1[6:0] != `INST_BRANCH && inst_reg1[6:0] != `INST_STORE) begin
                     // Check dependency on the first register
                     if (inst_reg1[11:7] == inst_reg0[19:15]) begin
-                        A1_sel_o = 1'b1;     // Select the ALU output
+                        A1_sel_o = 2'b01;     // Select the ALU output
                     end
                     // Check if the current instruction require the second register
                     if (inst_reg0[6:0] == `INST_BRANCH || inst_reg0[6:0] == `INST_STORE || inst_reg0[6:0] == `INST_REGREG) begin
                         // Check dependency on the second register
                         if (inst_reg0[24:20] == inst_reg1[11:7]) begin
-                            B1_sel_o = 1'b1;     // Select the ALU output
+                            B1_sel_o = 2'b01;     // Select the ALU output
+                        end
+                    end
+                end
+                // Detecting dependencies for 2 clk, begin to check if the previous instruction has a result
+                if (inst_reg2[6:0] != `INST_BRANCH  && inst_reg2[6:0] != `INST_NOP  && inst_reg2[6:0] != `INST_BRANCH && inst_reg2[6:0] != `INST_STORE) begin
+                    // Check dependency on the first register
+                    if (inst_reg2[11:7] == inst_reg0[19:15]) begin
+                        A1_sel_o = 2'b10;     // Select the ALU output
+                    end
+                    // Check if the current instruction require the second register
+                    if (inst_reg0[6:0] == `INST_BRANCH || inst_reg0[6:0] == `INST_STORE || inst_reg0[6:0] == `INST_REGREG) begin
+                        // Check dependency on the second register
+                        if (inst_reg0[24:20] == inst_reg2[11:7]) begin
+                            B1_sel_o = 2'b10;     // Select the ALU output
                         end
                     end
                 end

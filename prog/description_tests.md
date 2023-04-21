@@ -18,12 +18,14 @@
    `but`:  tester add avec dep. de données:
    **dépendance d'un cran**
    - effectuer un load immédiat de 2 dans le registre 0
-   - LUI de 4 dans le reg 2
-   - faire un add de R0 et R1 et le stocker dans R2 direct après (donc avec dépendance de données)
-   **dépendance de deu crans**
+   - LUI de 4 dans le reg 1
+   - faire un add de R0 et R1 et le stocker dans R2 
+   - faire un add de R0 et R2 et le stocker dans R3 
+   **dépendance de 2 crans**
    - LUI de 2 dans le registre 3
-   - LUI de 6 dans le reg 2
-   - faire un add de R2 et R3 et le stocker dans R3 **ça marche??**
+   - faire un add de R0 et R3 et le stocker dans R4 
+   - faire un add de R0 et R4 et le stocker dans R5 
+   - faire un add de R0 et R5 et le stocker dans R6 
 
    `avancement`: écrit 
 
