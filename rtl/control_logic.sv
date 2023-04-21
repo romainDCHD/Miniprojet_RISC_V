@@ -149,7 +149,7 @@ module control_logic (
                     end
                 end
                 // Detecting dependencies for 2 clk, begin to check if the previous instruction has a result
-                if (inst_reg2[6:0] != `INST_BRANCH  && inst_reg2[6:0] != `INST_NOP  && inst_reg2[6:0] != `INST_BRANCH && inst_reg2[6:0] != `INST_STORE) begin
+                else if (inst_reg2[6:0] != `INST_BRANCH  && inst_reg2[6:0] != `INST_NOP  && inst_reg2[6:0] != `INST_BRANCH && inst_reg2[6:0] != `INST_STORE) begin
                     // Check dependency on the first register
                     if (inst_reg2[11:7] == inst_reg0[19:15]) begin
                         A1_sel_o = 2'b10;     // Select the ALU output
@@ -158,7 +158,7 @@ module control_logic (
                     if (inst_reg0[6:0] == `INST_BRANCH || inst_reg0[6:0] == `INST_STORE || inst_reg0[6:0] == `INST_REGREG) begin
                         // Check dependency on the second register
                         if (inst_reg0[24:20] == inst_reg2[11:7]) begin
-                            B1_sel_o = 2'b10;     // Select the ALU output
+                            B1_sel_o = 2'b10;     // Select the wb output
                         end
                     end
                 end
