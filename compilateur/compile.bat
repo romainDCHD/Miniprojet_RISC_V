@@ -1,7 +1,8 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set gcc_args=-Wall -Wextra -g
+REM set gcc_args=-Wall -Wextra -g
+set gcc_args=-Wall -Wextra -O3
 
 set prog[0].nam=rv32icomp
 set prog[0].dep=src/string.c src/list.c src/char_group.c src/regexp.c src/unitest.c src/lexem.c src/parser.c src/asm_line.c
@@ -17,7 +18,7 @@ goto start
 
 :display [nam] [dep] [dir] [arg]
 	echo [94m========== Compilation de %~1.exe ==========[0m
-	wsl gcc %gcc_args% %~2 %~3%~1.c -o ./bin/%~1.exe
+	wsl gcc %gcc_args% %~2 %~3%~1.c -o ./bin/linux_%~1.exe
 	if NOT ERRORLEVEL 1 (
 		echo.
 		echo [94m---------- Execution de %~1.exe ----------[0m

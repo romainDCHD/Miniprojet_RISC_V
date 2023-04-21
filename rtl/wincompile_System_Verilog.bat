@@ -62,7 +62,8 @@ for /l %%i in (0,1,0) do call :display "!BENCH_FILE[%%i]!" %BENCH_PATH%
 echo [94m========== Exécution de ModelSim ==========[0m
 REM vsim
 :: On utilise la commande do au lieu de l'appeler directement pour éviter les problèmes de chemin
-vsim -voptargs=+acc -do "do {%PROJECT_PATH%/%BENCH_PATH%/prep_riscv_bench.tcl}" LIB_Miniproj_RISCV.bench_riscv
+vsim -voptargs=+acc -do "do {%PROJECT_PATH%/%BENCH_PATH%/prep_riscv_bench.tcl}" LIB_Miniproj_RISCV.bench_triple_dependance
+@REM vsim -voptargs=+acc -do "do {%PROJECT_PATH%/%BENCH_PATH%/prep_riscv_bench.tcl}" LIB_Miniproj_RISCV.bench_riscv
 
 goto end
 

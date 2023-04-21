@@ -52,3 +52,22 @@
    - JAL de offset  et rd=R3
 
  `avancement`: écrit
+
+  # asm_triple_dependance.bin
+ `but` :  tester la triple dépendance: du type
+  ```
+  a = a + b
+  c = b + d
+  e = d + a
+  ```
+  Charge 5 variable de a à e dans les registres de a0 à a4.
+  Fait les 3 sommes
+
+  Valeurs attendues:
+  - a = 3
+  - b = 2
+  - c = 5
+  - d = 3
+  - e = 4
+
+ `avancement`: réalisation du bench

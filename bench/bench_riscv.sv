@@ -67,8 +67,6 @@ riscv #(PROG_SIZE) riscv1 (
 initial $timeformat ( -9, 1, " ns", 12 );
 
 // Clock and Reset Definitin
-// `define PERIOD 20
-
 initial begin
     clk = 1'b1;
     reset = 1'b1;
@@ -90,7 +88,88 @@ end
 
 always @(posedge clk) begin
     clock_number = clock_number + 1;
-    /* TODO : tests sur les valeurs initiales des variables */
+
+    //----- Vérification des valeurs des variables initials
+    if (clock_number == 23) begin
+        $display("========== Test des valeurs initial (CLK = %d)", clock_number);
+        // Valeur de s0
+        if (riscv1.mem1.mem[48] == 8'h00 &&
+            riscv1.mem1.mem[49] == 8'h00 &&
+            riscv1.mem1.mem[50] == 8'h00 &&
+            riscv1.mem1.mem[51] == 8'h00) begin
+                $display("Valeur de s0 OK");
+        end else begin
+            $display("Valeur de s0 NOK");
+        end
+        // Valeur de a
+        if (riscv1.mem1.mem[31] == 8'h0E) begin
+                $display("Valeur de a  OK");
+        end else begin
+            $display("Valeur de a  NOK");
+        end
+        // Valeur de b
+        if (riscv1.mem1.mem[23] == 8'h0F) begin
+                $display("Valeur de b  OK");
+        end else begin
+            $display("Valeur de b  NOK");
+        end
+        // Valeur de c
+        if (riscv1.mem1.mem[22] == 8'h01) begin
+                $display("Valeur de c  OK");
+        end else begin
+            $display("Valeur de c  NOK");
+        end
+        // Valeur de d
+        if (riscv1.mem1.mem[20] == 8'hFE &&
+            riscv1.mem1.mem[21] == 8'hFF) begin
+                $display("Valeur de d  OK");
+        end else begin
+            $display("Valeur de d  NOK");
+        end
+        // Valeur de e
+        if (riscv1.mem1.mem[18] == 8'h0F &&
+            riscv1.mem1.mem[19] == 8'h00) begin
+                $display("Valeur de e  OK");
+        end else begin
+            $display("Valeur de e  NOK");
+        end
+        // Valeur de f
+        if (riscv1.mem1.mem[16] == 8'h00 &&
+            riscv1.mem1.mem[17] == 8'h00) begin
+                $display("Valeur de f  OK");
+        end else begin
+            $display("Valeur de f  NOK");
+        end
+        // Valeur de g
+        if (riscv1.mem1.mem[12] == 8'hFE &&
+            riscv1.mem1.mem[13] == 8'hFF &&
+            riscv1.mem1.mem[14] == 8'hFF &&
+            riscv1.mem1.mem[15] == 8'hFF) begin
+                $display("Valeur de g  OK");
+        end else begin
+            $display("Valeur de g  NOK");
+        end
+        // Valeur de h
+        if (riscv1.mem1.mem[8]  == 8'h0F &&
+            riscv1.mem1.mem[9]  == 8'h0F &&
+            riscv1.mem1.mem[10] == 8'h0F &&
+            riscv1.mem1.mem[11] == 8'h0F) begin
+                $display("Valeur de h  OK");
+        end else begin
+            $display("Valeur de h  NOK");
+        end
+        // Valeur de i
+        if (riscv1.mem1.mem[4]  == 8'h00 &&
+            riscv1.mem1.mem[5]  == 8'h00 &&
+            riscv1.mem1.mem[6]  == 8'h00 &&
+            riscv1.mem1.mem[7]  == 8'h00) begin
+                $display("Valeur de i  OK");
+        end else begin
+            $display("Valeur de i  NOK");
+        end
+    end
+
+    //----- Tests généraux
     for (int i = 0; i < NB_TESTS; i++) begin
         if (clock_number == test[i].clk+3) begin      // +3 because of the stages of the pipeline
             $display("========== Test %s (CLK = %d)", test[i].name, clock_number);
