@@ -27,7 +27,7 @@
    - faire un add de R0 et R4 et le stocker dans R5 
    - faire un add de R0 et R5 et le stocker dans R6 
 
-   `avancement`: écrit 
+   `avancement`: réussi 
 
 # asm_bge.bin
  `but`:  tester les BGE et AUIPC:
@@ -53,7 +53,7 @@
 
  `avancement`: écrit
 
-  # asm_triple_dependance.bin
+# asm_triple_dependance.bin
  `but` :  tester la triple dépendance: du type
   ```
   a = a + b
@@ -63,7 +63,7 @@
   Charge 5 variable de a à e dans les registres de a0 à a4.
   Fait les 3 sommes
 
-  Valeurs attendues:
+  **Valeurs attendues:**
   - a = 3
   - b = 2
   - c = 5

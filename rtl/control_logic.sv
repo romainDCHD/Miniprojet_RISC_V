@@ -53,7 +53,7 @@ module control_logic (
 
     // ALU operations
     typedef enum  {
-        ADD,		// Also used for BEQ, BNE, BGE, BGEU, AUIPC
+        ADD,		// Also used for BEQ, BNE, BGE, BGEU
         AND,
         SLL,
         SRL,
@@ -63,7 +63,8 @@ module control_logic (
         OUT_ZERO,
         SRA,
         LUI,		// Just take the immediate value (already returned on the right format)
-        SUB
+        SUB,
+        AUIPC
     } alu_op_t;
 
     // Immediate selection
@@ -75,8 +76,7 @@ module control_logic (
         IMM_BRANCH,
         IMM_JALR,
         IMM_JAL,
-        IMM_UPPER,
-        AUIPC
+        IMM_UPPER
     } imm_sel_t;
 
     // Memory access size
@@ -163,7 +163,7 @@ module control_logic (
                     end
                 end
                 // Check if the current instruction is a branch or a jump
-                if (inst_reg0[6:0] == `INST_BRANCH || inst_reg0[6:0] == `INST_JAL || inst_reg0[6:0] == `INST_JALR)
+                if (inst_reg0[6:0] == `INST_BRANCH || inst_reg0[6:0] == `INST_JAL || inst_reg0[6:0] == `INST_JALR || inst_reg0[6:0] == `INST_AUIPC)
                     A2_sel_o = 1'b1;         // Select PC as ALU input
                 // Check if the current instruction is a branch
                 if (inst_reg0[6:0] == `INST_BRANCH) begin
