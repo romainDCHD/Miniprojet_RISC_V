@@ -633,10 +633,10 @@ int asm_line_write(list_t* insn_list, char* filename) {
                     fprintf(file, "%s\n", STORE_OPCODE);                                 // 6-0
                 break;
                 case TYPE_JAL:
-                    fprintf(file, "%d", (line->insn_line.imm & 0x10000) >> 20);          // 31
-                    print_binary(file, (line->insn_line.imm >> 1) & 0x3FF, 10);         // 30-21
+                    fprintf(file, "%d", (line->insn_line.imm & 0x40000) >> 20);          // 31
+                    print_binary(file, (line->insn_line.imm >> 1) & 0x3FF, 10);          // 30-21
                     fprintf(file, "%d", (line->insn_line.imm & 0x800) >> 11);            // 20
-                    print_binary(file, (line->insn_line.imm >> 12) & 0xFF, 8);          // 19-12
+                    print_binary(file, (line->insn_line.imm & 0x7F800) >> 12, 8);        // 19-12
                     fprintf(file, "%s", reg2code(line->insn_line.rd));                   // 11-7
                     fprintf(file, "%s\n", JAL_OPCODE);                                   // 6-0
                 break;
@@ -648,12 +648,12 @@ int asm_line_write(list_t* insn_list, char* filename) {
                     fprintf(file, "%s\n", JALR_OPCODE);                                  // 6-0
                 break;
                 case TYPE_LUI:
-                    print_binary(file, line->insn_line.imm, 20);                        // 31-12
+                    print_binary(file, line->insn_line.imm >> 12, 20);                   // 31-12
                     fprintf(file, "%s", reg2code(line->insn_line.rd));                   // 11-7
                     fprintf(file, "%s\n", LUI_OPCODE);                                   // 6-0
                 break;
                 case TYPE_AUIPC:
-                    print_binary(file, line->insn_line.imm >> 12, 20);                  // 31-12
+                    print_binary(file, line->insn_line.imm >> 12, 20);                   // 31-12
                     fprintf(file, "%s", reg2code(line->insn_line.rd));                   // 11-7
                     fprintf(file, "%s\n", AUIPC_OPCODE);                                 // 6-0
                 break;
