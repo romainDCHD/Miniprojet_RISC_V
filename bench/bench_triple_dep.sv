@@ -31,7 +31,7 @@ tests test[NB_TESTS] = '{'{"Valeur de a", 22,   28     , 32,   32'h00000003},
                          '{"Valeur de b", 22,   24     , 32,   32'h00000002},
                          '{"Valeur de c", 22,   20     , 32,   32'h00000005},
                          '{"Valeur de d", 22,   16     , 32,   32'h00000003},
-                         '{"Valeur de e", 22,   12     , 32,   32'h00000004}
+                         '{"Valeur de e", 22,   12     , 32,   32'h00000006}
                        };
 
 bit clk;

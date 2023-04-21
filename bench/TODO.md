@@ -14,16 +14,16 @@
 - [x]  Vérifier pourquoi les données n'arrivent pas sur `dataW` lors de l'écriture en mémoire
 
 ## Autres
-- [ ]  Vérifier la triple dépendance de données
+- [x]  Vérifier la triple dépendance de données
     - Exemple :
     ```
     a = a + b
     c = b + d
     e = d + a
     ```
-    - [ ]  Faire le code et compiler
-    - [ ]  Réaliser le bench
-    - [ ]  Valider les résultats
+    - [x]  Faire le code et compiler
+    - [x]  Réaliser le bench
+    - [x]  Valider les résultats
 
 # Synthèse
 - [ ]  Réaliser la synthèse

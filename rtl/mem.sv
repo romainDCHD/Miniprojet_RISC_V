@@ -41,15 +41,15 @@ module mem #(parameter  n=20) (
                     2'b00: mem[addr_i] <= dataW_i[7:0];
                     // Half word
                     2'b01: begin
-                        mem[addr_i] <= dataW_i[15:8];
-                        if (addr_i+1 <= n) mem[addr_i+1] <= dataW_i[7:0];
+                        mem[addr_i+1] <= dataW_i[15:8];
+                        if (addr_i+1 <= n) mem[addr_i] <= dataW_i[7:0];
                     end
                     // Word
                     2'b10: begin
-                        mem[addr_i] <= dataW_i[31:24];
-                        if (addr_i+1 <= n) mem[addr_i+1] <= dataW_i[23:16];
-                        if (addr_i+2 <= n) mem[addr_i+2] <= dataW_i[15:8];
-                        if (addr_i+3 <= n) mem[addr_i+3] <= dataW_i[7:0];
+                        mem[addr_i+3] <= dataW_i[31:24];
+                        if (addr_i+1 <= n) mem[addr_i+2] <= dataW_i[23:16];
+                        if (addr_i+2 <= n) mem[addr_i+1] <= dataW_i[15:8];
+                        if (addr_i+3 <= n) mem[addr_i]   <= dataW_i[7:0];
                     end
                     default: begin
                         /* No write */
