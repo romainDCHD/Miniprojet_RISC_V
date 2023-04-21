@@ -65,41 +65,39 @@ module mem #(parameter  n=20) (
                     data_r[15:8]  = mem[addr_i+2];
                     data_r[7:0]   = mem[addr_i+3];
                 end
-            end
-        
-            // We mask the data according to the the value of dataSec_i
 
-        else 
-        begin
-        //----- Write
-            case (dataSec_i)
-                // Byte
-                2'b00: mem[addr_i] = dataW_i[7:0];
-                // Half word
-                2'b01: begin
-                    mem[addr_i] = dataW_i[15:8];
-                    if (addr_i+1 <= n) mem[addr_i+1] = dataW_i[7:0];
-                end
-                // Word
-                2'b10: begin
-                    mem[addr_i] = dataW_i[31:24];
-                    if (addr_i+1 <= n) mem[addr_i+1] = dataW_i[23:16];
-                    if (addr_i+2 <= n) mem[addr_i+2] = dataW_i[15:8];
-                    if (addr_i+3 <= n) mem[addr_i+3] = dataW_i[7:0];
-                end
-                default: begin
-                    /* No write */
-                end
-            endcase
+                // We mask the data according to the the value of dataSec_i
+                case (dataSec_i)
+                    2'b00: data_r[31:8] = 24'h000000;  // Byte
+                    2'b01: data_r[31:16] = 16'h0000;   // Half word
+                    2'b10: data_r[31:24] = 8'h00;      // Word
+                    default: begin
+                        /* No mask */
+                    end
+                endcase
+            end
+            else begin
+            //----- Write
+                case (dataSec_i)
+                    // Byte
+                    2'b00: mem[addr_i] = dataW_i[7:0];
+                    // Half word
+                    2'b01: begin
+                        mem[addr_i] = dataW_i[15:8];
+                        if (addr_i+1 <= n) mem[addr_i+1] = dataW_i[7:0];
+                    end
+                    // Word
+                    2'b10: begin
+                        mem[addr_i] = dataW_i[31:24];
+                        if (addr_i+1 <= n) mem[addr_i+1] = dataW_i[23:16];
+                        if (addr_i+2 <= n) mem[addr_i+2] = dataW_i[15:8];
+                        if (addr_i+3 <= n) mem[addr_i+3] = dataW_i[7:0];
+                    end
+                    default: begin
+                        /* No write */
+                    end
+                endcase
+            end
         end
-            case (dataSec_i)
-                2'b00: data_r[31:8] = 24'h000000;  // Byte
-                2'b01: data_r[31:16] = 16'h0000;   // Half word
-                2'b10: data_r[31:24] = 8'h00;      // Word
-                default: begin
-                    /* No mask */
-                end
-            endcase   
-    end
     end
 endmodule   

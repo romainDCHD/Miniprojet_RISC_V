@@ -1,52 +1,52 @@
  //==============================================================================
 //  Filename    : branch_comp     
-//  Description : effectue une comparaison entre in_A et in_B (signée ou non, en fonction de BrUn) dont la valeur de retour est donnée par BrEq et BrLT
+//  Description : effectue une comparaison entre A_i et B_i (signée ou non, en fonction de BrUn_i) dont la valeur de retour est donnée par BrLT_o et BrLT_o
 //============================================================================== 
 
  module branch_comp (
-	input  logic [31:0]  in_A,
-	input  logic [31:0]  in_B,
-	input  logic   BrUn,
-    	output logic   BrEq,
-    	output logic   BrLT
+	input  logic [31:0] A_i,
+	input  logic [31:0] B_i,
+	input  logic   		BrUn_i,
+    output logic   		BrEq_o,
+    output logic   		BrLT_o
 );
 
-logic signed [31:0]  in_A_s;
-logic signed [31:0]  in_B_s;
-assign in_A_s = in_A;
-assign in_B_s = in_B;
+logic signed [31:0]  A_i_s;
+logic signed [31:0]  B_i_s;
+assign A_i_s = A_i;
+assign B_i_s = B_i;
 
-    	always_comb //in_A, in_B, BrUn
+    	always_comb //A_i, B_i, BrUn_i
     	begin
-    		if(in_A == in_B)
+    		if(A_i == B_i)
     			begin	
-    				assign BrEq = 1'b1;
-    				assign BrLT = 1'b0;
+    				BrEq_o = 1'b1;
+    				BrLT_o = 1'b0;
     			end
-    		else if (BrUn == 1'b1)
+    		else if (BrUn_i == 1'b1)
 	    		begin
-	    			if (in_A_s < in_B_s	)
+	    			if (A_i_s < B_i_s	)
 		    			begin	
-		    				assign BrEq = 1'b0;
-		    				assign BrLT = 1'b1;
+		    				BrEq_o = 1'b0;
+		    				BrLT_o = 1'b1;
 		    			end
 	    			else 
 		    			begin	
-		    				assign BrEq = 1'b0;
-		    				assign BrLT = 1'b0;
+		    				BrEq_o = 1'b0;
+		    				BrLT_o = 1'b0;
 		    			end
 	    		end
     		else
 	    		begin
-	    			if (in_A < in_B)
+	    			if (A_i < B_i)
 		    			begin	
-		    				assign BrEq = 1'b0;
-		    				assign BrLT = 1'b1;
+		    				BrEq_o = 1'b0;
+		    				BrLT_o = 1'b1;
 		    			end
 	    			else 
 		    			begin	
-		    				assign BrEq = 1'b0;
-		    				assign BrLT = 1'b0;
+		    				BrEq_o = 1'b0;
+		    				BrLT_o = 1'b0;
 		    			end
 	    		end
     	end

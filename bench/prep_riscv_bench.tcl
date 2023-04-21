@@ -17,6 +17,7 @@ add wave -group imem sim:/bench_riscv/riscv1/imem1/*
 add wave -group wb sim:/bench_riscv/riscv1/wb1/*
 add wave -group regfile sim:/bench_riscv/riscv1/regfile1/*
 add wave -group opti sim:/bench_riscv/riscv1/opti1/*
+add wave -group branch_comp sim:/bench_riscv/riscv1/opti1/branch_comp1/*
 add wave -group imm_gen sim:/bench_riscv/riscv1/imm_gen1/*
 add wave -group alu sim:/bench_riscv/riscv1/alu1/*
 add wave -group mem sim:/bench_riscv/riscv1/mem1/*

@@ -82,21 +82,21 @@ imm_gen imm_gen1(
 opti opti1(
     .clk(clk),
     .rst(rst),
-    .A1_sel(A1_sel_l),
-    .B1_sel(B1_sel_l),
-    .A2_sel(A2_sel_l),
-    .B2_sel(B2_sel_l),
-    .Brun(BrUn_l),
-    .Breq(BrEq_l),
-    .Brlt(BrLt_l),
-    .reg_rs1(reg1_l),
-    .reg_rs2(reg2_l),
-    .alu(alu_l),
-    .pc(pc_l),
-    .imm(Imm_l),
-    .reg1(aluA_l),
-    .reg2(aluB_l),
-    .data_w(dataW_l)
+    .A1_sel_i(A1_sel_l),
+    .B1_sel_i(B1_sel_l),
+    .A2_sel_i(A2_sel_l),
+    .B2_sel_i(B2_sel_l),
+    .BrUn_i(BrUn_l),
+    .BrEq_o(BrEq_l),
+    .BrLT_o(BrLt_l),
+    .reg_rs1_i(reg1_l),
+    .reg_rs2_i(reg2_l),
+    .alu_i(alu_l),
+    .pc_i(pc_l),
+    .imm_i(Imm_l),
+    .reg1_o(aluA_l),
+    .reg2_o(aluB_l),
+    .dataW_o(dataW_l)
 );
 
 alu alu1(

@@ -75,7 +75,8 @@ module control_logic (
         IMM_BRANCH,
         IMM_JALR,
         IMM_JAL,
-        IMM_UPPER
+        IMM_UPPER,
+        AUIPC
     } imm_sel_t;
 
     // Memory access size
@@ -142,7 +143,7 @@ module control_logic (
                     // Check if the current instruction require the second register
                     if (inst_reg0[6:0] == `INST_BRANCH || inst_reg0[6:0] == `INST_STORE || inst_reg0[6:0] == `INST_REGREG) begin
                         // Check dependency on the second register
-                        if (inst_reg0[11:7] == inst_reg1[24:20]) begin
+                        if (inst_reg0[24:20] == inst_reg1[11:7]) begin
                             B1_sel_o = 1'b1;     // Select the ALU output
                         end
                     end
@@ -248,7 +249,7 @@ module control_logic (
                         alu_op_o = LUI;
                     end
                     `INST_AUIPC: begin
-                        alu_op_o = ADD;
+                        alu_op_o = AUIPC;
                     end
                     `INST_NOP: begin
                         alu_op_o = OUT_ZERO;
