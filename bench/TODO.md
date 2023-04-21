@@ -12,7 +12,6 @@
     - [ ]  Mettre à jour le code
     - [ ]  Tester le nouveau code et valider les résultats
 - [x]  Vérifier pourquoi les données n'arrivent pas sur `dataW` lors de l'écriture en mémoire
-- [ ]  Rajouter le multiplexer de `opti.sv`
 
 ## Autres
 - [ ]  Vérifier la triple dépendance de données
