@@ -22,7 +22,7 @@ goto start
 	if NOT ERRORLEVEL 1 (
 		echo.
 		echo [94m---------- Execution de %~1.exe ----------[0m
-		wsl valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./bin/%~1.exe %~4
+		wsl valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./bin/linux_%~1.exe %~4
 		call :print_errlevel "%errorlevel%"
 		echo.
 	) else (

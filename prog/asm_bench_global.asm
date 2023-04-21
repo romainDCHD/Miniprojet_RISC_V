@@ -27,7 +27,7 @@
 ;#define VALUE6 0x0000
 ;
 ;#define VALUE7 0xFFFFFFFE
-;#define VALUE8 0x0F0F0F0F
+;#define VALUE8 0x0F0F0E0F
 ;#define VALUE9 0x00000000
 ;
 ;#define RESET_VAR_VALUES \
@@ -449,8 +449,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lbu     a4,-17(s0)
