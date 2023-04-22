@@ -38,7 +38,11 @@
 ;e = VALUE5; \
 ;f = VALUE6; \
 ;g = VALUE7; \
-;h = VALUE8; \
+;asm( \
+;    "lui     a5,252645135\n\t" \
+;    "addi    a5,a5,1807\n\t" \
+;    "sw      a5,-40(s0)" \
+;); \
 ;i = VALUE9;
 ; ATTENTION : les 3 premiere ligne du code assembleur correspondant a la ligne en C ci-dessous ont ete modifie !
 ;int main() {
@@ -478,8 +482,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lw      a4,-36(s0)
@@ -499,8 +503,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lhu     a4,-28(s0)
@@ -520,8 +524,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lhu     a4,-22(s0)
@@ -542,8 +546,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lw      a4,-36(s0)
@@ -563,8 +567,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lw      a4,-36(s0)
@@ -584,8 +588,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lbu     a4,-17(s0)
@@ -611,8 +615,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lb      a4,-17(s0)
@@ -639,8 +643,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lhu     a4,-28(s0)
@@ -660,8 +664,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lbu     a4,-25(s0)
@@ -685,8 +689,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lhu     a5,-28(s0)
@@ -708,8 +712,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lhu     a5,-28(s0)
@@ -732,8 +736,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lw      a4,-32(s0)
@@ -756,13 +760,13 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lw      a4,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         xor     a5,a4,a5
         sw      a5,-44(s0)
         lw      a4,-32(s0)
@@ -782,8 +786,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lbu     a5,-17(s0)
@@ -808,8 +812,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lb      a4,-17(s0)
@@ -835,8 +839,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lhu     a5,-22(s0)
@@ -856,8 +860,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lbu     a4,-17(s0)
@@ -878,8 +882,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lbu     a4,-17(s0)
@@ -900,8 +904,8 @@ main:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lbu     a4,-17(s0)
@@ -923,8 +927,8 @@ LABEL0:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lbu     a4,-17(s0)
@@ -946,8 +950,8 @@ LABEL1:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lbu     a4,-17(s0)
@@ -969,8 +973,8 @@ LABEL2:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lb     a4,-17(s0)
@@ -992,8 +996,8 @@ LABEL3:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lw      a4,-40(s0)
@@ -1013,8 +1017,8 @@ LABEL3:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lw      a4,-40(s0)
@@ -1034,8 +1038,8 @@ LABEL3:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         sb      zero,-17(s0)
@@ -1067,8 +1071,8 @@ LABEL3:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)
         lw      a4,-40(s0)
@@ -1090,7 +1094,7 @@ LABEL4:
         sh      zero,-32(s0)
         li      a5,-2
         sw      a5,-36(s0)
-        li      a5,252645376
-        addi    a5,a5,-241
+        lui     a5,252645135
+        addi    a5,a5,1807
         sw      a5,-40(s0)
         sw      zero,-44(s0)

@@ -134,6 +134,20 @@ module control_logic (
 
             //----- Instruction decoding
             if (inst_reg0[6:0] != `INST_NOP) begin
+                // Detecting dependencies for 2 clk, begin to check if the previous instruction has a result
+                if (inst_reg2[6:0] != `INST_BRANCH  && inst_reg2[6:0] != `INST_NOP  && inst_reg2[6:0] != `INST_BRANCH && inst_reg2[6:0] != `INST_STORE) begin
+                    // Check dependency on the first register
+                    if (inst_reg2[11:7] == inst_reg0[19:15]) begin
+                        A1_sel_o = 2'b10;     // Select the ALU output
+                    end
+                    // Check if the current instruction require the second register
+                    if (inst_reg0[6:0] == `INST_BRANCH || inst_reg0[6:0] == `INST_STORE || inst_reg0[6:0] == `INST_REGREG) begin
+                        // Check dependency on the second register
+                        if (inst_reg0[24:20] == inst_reg2[11:7]) begin
+                            B1_sel_o = 2'b10;     // Select the wb output
+                        end
+                    end
+                end
                 // Detecting dependencies for 1 clk, begin to check if the previous instruction has a result
                 if (inst_reg1[6:0] != `INST_BRANCH  && inst_reg1[6:0] != `INST_NOP  && inst_reg1[6:0] != `INST_BRANCH && inst_reg1[6:0] != `INST_STORE) begin
                     // Check dependency on the first register
@@ -145,20 +159,6 @@ module control_logic (
                         // Check dependency on the second register
                         if (inst_reg0[24:20] == inst_reg1[11:7]) begin
                             B1_sel_o = 2'b01;     // Select the ALU output
-                        end
-                    end
-                end
-                // Detecting dependencies for 2 clk, begin to check if the previous instruction has a result
-                else if (inst_reg2[6:0] != `INST_BRANCH  && inst_reg2[6:0] != `INST_NOP  && inst_reg2[6:0] != `INST_BRANCH && inst_reg2[6:0] != `INST_STORE) begin
-                    // Check dependency on the first register
-                    if (inst_reg2[11:7] == inst_reg0[19:15]) begin
-                        A1_sel_o = 2'b10;     // Select the ALU output
-                    end
-                    // Check if the current instruction require the second register
-                    if (inst_reg0[6:0] == `INST_BRANCH || inst_reg0[6:0] == `INST_STORE || inst_reg0[6:0] == `INST_REGREG) begin
-                        // Check dependency on the second register
-                        if (inst_reg0[24:20] == inst_reg2[11:7]) begin
-                            B1_sel_o = 2'b10;     // Select the wb output
                         end
                     end
                 end

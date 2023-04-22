@@ -2,8 +2,8 @@
 chcp 65001
 setlocal enabledelayedexpansion
 
-set PROJECT_PATH=C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V
-REM set PROJECT_PATH=D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V
+@REM set PROJECT_PATH=C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V
+set PROJECT_PATH=D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V
 set WINCONFIG_PATH=winconfig
 set RTL_PATH=rtl
 set BENCH_PATH=bench

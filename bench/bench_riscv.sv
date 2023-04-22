@@ -28,26 +28,26 @@ typedef struct {
 // Test cases : See asm_bench_global.xlsx for more details
 //                         name,                    clk,  address, size, value
 tests test[NB_TESTS] = '{'{"ADD sans débordement ", 26,   22     , 32,   32'h0000001E},
-                         '{"ADD avec débordement ", 30,   4      , 32,   32'h0F0F0F0D},
-                         '{"AND                  ", 51,   4      , 32,   32'h0F0F0F0E},
+                         '{"ADD avec débordement ", 30,   4      , 32,   32'h0F0F070D},
+                         '{"AND                  ", 51,   4      , 32,   32'h0F0F070E},
                          '{"SLL                  ", 72,   16     , 16,   32'h00000000},
                          '{"SRL                  ", 93,   16     , 16,   32'h00000002},
-                         '{"XOR                  ", 135,  4      , 32,   32'hF0F0F0F1},
+                         '{"OR                   ", 114,  4      , 32,   32'hFFFFFFFF},
+                         '{"XOR                  ", 135,  4      , 32,   32'hF0F0F8F1},
                          '{"SLTU true            ", 157,  22     , 8,    32'h00000001},
                          '{"SLTU false           ", 162,  16     , 16,   32'h00000000},
                          '{"SLT true             ", 184,  22     , 8,    32'h00000001},
                          '{"SLT false            ", 189,  16     , 16,   32'h00000000},
                          '{"SRA                  ", 210,  16     , 16,   32'h00000002},
-                         '{"SUB avec débordement ", 235,  16     , 16,   32'hFFFF0011},
                          '{"SUB sans débordement ", 231,  22     , 8,    32'h00000001},
+                         '{"SUB avec débordement ", 235,  16     , 16,   32'hFFFF0011},
                          '{"SLLI avec débordement", 255,  16     , 16,   32'h0000FFC0},
                          '{"SLLI sans débordement", 258,  22     , 8,    32'h000000C0},
                          '{"SRLI sans débordement", 278,  16     , 16,   32'h00000001},
                          '{"SRLI avec débordement", 281,  22     , 8,    32'h00000000},
-                         '{"ORI                  ", 303,  4      , 32,   32'h0F0F0F0F},
+                         '{"ORI                  ", 303,  4      , 32,   32'h0F0F070F},
                          '{"ORI  avec dépendance ", 304,  8      , 32,   32'hFFFFFFFF},
-                         '{"XORI                 ", 326,  4      , 32,   32'hF0F0F0F1},
-                         '{"XORI                 ", 326,  4      , 32,   32'hF0F0F0F1},
+                         '{"XORI                 ", 326,  4      , 32,   32'hF0F0F8F1},
                          '{"SLTIU true           ", 350,  22     , 8,    32'h00000001},
                          '{"SLTIU false          ", 354,  16     , 16,   32'h00000000},
                          '{"SLTI true            ", 375,  22     , 16,   32'h00000001},
@@ -78,8 +78,8 @@ always
 
 // Load the program in the instruction memory from a binary file
 initial begin
-    // $readmemb("D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V/prog/asm_bench_global.bin", riscv1.imem1.tab_inst);
-    $readmemb("C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/prog/asm_bench_global.bin", riscv1.imem1.tab_inst);
+    $readmemb("D:/Dossier principal/Documents/Phelma/Miniprojet_RISC_V/prog/asm_bench_global.bin", riscv1.imem1.tab_inst);
+    // $readmemb("C:/Users/Gael/Documents/Phelma/Miniprojet_RISC_V/prog/asm_bench_global.bin", riscv1.imem1.tab_inst);
     clk <= 1'b0  ;
     reset <= 1'b1;
     #21 reset <= 1'b0;
@@ -90,7 +90,7 @@ always @(posedge clk) begin
     clock_number = clock_number + 1;
 
     //----- Vérification des valeurs des variables initials
-    if (clock_number == 23) begin
+    if (clock_number == 24) begin
         $display("========== Test des valeurs initial (CLK = %d)", clock_number);
         // Valeur de s0
         if (riscv1.mem1.mem[48] == 8'h00 &&
@@ -151,7 +151,7 @@ always @(posedge clk) begin
         end
         // Valeur de h
         if (riscv1.mem1.mem[8]  == 8'h0F &&
-            riscv1.mem1.mem[9]  == 8'h0F &&
+            riscv1.mem1.mem[9]  == 8'h07 &&
             riscv1.mem1.mem[10] == 8'h0F &&
             riscv1.mem1.mem[11] == 8'h0F) begin
                 $display("Valeur de h  OK");
@@ -171,7 +171,7 @@ always @(posedge clk) begin
 
     //----- Tests généraux
     for (int i = 0; i < NB_TESTS; i++) begin
-        if (clock_number == test[i].clk+3) begin      // +3 because of the stages of the pipeline
+        if (clock_number == test[i].clk+4) begin      // +4 because of the stages of the pipeline
             $display("========== Test %s (CLK = %d)", test[i].name, clock_number);
             $display("Expected value : 0x%h @ 0x%h", test[i].value, test[i].address);
             value_ok = 0;
