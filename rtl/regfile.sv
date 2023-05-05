@@ -48,14 +48,11 @@ module riscv_regfile(
 			.reset  ( rst_i     )
 			);
 
-
 	//-----------------------------------------------------------------
     // Combinational read
     //-----------------------------------------------------------------
 		assign DataA_o = Registers[Old_AddrA_r];
 		assign DataB_o = Registers[Old_AddrB_r];
-
-
 
 	//-----------------------------------------------------------------
     // Synchronous write
@@ -79,47 +76,3 @@ module riscv_regfile(
 			end   
 		end
 endmodule
-
-//     //-----------------------------------------------------------------
-//     // Synchronous read / write
-//     //-----------------------------------------------------------------
-    
-//     always_ff @ (posedge clk_i )
-//     begin
-//         //reset
-//         if (rst_i)
-// 	    begin 
-// 			rst_reg   <=1'b1;
-// 			DataB_o   <= 32'h00000000;
-// 		    DataA_o   <= 32'h00000000;
-// 	    end
-	    
-// 		else 
-// 		begin  
-// 			rst_reg   <=1'b0;
-// 			DataA_o   <= DataA_r;
-// 			DataB_o   <= DataB_r;
-// 		end   
-// 	end
-
-// 	always_comb
-// 	begin
-// 		if (rst_reg == 1)
-// 		begin
-// 			Registers   <= '{default:32'h00000000};
-// 		end
-
-// 		else 
-// 			begin    
-// 				//ecriture
-// 					if (RegWEn_i == 1)
-// 					begin
-// 						Registers[Old_AddrD]   <= DataD_i; 
-// 					end
-
-// 				//lecture
-// 				DataA_r       <= Registers[AddrA_i];
-// 				DataB_r       <= Registers[AddrB_i];
-// 			end   
-// 	end
-// endmodule
