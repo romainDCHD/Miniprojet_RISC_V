@@ -1,7 +1,7 @@
 # Miniprojet_RISC_V
 **SEI 2A projet semestre 8**
 ![Archi](doc/archi.svg)
-Ce projet de 4e année d'école d'ingénieur consistait à réaliser un processeur *RISC-V* 32 bits en System Verilog. Le processeur devait être capable d'exécuter le jeu d'instruction *RV32I* sans extentions. Le processeur est aussi accompagné d'un compilateur permettant de passer d'un code assembleur *RV32I* à un code machine.
+Ce projet de 4e année d'école d'ingénieur consistait à réaliser un processeur *RISC-V* 32 bits en System Verilog. Le processeur devait être capable d'exécuter le jeu d'instruction *RV32I* sans extention. Le processeur est aussi accompagné d'un compilateur permettant de passer d'un code assembleur *RV32I* à un code machine.
 
 ## Architecture
 Le processeur adopte une architecture *Harvard*. Il comporte un pipeline 5 étages (Fetch, Decode, Execute, Memory, WriteBack). Il est capable d'exécuter l'ensemble du jeu d'instruction *RV32I* sans extentions à l'exception des instructions suivantes :
@@ -27,7 +27,7 @@ Le processeur adopte une architecture *Harvard*. Il comporte un pipeline 5 étag
 - **winconfig** : Contient les fichiers de configuration pour ModelSim sous Windows
 
 ## Utilisation
-Pour simuler le processeur sous Windows avec ModelSim et avec le bench principal il suffit d'exécuter le script [`rtl/wincompile_System_Verilog.bat.bat`](rtl/wincompile_System_Verilog.bat) qui va lancer ModelSim et exécuter le testbench `bench/bench_riscv.sv`. Il est possible de changer le testbench à exécuter en modifiant le fichier de script comme suit :
+Pour simuler le processeur sous Windows avec ModelSim et avec le bench principal il suffit d'exécuter le script [`rtl/wincompile_System_Verilog.bat`](rtl/wincompile_System_Verilog.bat) qui va lancer ModelSim et exécuter le testbench `bench/bench_riscv.sv`. Il est possible de changer le testbench à exécuter en modifiant le fichier de script comme suit :
 - A la ligne **6** définir le chemin vers le dossier contenant le projet
     ```batch
     set PROJECT_PATH=Chemin/vers/le/dossier/contenant/le/projet
@@ -70,12 +70,12 @@ La plupart des instructions sont fonctionnelles. Il reste cependant un certains 
 - [x]  L'écriture dans la mémoire
 - [x]  La plupart des opération arithmétiques (immédiates ou depuis les registres)
 
-Il semble qu'au stade actuel du projet la lecture dans la mémoire ne fonctionne pas correctement. Cela empêche donc l'exécution correcte du reste des tests.
+Il semble qu'au stade actuel du projet la lecture dans la mémoire ne fonctionne pas correctement. Cela empêche donc l'exécution correcte d'un certain nombre de tests.
 
 Cependant l'ensembles des autres tests réalisés sont fonctionnels.
 
 ## Compilateur RV32I
-Afin de pouvoir réaliser nos testbench, nous avons eu besoin de réaliser un compilateur permettant de passer d'un code assembleur *RV32I* à un code machine. Pour cela nous avons réulitliser le compilateur réaliser lors du projet d'informatique du semestre 7.
+Afin de pouvoir réaliser nos testbench, nous avons eu besoin de réaliser un compilateur permettant de passer d'un code assembleur *RV32I* à un code machine. Pour cela nous avons réulitlisé le compilateur réalisé lors du projet d'informatique du semestre 7.
 
 ### Usage
 Pour compiler un fichier assembleur, il suffit de suivre la syntaxe suivante :
@@ -108,7 +108,9 @@ Le compilateur est capable de compiler les instructions suivantes n'étant pas p
 - `mv` remplacé par `add rd,rs1,zero`
 - `ble` (pas encore supporté)
 
-Le compilateur ajoute aussi automatiquement deux instructions `NOP` après chaque instruction de branchement.
+Il ajoute aussi automatiquement deux instructions `NOP` après chaque instruction de branchement.
+
+De plus il supporte aussi les labels dans le code, et calcule automatiquement les offsets des instructions de branchement.
 
 Enfin il fait reboucler automatiquement le programme sur lui même à la fin du code source.
 
